@@ -1,0 +1,1088 @@
+{
+  "story": {
+    "introAr": "An unknown force from outside is attacking how we think, with rumours, fake clips and fake accounts. Ride the power board and defend our national identity with Cyber!",
+    "winAr": "Awareness wins! Thanks to you our identity stays strong, and no rumour or fake clip fools our minds.",
+    "simulatedNoteAr": "Everything in the game is pretend: the names, accounts, news, clips and rials are not real."
+  },
+  "sources": [
+    "UNICEF, guidance for children and families on staying safe online, and Cyberbullying: What is it and how to stop it",
+    "UNESCO, Media and Information Literacy curriculum: Think Critically, Click Wisely (sources, rumours and false information)",
+    "ITU, Guidelines on Child Online Protection (privacy, contact with strangers, reporting)",
+    "Common Sense Media, Digital Citizenship curriculum (digital footprint, privacy, news and media literacy)"
+  ],
+  "decisions": {
+    "M1.C1": {
+      "variants": [
+        {
+          "id": "school-holiday",
+          "sceneAr": "An account called “Breaking News 24” has a post with no source and thousands of likes:",
+          "message": {
+            "fromAr": "Breaking News 24",
+            "textAr": "Breaking! Schools are off for a whole week from tomorrow! 🔥"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "check_official_source",
+              "labelAr": "I look for it on the school's or ministry's official account"
+            },
+            {
+              "actionId": "believe_and_tell_everyone",
+              "labelAr": "I cheer and tell my friends: no school!"
+            },
+            {
+              "actionId": "trust_many_likes",
+              "labelAr": "Thousands of likes are enough. It's true"
+            }
+          ],
+          "praiseAr": "You checked first",
+          "explainAr": "Likes don't make a thing true. The official body itself announces a holiday. If it's real, you'll find it there."
+        },
+        {
+          "id": "match-cancelled",
+          "sceneAr": "Hours before the national team's match, an account you don't know posts:",
+          "message": {
+            "fromAr": "Koora Now",
+            "textAr": "Shock! Tonight's match is off and the team's star is banned! Details later…"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "trust_many_likes",
+              "labelAr": "It's all over the feed, so it must be true"
+            },
+            {
+              "actionId": "check_official_source",
+              "labelAr": "I open the football association's official account"
+            },
+            {
+              "actionId": "believe_and_tell_everyone",
+              "labelAr": "I tell Dad and my brothers the match is off"
+            }
+          ],
+          "praiseAr": "Sharp eyes",
+          "explainAr": "“Details later” with no source is a sign of a rumour. Real news is on the official account before any unknown one."
+        },
+        {
+          "id": "khareef-road",
+          "sceneAr": "Your family is about to drive to Salalah for khareef. Your sister believes this post:",
+          "message": {
+            "fromAr": "Trips and News",
+            "textAr": "Salalah road closed to cars from today! Don't travel!"
+          },
+          "promptAr": "What do you tell your sister?",
+          "options": [
+            {
+              "actionId": "believe_and_tell_everyone",
+              "labelAr": "We tell Dad to cancel the trip now"
+            },
+            {
+              "actionId": "trust_many_likes",
+              "labelAr": "Many people shared it, so it must be true"
+            },
+            {
+              "actionId": "check_official_source",
+              "labelAr": "First we check the police's official account"
+            }
+          ],
+          "praiseAr": "Good advice",
+          "explainAr": "The body in charge of roads announces this on its official account. A post with no source is no reason to change plans."
+        }
+      ]
+    },
+    "M1.C2": {
+      "variants": [
+        {
+          "id": "family-group",
+          "sceneAr": "This message lands in the family group, marked “Forwarded many times”:",
+          "message": {
+            "fromAr": "Aunt Maryam",
+            "textAr": "Warning! A famous juice in the shops is poisonous. Send to all you love before it's deleted!"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "forward_to_everyone",
+              "labelAr": "I send it at once to my class group and friends"
+            },
+            {
+              "actionId": "verify_before_forwarding",
+              "labelAr": "I don't send it. I ask for a source and check official accounts"
+            },
+            {
+              "actionId": "forward_just_in_case",
+              "labelAr": "I send it just in case. It can't hurt if it's wrong"
+            }
+          ],
+          "praiseAr": "The rumour stopped with you",
+          "explainAr": "“Share before it's deleted” is rumour talk. A wrong message does harm: it scares people and wrongs others."
+        },
+        {
+          "id": "class-group",
+          "sceneAr": "In the class group a classmate sends this, and everyone starts forwarding it:",
+          "message": {
+            "fromAr": "Majid",
+            "textAr": "They say tomorrow's test leaked and is cancelled! Send to every class, quick 🙏"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "verify_before_forwarding",
+              "labelAr": "I don't forward it. I wait for the teacher or school platform"
+            },
+            {
+              "actionId": "forward_just_in_case",
+              "labelAr": "Only to my brother's class. It may be true"
+            },
+            {
+              "actionId": "forward_to_everyone",
+              "labelAr": "I send it to every group, as he asked"
+            }
+          ],
+          "praiseAr": "That was responsible",
+          "explainAr": "“They say” is not a source. If classmates believed it, they'd stop studying over a message nobody checked."
+        },
+        {
+          "id": "eid-gift",
+          "sceneAr": "A few days before Eid you get this message from your cousin:",
+          "message": {
+            "fromAr": "Said",
+            "textAr": "A free Eid gift for every child from a big company! Send this to 20 people to get yours 🎁"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "forward_just_in_case",
+              "labelAr": "I send it to a few friends. I've nothing to lose"
+            },
+            {
+              "actionId": "forward_to_everyone",
+              "labelAr": "I send it to 20 people to get the Eid gift"
+            },
+            {
+              "actionId": "verify_before_forwarding",
+              "labelAr": "I don't send it, and I tell Said nobody has checked it"
+            }
+          ],
+          "praiseAr": "You saw through it",
+          "explainAr": "Nobody gives out gifts by counting forwards. These messages only want to spread, and stop when we don't send them."
+        }
+      ]
+    },
+    "M1.C3": {
+      "variants": [
+        {
+          "id": "news-presenter",
+          "sceneAr": "You get a clip of a famous news presenter saying odd things. His lips don't quite match his voice:",
+          "message": {
+            "fromAr": "A clip going round",
+            "textAr": "“New decision: there will be school on Fridays too!”"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "trust_video_as_proof",
+              "labelAr": "I believe it. I saw and heard it myself"
+            },
+            {
+              "actionId": "doubt_and_check_original",
+              "labelAr": "I doubt it and check the channel's official account"
+            },
+            {
+              "actionId": "share_clip_for_fun",
+              "labelAr": "I send it to friends for a laugh, even if it's fake"
+            }
+          ],
+          "praiseAr": "A good doubt",
+          "explainAr": "AI can copy faces and voices. If the clip is not on the official account, don't believe it and don't share it."
+        },
+        {
+          "id": "player-photo",
+          "sceneAr": "A viral photo: your favourite national team player holds a sign insulting his fans. His hand has six fingers!",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "doubt_and_check_original",
+              "labelAr": "I think it's fake and check his verified account"
+            },
+            {
+              "actionId": "share_clip_for_fun",
+              "labelAr": "I post it and ask: “Is this true?”"
+            },
+            {
+              "actionId": "trust_video_as_proof",
+              "labelAr": "A photo is proof. I won't cheer for him again"
+            }
+          ],
+          "praiseAr": "You spotted the details",
+          "explainAr": "Small mistakes like extra fingers give made-up photos away. Posting it, even with a question, helps it spread."
+        },
+        {
+          "id": "cut-interview",
+          "sceneAr": "A short clip from an interview with a well-known person is cut in the middle. He seems to mock young people.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "share_clip_for_fun",
+              "labelAr": "I send it to the group with a joke"
+            },
+            {
+              "actionId": "trust_video_as_proof",
+              "labelAr": "He said it himself. No need to check"
+            },
+            {
+              "actionId": "doubt_and_check_original",
+              "labelAr": "I look for the full interview at its source before I judge"
+            }
+          ],
+          "praiseAr": "You found the original",
+          "explainAr": "A sentence cut from its place changes meaning. The full interview at its source shows what was really said."
+        }
+      ]
+    },
+    "M2.C1": {
+      "variants": [
+        {
+          "id": "feed-clip",
+          "sceneAr": "Scrolling the clip app “Lamha”, you see a clip with words and acts that don't fit our upbringing.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "skip_and_tell_parent",
+              "labelAr": "I skip it, tap “Not interested”, and tell Mum"
+            },
+            {
+              "actionId": "keep_watching_curious",
+              "labelAr": "I watch it all. Being curious can't hurt"
+            },
+            {
+              "actionId": "send_clip_to_friends",
+              "labelAr": "I send it to my friend: did you see this?"
+            }
+          ],
+          "praiseAr": "That's so you",
+          "explainAr": "The app shows you more of what you watch to the end. Skipping and “Not interested” teach it what suits you."
+        },
+        {
+          "id": "majlis-cousin",
+          "sceneAr": "In the majlis on Eid day, your cousin shows you a “famous” clip whose maker mocks respecting parents.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "send_clip_to_friends",
+              "labelAr": "I ask him to send it so I can show my friends"
+            },
+            {
+              "actionId": "skip_and_tell_parent",
+              "labelAr": "I say it's not for us. We report it and tell a grown-up"
+            },
+            {
+              "actionId": "keep_watching_curious",
+              "labelAr": "We watch it again together. It's only a joke"
+            }
+          ],
+          "praiseAr": "Our values first",
+          "explainAr": "Fame doesn't make a clip right. Respecting parents is one of our values, and reporting it means fewer people see it."
+        },
+        {
+          "id": "suggested-account",
+          "sceneAr": "After a football clip, the app starts suggesting an account that pushes a way of life against our family's values.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "keep_watching_curious",
+              "labelAr": "I watch a few to see what it's about"
+            },
+            {
+              "actionId": "send_clip_to_friends",
+              "labelAr": "I share them in the friends' group to comment"
+            },
+            {
+              "actionId": "skip_and_tell_parent",
+              "labelAr": "I choose “Don't suggest this account” and talk to Dad"
+            }
+          ],
+          "praiseAr": "You choose",
+          "explainAr": "What you watch today is what the app suggests tomorrow. Talking with your parents helps you understand what you saw."
+        }
+      ]
+    },
+    "M2.C2": {
+      "variants": [
+        {
+          "id": "jump-challenge",
+          "sceneAr": "A new trend: the “Jump Challenge”. Your friends jump off a high wall and film it, and say: “Your turn!”",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "refuse_trend_and_tell_adult",
+              "labelAr": "I say no, warn them, and tell my teacher or Dad"
+            },
+            {
+              "actionId": "join_trend_for_likes",
+              "labelAr": "I jump just once to get views"
+            },
+            {
+              "actionId": "film_friends_doing_it",
+              "labelAr": "I don't jump, but I film them and post it"
+            }
+          ],
+          "praiseAr": "Real courage",
+          "explainAr": "Courage is saying “no” in front of friends. Filming and posting pushes others to copy what can hurt them."
+        },
+        {
+          "id": "elder-prank",
+          "sceneAr": "A trend going round: filming a humiliating prank on old people. Your friend wants to try it on the old sweet seller.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "film_friends_doing_it",
+              "labelAr": "I only hold the phone and film while he does it"
+            },
+            {
+              "actionId": "refuse_trend_and_tell_adult",
+              "labelAr": "I refuse, say respecting elders is our way, and tell my family"
+            },
+            {
+              "actionId": "join_trend_for_likes",
+              "labelAr": "We try it once. Everyone does it and people laugh"
+            }
+          ],
+          "praiseAr": "Your manners win",
+          "explainAr": "A quick laugh isn't worth humiliating a person. Respecting elders is our way. Whoever films an insult shares in it."
+        },
+        {
+          "id": "national-day-car",
+          "sceneAr": "At the National Day parade a trend spreads: leaning out of a moving car to film. Your cousin wants you both to try.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "join_trend_for_likes",
+              "labelAr": "I lean out a little. The car is slow"
+            },
+            {
+              "actionId": "film_friends_doing_it",
+              "labelAr": "I stay seated and film him doing it to post it"
+            },
+            {
+              "actionId": "refuse_trend_and_tell_adult",
+              "labelAr": "I say no, warn him, and tell Dad if he insists"
+            }
+          ],
+          "praiseAr": "Joy without danger",
+          "explainAr": "We celebrate our country safe and sound. A trend that endangers you isn't worth copying or filming."
+        }
+      ]
+    },
+    "M2.C3": {
+      "variants": [
+        {
+          "id": "dress-mock",
+          "sceneAr": "An unknown account posts a picture mocking the dishdasha and massar, writing: “Who'll defend it? Reply to me!”",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "report_block_stay_calm",
+              "labelAr": "I don't reply. I report the account and block it"
+            },
+            {
+              "actionId": "insult_back",
+              "labelAr": "I reply with a worse insult to teach him"
+            },
+            {
+              "actionId": "repost_to_expose",
+              "labelAr": "I repost it so everyone sees it and attacks him"
+            }
+          ],
+          "praiseAr": "Calm and sure",
+          "explainAr": "He wants replies because each reply spreads his post further. Reporting and blocking deny him that."
+        },
+        {
+          "id": "accent-comments",
+          "sceneAr": "Under a clip about Omani halwa and coffee, a new account mocks our accent and customs. Your brother is very angry.",
+          "promptAr": "What do you tell your brother?",
+          "options": [
+            {
+              "actionId": "insult_back",
+              "labelAr": "Mock his accent and customs back"
+            },
+            {
+              "actionId": "repost_to_expose",
+              "labelAr": "Screenshot and post his comments to anger everyone"
+            },
+            {
+              "actionId": "report_block_stay_calm",
+              "labelAr": "Don't argue: report and block him. Let's be proud calmly"
+            }
+          ],
+          "praiseAr": "Wise advice",
+          "explainAr": "The account was made to provoke. Mocking back makes us look bad, and calm pride makes his plan fail."
+        },
+        {
+          "id": "flag-post",
+          "sceneAr": "During National Day a post mocks our flag and our celebration, with hundreds of angry comments under it.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "repost_to_expose",
+              "labelAr": "I share it on my account: “Look what he says!”"
+            },
+            {
+              "actionId": "report_block_stay_calm",
+              "labelAr": "I report and block it, and post a lovely photo of our day"
+            },
+            {
+              "actionId": "insult_back",
+              "labelAr": "I add an angry comment like the others"
+            }
+          ],
+          "praiseAr": "Pride, no insults",
+          "explainAr": "Hundreds of angry comments carried the post further. The best reply is to show the world what we're proud of."
+        }
+      ]
+    },
+    "M3.C1": {
+      "variants": [
+        {
+          "id": "school-uniform",
+          "sceneAr": "First day of school. You took a photo outside your house in school uniform. The house number and school badge show.",
+          "promptAr": "How do you post it?",
+          "options": [
+            {
+              "actionId": "post_later_hide_location",
+              "labelAr": "I send it to the family group only, or hide the number and badge"
+            },
+            {
+              "actionId": "post_now_with_location",
+              "labelAr": "I post it now for all and add my home location"
+            },
+            {
+              "actionId": "post_with_details_showing",
+              "labelAr": "I post it for all as is. Who'd notice the number?"
+            }
+          ],
+          "praiseAr": "Smart posting",
+          "explainAr": "The house number and school badge tell a stranger where you live and study. Such a photo belongs with family."
+        },
+        {
+          "id": "khareef-trip",
+          "sceneAr": "Your family is in Salalah for a whole week, and the house is empty. You took a great photo at the waterfall.",
+          "promptAr": "When and how do you post it?",
+          "options": [
+            {
+              "actionId": "post_now_with_location",
+              "labelAr": "Now, with the location and “A whole week in Salalah!”"
+            },
+            {
+              "actionId": "post_later_hide_location",
+              "labelAr": "After we come back, with no location tag"
+            },
+            {
+              "actionId": "post_with_details_showing",
+              "labelAr": "Now, no location, but I write our house is empty all week"
+            }
+          ],
+          "praiseAr": "Smart timing",
+          "explainAr": "Posting live tells everyone where you are and that the house is empty. The photo is just as nice after you return."
+        },
+        {
+          "id": "stadium-live",
+          "sceneAr": "You're at the stadium with your brother for the match, and want to start a live video everyone on the app can see.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "post_with_details_showing",
+              "labelAr": "I go live for all and say our seat number so friends find us"
+            },
+            {
+              "actionId": "post_now_with_location",
+              "labelAr": "I go live for everyone with live location on"
+            },
+            {
+              "actionId": "post_later_hide_location",
+              "labelAr": "I film, then send clips after the match to family and friends"
+            }
+          ],
+          "praiseAr": "Your privacy is safe",
+          "explainAr": "Going live for everyone shows any stranger where you are right now. Sharing clips later with people you know is safer."
+        }
+      ]
+    },
+    "M3.C2": {
+      "variants": [
+        {
+          "id": "hero-quiz",
+          "sceneAr": "A quiz going round your friends: “Which hero are you?”. Before the result it asks:",
+          "message": {
+            "fromAr": "Hero Quiz",
+            "textAr": "Type your full name, birthday, school name and your dad's phone number."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "skip_quiz_keep_data",
+              "labelAr": "I close the quiz. Fun doesn't need these details"
+            },
+            {
+              "actionId": "fill_quiz_with_real_data",
+              "labelAr": "I type it all to get my result like my friends"
+            },
+            {
+              "actionId": "give_only_some_data",
+              "labelAr": "I type only my name and school. They're no secret"
+            }
+          ],
+          "praiseAr": "Your data is precious",
+          "explainAr": "Your name, school and birthday together tell strangers who you are. A quiz that asks for them just collects data."
+        },
+        {
+          "id": "future-job",
+          "sceneAr": "A link in the class group: “Find out your future job!”. The first questions are fun, then this appears:",
+          "message": {
+            "fromAr": "Future Job",
+            "textAr": "For your result: your mum's full name, your home address and a clear photo of your face."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "give_only_some_data",
+              "labelAr": "I send only the photo and leave the rest empty"
+            },
+            {
+              "actionId": "skip_quiz_keep_data",
+              "labelAr": "I stop here and warn my classmates in the group"
+            },
+            {
+              "actionId": "fill_quiz_with_real_data",
+              "labelAr": "I go on. I've answered most of it and won't quit now"
+            }
+          ],
+          "praiseAr": "You stopped in time",
+          "explainAr": "The fun first questions are bait. Your mum's name, your address and your photo belong to your whole family."
+        },
+        {
+          "id": "eid-wheel",
+          "sceneAr": "An Eid “Wheel of Luck” game promises a gift. First it wants your details and those of three friends.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "fill_quiz_with_real_data",
+              "labelAr": "I type my details and my friends' so we all win"
+            },
+            {
+              "actionId": "give_only_some_data",
+              "labelAr": "I type only my friends' details and keep mine"
+            },
+            {
+              "actionId": "skip_quiz_keep_data",
+              "labelAr": "I type no one's details, not even mine, and close the game"
+            }
+          ],
+          "praiseAr": "You protected friends too",
+          "explainAr": "Your friends' details are a trust, not yours to give away. A real gift isn't bought with people's names and numbers."
+        }
+      ]
+    },
+    "M3.C3": {
+      "variants": [
+        {
+          "id": "new-account",
+          "sceneAr": "With your parents' OK, you made an account on the app “Nabd”. The app asks: who can see your photos?",
+          "promptAr": "What do you choose?",
+          "options": [
+            {
+              "actionId": "private_account_known_friends",
+              "labelAr": "“Private”: only people I know and approve see them"
+            },
+            {
+              "actionId": "public_account_for_followers",
+              "labelAr": "“Public”: so I get more followers fast"
+            },
+            {
+              "actionId": "accept_all_requests",
+              "labelAr": "“Private”, but I accept everyone who asks to follow"
+            }
+          ],
+          "praiseAr": "Your door is shut",
+          "explainAr": "A private account works only if you accept people you truly know. Accepting everyone makes it public again."
+        },
+        {
+          "id": "follow-requests",
+          "sceneAr": "Your account is private. Today 30 unknown accounts asked to follow you, and your friend has a thousand followers.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "accept_all_requests",
+              "labelAr": "I accept them all. Lots of followers is nice"
+            },
+            {
+              "actionId": "public_account_for_followers",
+              "labelAr": "I make my account public to beat my friend"
+            },
+            {
+              "actionId": "private_account_known_friends",
+              "labelAr": "I decline strangers and keep my account private"
+            }
+          ],
+          "praiseAr": "Quality, not numbers",
+          "explainAr": "A stranger who follows you sees your photos and family news. Privacy is worth more than any follower count."
+        },
+        {
+          "id": "settings-review",
+          "sceneAr": "You sit with your big sister to check your account settings. You find it is “Public” and anyone can message you.",
+          "promptAr": "What do you both choose?",
+          "options": [
+            {
+              "actionId": "public_account_for_followers",
+              "labelAr": "We leave it public. Nothing has happened yet"
+            },
+            {
+              "actionId": "private_account_known_friends",
+              "labelAr": "We make it private, friends-only messages, and remove strangers"
+            },
+            {
+              "actionId": "accept_all_requests",
+              "labelAr": "We make it private but keep the stranger followers"
+            }
+          ],
+          "praiseAr": "A good review",
+          "explainAr": "Settings get changed and forgotten, so check them with someone older. Strangers on your list see all you post."
+        }
+      ]
+    },
+    "M4.C1": {
+      "variants": [
+        {
+          "id": "private-app",
+          "sceneAr": "In the game “Valley Heroes” a stranger has praised you for days. Today he writes:",
+          "message": {
+            "fromAr": "Tiger77",
+            "textAr": "You're the best! Let's talk on the app “Hamsa”. Free gems for you there 💎"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "refuse_stop_tell_parent",
+              "labelAr": "I say no, stop the chat and tell Mum or Dad"
+            },
+            {
+              "actionId": "accept_stranger_request",
+              "labelAr": "I move to the other app to get the gems"
+            },
+            {
+              "actionId": "keep_chat_secret",
+              "labelAr": "I stay, keep chatting and tell no one"
+            }
+          ],
+          "praiseAr": "This keeps you safe",
+          "explainAr": "A stranger who pulls you into a private chat wants you away from your family's eyes. Free gifts are bait."
+        },
+        {
+          "id": "photo-request",
+          "sceneAr": "A player on your game team says he's your age. After a week of playing together he writes:",
+          "message": {
+            "fromAr": "Game_Falcon",
+            "textAr": "Send me your photo so I see what my friend looks like! Then I'll send mine."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "accept_stranger_request",
+              "labelAr": "I send just one photo. He's my friend in the game"
+            },
+            {
+              "actionId": "keep_chat_secret",
+              "labelAr": "I say sorry, and hide it from my family to keep playing"
+            },
+            {
+              "actionId": "refuse_stop_tell_parent",
+              "labelAr": "I send nothing, block him, and tell my parents"
+            }
+          ],
+          "praiseAr": "Your photo is yours",
+          "explainAr": "You can't know who is behind the screen, whatever he says. Telling your parents is what really protects you."
+        },
+        {
+          "id": "our-secret",
+          "sceneAr": "Someone you met in a game sent you a gift there, then wrote:",
+          "message": {
+            "fromAr": "Unknown",
+            "textAr": "This gift is our secret 🤫 Don't tell your family, and I'll send more."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "keep_chat_secret",
+              "labelAr": "I don't reply, but I keep it secret"
+            },
+            {
+              "actionId": "refuse_stop_tell_parent",
+              "labelAr": "I tell my parents at once and stop talking to him"
+            },
+            {
+              "actionId": "accept_stranger_request",
+              "labelAr": "I accept his rule and ask for another gift"
+            }
+          ],
+          "praiseAr": "No secrets with strangers",
+          "explainAr": "Whoever asks you to hide things from your family knows they'd protect you. It's the clearest sign to stop and tell."
+        }
+      ]
+    },
+    "M4.C2": {
+      "variants": [
+        {
+          "id": "edited-photo",
+          "sceneAr": "In the class group someone posts a funny edited photo of your classmate Hamad, and laughing faces pour in.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "support_save_tell_adult",
+              "labelAr": "I screenshot the chat, support Hamad, and tell the teacher"
+            },
+            {
+              "actionId": "join_the_mockery",
+              "labelAr": "I send a laughing face like everyone. It's a joke"
+            },
+            {
+              "actionId": "insult_bullies_back",
+              "labelAr": "I insult the one who posted it, in front of all"
+            }
+          ],
+          "praiseAr": "A true friend",
+          "explainAr": "What makes all laugh and hurts one is bullying, not a joke. Saved proof and telling a grown-up stop it."
+        },
+        {
+          "id": "new-classmate",
+          "sceneAr": "A new girl joined the class group, and some classmates began to mock the way she talks in voice notes.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "insult_bullies_back",
+              "labelAr": "I mock them back harder so they feel it too"
+            },
+            {
+              "actionId": "support_save_tell_adult",
+              "labelAr": "I welcome her, save the messages, and tell the teacher or Mum"
+            },
+            {
+              "actionId": "join_the_mockery",
+              "labelAr": "I laugh along so they don't mock me too"
+            }
+          ],
+          "praiseAr": "A big heart",
+          "explainAr": "One word of welcome can change your classmate's day. Mocking back makes it worse, but grown-ups can stop it."
+        },
+        {
+          "id": "missed-penalty",
+          "sceneAr": "Your classmate Saif missed a penalty at school. Tonight the group is full of stickers mocking him. He's silent.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "join_the_mockery",
+              "labelAr": "I send one light sticker. He won't mind"
+            },
+            {
+              "actionId": "insult_bullies_back",
+              "labelAr": "I write: “You're worse and dumber than him!”"
+            },
+            {
+              "actionId": "support_save_tell_adult",
+              "labelAr": "I send him a kind word, save the chat, and tell the coach"
+            }
+          ],
+          "praiseAr": "Team spirit",
+          "explainAr": "Silence doesn't mean he's fine. Your support helps, and telling the coach stops the mocking without a new fight."
+        }
+      ]
+    },
+    "M4.C3": {
+      "variants": [
+        {
+          "id": "player-prize",
+          "sceneAr": "A new, unverified account with a famous player's name writes:",
+          "message": {
+            "fromAr": "Team Star ⚽",
+            "textAr": "You won my shirt! Send your full name, address and your dad's number."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "check_verified_account",
+              "labelAr": "I check his verified account. I send nothing"
+            },
+            {
+              "actionId": "send_money_or_data",
+              "labelAr": "I send the details fast"
+            },
+            {
+              "actionId": "trust_name_and_photo",
+              "labelAr": "It's his name. I follow and tell friends"
+            }
+          ],
+          "praiseAr": "You saw the mask",
+          "explainAr": "A name and photo are copied in seconds. The old verified account is the real one. Stars don't ask for your details by message."
+        },
+        {
+          "id": "charity-account",
+          "sceneAr": "A relative shares an account named after a known charity:",
+          "message": {
+            "fromAr": "Al Khair Charity (new)",
+            "textAr": "Donate now to our new number, and send a photo of your dad's card."
+          },
+          "promptAr": "What do you tell your family?",
+          "options": [
+            {
+              "actionId": "trust_name_and_photo",
+              "labelAr": "It has the charity's logo, so we share it"
+            },
+            {
+              "actionId": "check_verified_account",
+              "labelAr": "We check the charity's verified account first"
+            },
+            {
+              "actionId": "send_money_or_data",
+              "labelAr": "We send a little now. Good can't wait"
+            }
+          ],
+          "praiseAr": "Giving done right",
+          "explainAr": "Scammers use people's love of doing good. Give through the charity's official channels, and nobody asks for a photo of a card."
+        },
+        {
+          "id": "school-contest",
+          "sceneAr": "A new account with your school's name and logo posts:",
+          "message": {
+            "fromAr": "Our School (new)",
+            "textAr": "Big contest! Send your details and a 2 rial fee to this account's owner."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "send_money_or_data",
+              "labelAr": "I send my details and the fee"
+            },
+            {
+              "actionId": "trust_name_and_photo",
+              "labelAr": "I follow it and repost it to my class"
+            },
+            {
+              "actionId": "check_verified_account",
+              "labelAr": "I ask the teacher or check the school's real account"
+            }
+          ],
+          "praiseAr": "A smart check",
+          "explainAr": "The school announces contests through its own channels and teachers. A new account asking for money and details deserves doubt."
+        }
+      ]
+    },
+    "M5.C1": {
+      "variants": [
+        {
+          "id": "same-sentence",
+          "sceneAr": "Under a normal local news post: dozens of angry comments, all the very same sentence, from accounts with no photos.",
+          "promptAr": "What do you conclude?",
+          "options": [
+            {
+              "actionId": "look_who_is_behind",
+              "labelAr": "I open a few accounts: new, no followers. I don't trust them"
+            },
+            {
+              "actionId": "follow_the_crowd",
+              "labelAr": "All these people are angry, so some of it is true"
+            },
+            {
+              "actionId": "repeat_the_slogan",
+              "labelAr": "I copy and post the sentence. Everyone says it"
+            }
+          ],
+          "praiseAr": "Digital detective",
+          "explainAr": "Real people don't write the exact same sentence. These are fake accounts made to make you think everyone is angry."
+        },
+        {
+          "id": "angry-hashtag",
+          "sceneAr": "An angry hashtag against a festival in your city suddenly trends. Most accounts posting in it were made this week.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "repeat_the_slogan",
+              "labelAr": "I join the hashtag with an angry post too"
+            },
+            {
+              "actionId": "look_who_is_behind",
+              "labelAr": "I see the accounts are new and alike, so I don't follow along"
+            },
+            {
+              "actionId": "follow_the_crowd",
+              "labelAr": "A top hashtag means the whole city is angry"
+            }
+          ],
+          "praiseAr": "You stood firm",
+          "explainAr": "Many fake accounts can push a hashtag up. Trending shows how much is posted, not how true it is or what people think."
+        },
+        {
+          "id": "friend-convinced",
+          "sceneAr": "Your friend shows you a post attacking your country's youth and says: “Look, 5,000 comments agree! It must be true.”",
+          "promptAr": "What do you answer?",
+          "options": [
+            {
+              "actionId": "follow_the_crowd",
+              "labelAr": "You're right. 5,000 people can't be wrong"
+            },
+            {
+              "actionId": "repeat_the_slogan",
+              "labelAr": "Let's post what they say too, so we're not left out"
+            },
+            {
+              "actionId": "look_who_is_behind",
+              "labelAr": "Numbers aren't proof. Who are they? When were the accounts made?"
+            }
+          ],
+          "praiseAr": "Critical thinking",
+          "explainAr": "Truth isn't found by counting comments. Always ask: who says it? What's the proof? Why do they repeat the same words?"
+        }
+      ]
+    },
+    "M5.C2": {
+      "variants": [
+        {
+          "id": "secret-channel",
+          "sceneAr": "An unknown number invites you to a closed channel:",
+          "message": {
+            "fromAr": "Channel invite",
+            "textAr": "“The truth they hide from you” 🔒 Join now and tell no one. Places are limited!"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "decline_group_tell_parent",
+              "labelAr": "I don't join. I delete it and tell Mum or Dad"
+            },
+            {
+              "actionId": "join_unknown_group",
+              "labelAr": "I join to learn the secrets before places run out"
+            },
+            {
+              "actionId": "join_to_watch_quietly",
+              "labelAr": "I join quietly and only read, no writing"
+            }
+          ],
+          "praiseAr": "Door closed",
+          "explainAr": "“Tell no one” is a danger sign. Whoever has the truth doesn't hide it in a closed channel, and quiet reading still affects you."
+        },
+        {
+          "id": "added-to-group",
+          "sceneAr": "A stranger adds you to a group where you know no one. Every message is angry and urges hating your own community.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "join_to_watch_quietly",
+              "labelAr": "I stay and watch quietly, out of curiosity"
+            },
+            {
+              "actionId": "decline_group_tell_parent",
+              "labelAr": "I leave the group, report it, and show my parents"
+            },
+            {
+              "actionId": "join_unknown_group",
+              "labelAr": "I join the talk to learn why they are angry"
+            }
+          ],
+          "praiseAr": "A smart exit",
+          "explainAr": "Anger groups are built to change your thinking bit by bit. Leaving, reporting and telling your parents protects you fastest."
+        },
+        {
+          "id": "elite-group",
+          "sceneAr": "A player in your game invites you to a group “for the elite only”, with “what nobody dares say about your country”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "join_unknown_group",
+              "labelAr": "I join. Nobody refuses an “elite” invite"
+            },
+            {
+              "actionId": "join_to_watch_quietly",
+              "labelAr": "I pop in for a few minutes. No one will know"
+            },
+            {
+              "actionId": "decline_group_tell_parent",
+              "labelAr": "I turn the invite down and tell Dad what he said"
+            }
+          ],
+          "praiseAr": "Awareness is your shield",
+          "explainAr": "Calling you “elite” is praise to pull you in. Whoever promises secrets in a closed place wants to sway you far from your family."
+        }
+      ]
+    },
+    "M5.C3": {
+      "variants": [
+        {
+          "id": "storm-voice-note",
+          "sceneAr": "A tropical storm nears the coast. An unknown man's voice note spreads in the groups:",
+          "message": {
+            "fromAr": "Forwarded voice note",
+            "textAr": "“My relative there confirms: the storm will destroy everything tonight! Run!”"
+          },
+          "promptAr": "Where do you get your news?",
+          "options": [
+            {
+              "actionId": "follow_official_channels",
+              "labelAr": "The weather office, civil defence and the official news"
+            },
+            {
+              "actionId": "trust_forwarded_voice_note",
+              "labelAr": "From the voice note. His relative works there"
+            },
+            {
+              "actionId": "follow_breaking_news_accounts",
+              "labelAr": "Any account that writes “Breaking” first"
+            }
+          ],
+          "praiseAr": "A trusted source",
+          "explainAr": "“My relative confirms” is no source. Official bodies track the storm and give the right instructions step by step."
+        },
+        {
+          "id": "school-closure",
+          "sceneAr": "Heavy rain tonight. The groups are full of messages and voice notes that disagree about school tomorrow.",
+          "promptAr": "How do you find the truth?",
+          "options": [
+            {
+              "actionId": "follow_breaking_news_accounts",
+              "labelAr": "I follow unknown “Breaking” accounts. They're fastest"
+            },
+            {
+              "actionId": "follow_official_channels",
+              "labelAr": "I wait for the ministry's notice or the school's message"
+            },
+            {
+              "actionId": "trust_forwarded_voice_note",
+              "labelAr": "I believe a voice note my classmate forwarded"
+            }
+          ],
+          "praiseAr": "News from its source",
+          "explainAr": "The body in charge announces school closures and the school tells you. Anything else is a guess, right or wrong."
+        },
+        {
+          "id": "power-cut",
+          "sceneAr": "The storm cuts the power in your area. Grandma is worried, and your brother reads her scary rumours from his phone.",
+          "promptAr": "What do you suggest at home?",
+          "options": [
+            {
+              "actionId": "trust_forwarded_voice_note",
+              "labelAr": "We listen to the voice notes going round for more details"
+            },
+            {
+              "actionId": "follow_breaking_news_accounts",
+              "labelAr": "We follow an unknown account: “Breaking” every minute"
+            },
+            {
+              "actionId": "follow_official_channels",
+              "labelAr": "We open official radio and accounts, and calm Grandma"
+            }
+          ],
+          "praiseAr": "Calm in a crisis",
+          "explainAr": "Rumours grow in times of fear and add to the worry. Official sources tell you what is really happening and what to do."
+        }
+      ]
+    }
+  }
+}

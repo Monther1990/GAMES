@@ -1,0 +1,1078 @@
+{
+  "story": {
+    "introAr": "فيروسات رقمية تهاجم المدينة! اركب لوح الطاقة، وسايبر يطلق النار معك. اجمع الريالات وطوّر سلاحك، وبعد كل زعيم أجب عن ثلاثة أسئلة لتفتح حزم المكافآت.",
+    "winAr": "أنقذت قلب النظام! المدينة الرقمية في أمان بفضلك.",
+    "simulatedNoteAr": "كل ما في اللعبة محاكاة: الأسماء والعناوين والرموز والريالات غير حقيقية."
+  },
+  "sources": [
+    "CISA, Secure Our World: 4 Easy Ways to Stay Safe Online (strong passwords and a password manager, multifactor authentication, recognise and report phishing, update software)",
+    "NIST, awareness pages on phishing, passwords and backups"
+  ],
+  "decisions": {
+    "M1.C1": {
+      "variants": [
+        {
+          "id": "delivery",
+          "sceneAr": "تنتظر كتابًا طلبته أمك. اليوم وصلت هذه الرسالة إلى هاتفك:",
+          "message": {
+            "fromAr": "توصيل الواحة",
+            "textAr": "شحنتك متوقفة. ادفع ٣٠٠ بيسة من الرابط خلال ساعة: tawseel-pay.internal"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "check_official_channel",
+              "labelAr": "أفتح تطبيق التوصيل بنفسي وأرى حالة الشحنة"
+            },
+            {
+              "actionId": "open_message_link",
+              "labelAr": "أضغط الرابط وأدفع، فالمبلغ صغير"
+            },
+            {
+              "actionId": "send_requested_data",
+              "labelAr": "أرد على الرسالة باسمي وعنوان بيتي"
+            }
+          ],
+          "praiseAr": "قرار يحمي مالك",
+          "explainAr": "الشركة الحقيقية تعرض حالة شحنتك داخل تطبيقها. الرابط في الرسالة قد يأخذك إلى صفحة دفع مزيفة."
+        },
+        {
+          "id": "free-credit",
+          "sceneAr": "وصلت هذه الرسالة إلى هاتفك باسم شركة الاتصالات:",
+          "message": {
+            "fromAr": "هدايا الرصيد",
+            "textAr": "مبروك! رصيد مجاني لك. اضغط الرابط واكتب رقمك السري: free-credit.internal"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "check_official_channel",
+              "labelAr": "أفتح تطبيق الشركة بنفسي وأتأكد من العرض"
+            },
+            {
+              "actionId": "open_message_link",
+              "labelAr": "أضغط الرابط بسرعة قبل أن ينتهي العرض"
+            },
+            {
+              "actionId": "send_requested_data",
+              "labelAr": "أرسل لهم رقمي السري في رد على الرسالة"
+            }
+          ],
+          "praiseAr": "قرار يحمي حسابك",
+          "explainAr": "العرض الحقيقي تجده في تطبيق الشركة الرسمي. ولا شركة تطلب رقمك السري في رسالة."
+        },
+        {
+          "id": "bank-alert",
+          "sceneAr": "وصلت إلى هاتف والدك وهو بجانبك هذه الرسالة باسم البنك:",
+          "message": {
+            "fromAr": "تنبيه البنك",
+            "textAr": "بطاقتك موقوفة. فعّلها الآن من الرابط: bank-active.internal"
+          },
+          "promptAr": "بماذا تنصح والدك؟",
+          "options": [
+            {
+              "actionId": "check_official_channel",
+              "labelAr": "يتصل بالبنك من الرقم المكتوب على البطاقة نفسها"
+            },
+            {
+              "actionId": "open_message_link",
+              "labelAr": "يضغط الرابط ويفعّل البطاقة بسرعة"
+            },
+            {
+              "actionId": "send_requested_data",
+              "labelAr": "يرد على الرسالة برقم البطاقة"
+            }
+          ],
+          "praiseAr": "نصيحة تحمي مال العائلة",
+          "explainAr": "البنك لا يطلب تفعيل البطاقة برابط في رسالة. الرقم المكتوب على البطاقة هو الطريق الرسمي للتأكد."
+        }
+      ]
+    },
+    "M1.C2": {
+      "variants": [
+        {
+          "id": "your-photo",
+          "sceneAr": "وصلت هذه الرسالة من حساب صديقك سالم، وهو لا يكتب هكذا عادةً:",
+          "message": {
+            "fromAr": "سالم",
+            "textAr": "هههه شاهد صورتك هنا! clip-view.internal"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "ask_sender_another_way",
+              "labelAr": "أتصل بسالم وأسأله: هل أرسلتَ هذا؟"
+            },
+            {
+              "actionId": "open_friend_link",
+              "labelAr": "أفتح الرابط، فهو من صديقي"
+            },
+            {
+              "actionId": "forward_to_others",
+              "labelAr": "أرسل الرابط لبقية الأصدقاء ليشاهدوا"
+            }
+          ],
+          "praiseAr": "قرار يحميك ويحمي صديقك",
+          "explainAr": "قد يكون حساب سالم مسروقًا والرابط فخًّا. سؤاله بطريقة أخرى يكشف الحقيقة وينبهه."
+        },
+        {
+          "id": "chain-message",
+          "sceneAr": "وصلت هذه الرسالة إلى مجموعة الصف من حساب زميلتك ريم:",
+          "message": {
+            "fromAr": "ريم",
+            "textAr": "اضغط واربح هاتفًا! وأرسلها لعشرة أصدقاء: win-phone.internal"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "ask_sender_another_way",
+              "labelAr": "لا أضغط، وأسأل ريم بنفسي: هل أرسلتِ هذا؟"
+            },
+            {
+              "actionId": "open_friend_link",
+              "labelAr": "أضغط الرابط لأجرّب حظي"
+            },
+            {
+              "actionId": "forward_to_others",
+              "labelAr": "أرسلها لعشرة أصدقاء كما تقول الرسالة"
+            }
+          ],
+          "praiseAr": "أوقفت الفخ عندك",
+          "explainAr": "رسائل «اضغط وأرسلها للجميع» تنتشر من حسابات مسروقة. لا تضغط ولا تنشرها، ونبّه صاحبة الحساب."
+        },
+        {
+          "id": "cousin-game",
+          "sceneAr": "ابن عمك أحمد لا يراسلك إلا قليلًا. اليوم وصلتك من حسابه:",
+          "message": {
+            "fromAr": "أحمد",
+            "textAr": "جرّب هذه اللعبة الآن، خرافية! play-now.internal"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "ask_sender_another_way",
+              "labelAr": "أكلّمه بالهاتف وأسأله إن كان هو من أرسلها"
+            },
+            {
+              "actionId": "open_friend_link",
+              "labelAr": "أفتح الرابط لأجرّب اللعبة"
+            },
+            {
+              "actionId": "forward_to_others",
+              "labelAr": "أرسل الرابط لإخوتي ليجرّبوها معي"
+            }
+          ],
+          "praiseAr": "تحقّقت قبل أن تضغط",
+          "explainAr": "قد يكون حساب أحمد مسروقًا ويرسل الروابط دون علمه. سؤاله بطريقة أخرى يكشف الحقيقة."
+        }
+      ]
+    },
+    "M1.C3": {
+      "variants": [
+        {
+          "id": "lock-icon",
+          "sceneAr": "فتحت صفحة تطلب كلمة مرور لعبتك. فيها قفل 🔒 وشعار اللعبة، وعنوانها:",
+          "message": {
+            "fromAr": "شريط العنوان",
+            "textAr": "🔒 game-login-free.internal"
+          },
+          "promptAr": "كيف تحكم على الصفحة؟",
+          "options": [
+            {
+              "actionId": "check_address_and_request",
+              "labelAr": "العنوان ليس عنوان اللعبة الرسمي، فلا أكتب شيئًا"
+            },
+            {
+              "actionId": "trust_lock_icon",
+              "labelAr": "فيها قفل، إذن هي آمنة وأكتب كلمة المرور"
+            },
+            {
+              "actionId": "trust_perfect_look",
+              "labelAr": "فيها شعار اللعبة، إذن هي الصفحة الحقيقية"
+            }
+          ],
+          "praiseAr": "عين خبيرة!",
+          "explainAr": "القفل يعني أن الاتصال مشفّر فقط، والمحتال يستطيع وضعه ونسخ الشعار. العنوان الصحيح هو ما لا يستطيع تقليده."
+        },
+        {
+          "id": "perfect-email",
+          "sceneAr": "وصلك بريد أنيق بلا أي خطأ إملائي، بشعار منصة المدرسة، يقول:",
+          "message": {
+            "fromAr": "school-help.internal",
+            "textAr": "لتأكيد حسابك، أرسل كلمة المرور في رد على هذا البريد."
+          },
+          "promptAr": "كيف تحكم على البريد؟",
+          "options": [
+            {
+              "actionId": "check_address_and_request",
+              "labelAr": "يطلب كلمة المرور وعنوانه غريب، فلا أرد"
+            },
+            {
+              "actionId": "trust_lock_icon",
+              "labelAr": "بريد المدرسة آمن دائمًا، فأرسل كلمة المرور"
+            },
+            {
+              "actionId": "trust_perfect_look",
+              "labelAr": "لا أخطاء فيه وفيه الشعار، إذن هو حقيقي"
+            }
+          ],
+          "praiseAr": "لم يخدعك الشكل",
+          "explainAr": "غياب الأخطاء لا يثبت شيئًا. انظر إلى ما يطلبه: لا جهة حقيقية تطلب كلمة مرورك في بريد."
+        },
+        {
+          "id": "shop-page",
+          "sceneAr": "صفحة متجر ألعاب جميلة وفيها قفل 🔒، تطلب رقم بطاقة والدك. عنوانها:",
+          "message": {
+            "fromAr": "شريط العنوان",
+            "textAr": "🔒 toy-store-offers.internal"
+          },
+          "promptAr": "كيف تحكم على الصفحة؟",
+          "options": [
+            {
+              "actionId": "check_address_and_request",
+              "labelAr": "أتأكد من عنوان المتجر الحقيقي أولًا، ولا أكتب البطاقة"
+            },
+            {
+              "actionId": "trust_lock_icon",
+              "labelAr": "القفل يعني أنها آمنة، فأكتب رقم البطاقة"
+            },
+            {
+              "actionId": "trust_perfect_look",
+              "labelAr": "تصميمها متقن، إذن هي متجر حقيقي"
+            }
+          ],
+          "praiseAr": "نظرت إلى العنوان لا إلى الشكل",
+          "explainAr": "القفل يحمي الاتصال فقط ولا يثبت من صاحب الصفحة. العنوان الرسمي هو الدليل."
+        }
+      ]
+    },
+    "M2.C1": {
+      "variants": [
+        {
+          "id": "new-account",
+          "sceneAr": "تنشئ حسابًا جديدًا في المكتبة الرقمية، وعندك حسابات أخرى للعبة والبريد.",
+          "promptAr": "أي كلمة مرور تختار؟",
+          "options": [
+            {
+              "actionId": "use_long_unique_password",
+              "labelAr": "جملة طويلة لهذا الحساب فقط، يحفظها تطبيق كلمات المرور"
+            },
+            {
+              "actionId": "reuse_same_password",
+              "labelAr": "نفس كلمة مرور لعبتي حتى لا أنساها"
+            },
+            {
+              "actionId": "use_short_personal_password",
+              "labelAr": "اسمي وسنة ميلادي لأنها سهلة"
+            }
+          ],
+          "praiseAr": "قفل قوي لحسابك",
+          "explainAr": "الجملة الطويلة صعبة التخمين. ولأنها لهذا الحساب فقط، لا تنكشف بقية حساباتك لو سُرقت."
+        },
+        {
+          "id": "friend-tip",
+          "sceneAr": "تسجّل في نادي البرمجة. صديقك يقول: «أنا أستخدم كلمة واحدة لكل شيء، أسهل!»",
+          "promptAr": "أي كلمة مرور تختار؟",
+          "options": [
+            {
+              "actionId": "use_long_unique_password",
+              "labelAr": "جملة طويلة مختلفة عن كل حساباتي الأخرى"
+            },
+            {
+              "actionId": "reuse_same_password",
+              "labelAr": "أفعل مثله: كلمة واحدة لكل حساباتي"
+            },
+            {
+              "actionId": "use_short_personal_password",
+              "labelAr": "كلمة قصيرة من اسم قطتي"
+            }
+          ],
+          "praiseAr": "اختيار ذكي",
+          "explainAr": "الكلمة الواحدة لكل الحسابات مفتاح واحد لكل أبوابك: إن سُرق مرة فُتحت كلها."
+        },
+        {
+          "id": "school-platform",
+          "sceneAr": "المعلمة طلبت من كل طالب كلمة مرور جديدة لمنصة المدرسة.",
+          "promptAr": "أي كلمة مرور تختار؟",
+          "options": [
+            {
+              "actionId": "use_long_unique_password",
+              "labelAr": "جملة طويلة لا أستخدمها في أي حساب آخر"
+            },
+            {
+              "actionId": "reuse_same_password",
+              "labelAr": "كلمة مرور بريدي نفسها، فأنا أحفظها"
+            },
+            {
+              "actionId": "use_short_personal_password",
+              "labelAr": "رقم صفّي واسم مدرستي"
+            }
+          ],
+          "praiseAr": "كلمة مرور قوية وخاصة",
+          "explainAr": "الجملة الطويلة صعبة التخمين، والكلمة الخاصة بكل حساب تحمي بقية حساباتك إن انكشف أحدها."
+        }
+      ]
+    },
+    "M2.C2": {
+      "variants": [
+        {
+          "id": "fake-support",
+          "sceneAr": "وصلك رمز تحقق لم تطلبه. ثم كتب لك شخص لا تعرفه:",
+          "message": {
+            "fromAr": "الدعم الفني 🛠",
+            "textAr": "نحن دعم اللعبة. أرسل لنا الرمز الذي وصلك لنحمي حسابك."
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "never_send_code",
+              "labelAr": "لا أرسل الرمز لأحد، وأبلّغ عن المحادثة"
+            },
+            {
+              "actionId": "send_code_to_requester",
+              "labelAr": "أرسل الرمز، فهم الدعم الفني"
+            },
+            {
+              "actionId": "send_part_of_code",
+              "labelAr": "أرسل أول رقمين فقط، فهذا لا يضر"
+            }
+          ],
+          "praiseAr": "مفتاحك بقي معك",
+          "explainAr": "الرمز وصلك لأن أحدًا يحاول دخول حسابك الآن. الدعم الحقيقي لا يطلب الرمز أبدًا."
+        },
+        {
+          "id": "friend-mistake",
+          "sceneAr": "وصلك رمز تحقق لم تطلبه. ثم وصلتك رسالة من حساب صديقك:",
+          "message": {
+            "fromAr": "سالم",
+            "textAr": "أرسلت رمزي إلى رقمك بالغلط 😅 أرسله لي بسرعة!"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "never_send_code",
+              "labelAr": "لا أرسله، وأتصل بسالم لأتأكد أنه هو"
+            },
+            {
+              "actionId": "send_code_to_requester",
+              "labelAr": "أرسل الرمز، فهو صديقي"
+            },
+            {
+              "actionId": "send_part_of_code",
+              "labelAr": "أرسل نصف الرمز فقط"
+            }
+          ],
+          "praiseAr": "لم تقع في الحيلة",
+          "explainAr": "الرمز الذي يصل إلى هاتفك هو رمز حسابك أنت، مهما قال المرسل. وقد يكون حساب صديقك مسروقًا."
+        },
+        {
+          "id": "prize-code",
+          "sceneAr": "وصلك رمز تحقق لم تطلبه. ثم وصلتك هذه الرسالة:",
+          "message": {
+            "fromAr": "مسابقة الألعاب 🎁",
+            "textAr": "ربحت! لتستلم الجائزة أرسل الرمز الذي وصلك الآن."
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "never_send_code",
+              "labelAr": "لا أرسل الرمز، وأخبر والديّ بما حدث"
+            },
+            {
+              "actionId": "send_code_to_requester",
+              "labelAr": "أرسل الرمز لأستلم الجائزة"
+            },
+            {
+              "actionId": "send_part_of_code",
+              "labelAr": "أرسل آخر ثلاثة أرقام فقط"
+            }
+          ],
+          "praiseAr": "حافظت على رمزك",
+          "explainAr": "رمز التحقق مفتاح حسابك. من يطلبه يريد الدخول إلى حسابك، مهما كانت القصة."
+        }
+      ]
+    },
+    "M2.C3": {
+      "variants": [
+        {
+          "id": "game-offer",
+          "sceneAr": "فتحت إعدادات حساب لعبتك فوجدت خيارًا: «تفعيل التحقق بخطوتين».",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "turn_on_two_step",
+              "labelAr": "أفعّله: كلمة المرور ثم رمز يصلني أنا فقط"
+            },
+            {
+              "actionId": "skip_two_step",
+              "labelAr": "أتركه، فكلمة مروري تكفي"
+            },
+            {
+              "actionId": "turn_off_two_step",
+              "labelAr": "لا أريده، فهو يؤخر دخولي للعبة"
+            }
+          ],
+          "praiseAr": "قفلان أفضل من قفل",
+          "explainAr": "مع التحقق بخطوتين، من يسرق كلمة مرورك لا يستطيع الدخول لأنه لا يملك الرمز."
+        },
+        {
+          "id": "email-prompt",
+          "sceneAr": "بريدك يعرض عليك: «أضف خطوة تحقق ثانية لحماية حسابك».",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "turn_on_two_step",
+              "labelAr": "أوافق وأضيف الخطوة الثانية الآن"
+            },
+            {
+              "actionId": "skip_two_step",
+              "labelAr": "أضغط «لاحقًا» ولا أعود إليه"
+            },
+            {
+              "actionId": "turn_off_two_step",
+              "labelAr": "أرفض، فالخطوات الكثيرة مزعجة"
+            }
+          ],
+          "praiseAr": "حساب محصّن",
+          "explainAr": "البريد مفتاح بقية حساباتك، وخطوة التحقق الثانية تحميه حتى لو انكشفت كلمة المرور."
+        },
+        {
+          "id": "first-login",
+          "sceneAr": "لعبتك الجديدة تسألك عند أول دخول: «هل تريد حماية حسابك بخطوة ثانية؟»",
+          "promptAr": "ماذا تختار؟",
+          "options": [
+            {
+              "actionId": "turn_on_two_step",
+              "labelAr": "نعم، أفعّلها بمساعدة والديّ"
+            },
+            {
+              "actionId": "skip_two_step",
+              "labelAr": "أتخطى السؤال وأبدأ اللعب"
+            },
+            {
+              "actionId": "turn_off_two_step",
+              "labelAr": "أختار «لا تسألني مرة أخرى»"
+            }
+          ],
+          "praiseAr": "أضفت قفلًا ثانيًا لحسابك",
+          "explainAr": "مع الخطوة الثانية لا يكفي أن يعرف أحد كلمة مرورك ليدخل حسابك."
+        }
+      ]
+    },
+    "M3.C1": {
+      "variants": [
+        {
+          "id": "free-game",
+          "sceneAr": "تريد لعبة مدفوعة. صديقك أرسل لك رابطًا ويقول: «هنا تنزّلها مجانًا!»",
+          "promptAr": "من أين تنزّلها؟",
+          "options": [
+            {
+              "actionId": "download_from_official_store",
+              "labelAr": "من المتجر الرسمي فقط، وأستأذن والديّ في شرائها"
+            },
+            {
+              "actionId": "download_from_shared_link",
+              "labelAr": "من رابط صديقي، فهي مجانية هناك"
+            },
+            {
+              "actionId": "install_modified_copy",
+              "labelAr": "أبحث عن نسخة معدّلة تفتح كل شيء"
+            }
+          ],
+          "praiseAr": "مصدر موثوق",
+          "explainAr": "المتجر الرسمي يفحص التطبيقات. النسخة «المجانية» من رابط قد تكون اللعبة ومعها برنامج يسرق بياناتك."
+        },
+        {
+          "id": "unlimited-coins",
+          "sceneAr": "شاهدت مقطعًا يقول: «نزّل هذه النسخة من الرابط واحصل على عملات بلا حدود!»",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "download_from_official_store",
+              "labelAr": "أبقى على نسخة المتجر الرسمي"
+            },
+            {
+              "actionId": "download_from_shared_link",
+              "labelAr": "أنزّلها من رابط المقطع وأجرّب"
+            },
+            {
+              "actionId": "install_modified_copy",
+              "labelAr": "أثبّت النسخة المعدّلة بدل نسختي"
+            }
+          ],
+          "praiseAr": "لم يغرك العرض",
+          "explainAr": "النسخ المعدّلة لا يراجعها أحد، وكثيرًا ما تسرق الحساب نفسه الذي وعدتك بعملاته."
+        },
+        {
+          "id": "video-ad",
+          "sceneAr": "أثناء لعبك ظهر إعلان: «لعبة السباق الجديدة! نزّلها مباشرة من هنا».",
+          "promptAr": "من أين تنزّلها؟",
+          "options": [
+            {
+              "actionId": "download_from_official_store",
+              "labelAr": "أبحث عنها في المتجر الرسمي وأنزّلها من هناك"
+            },
+            {
+              "actionId": "download_from_shared_link",
+              "labelAr": "أضغط الإعلان وأنزّل الملف مباشرة"
+            },
+            {
+              "actionId": "install_modified_copy",
+              "labelAr": "أبحث عن نسخة كل السيارات فيها مفتوحة"
+            }
+          ],
+          "praiseAr": "اخترت المصدر الموثوق",
+          "explainAr": "المتجر الرسمي يفحص التطبيقات. ملفات الإعلانات والنسخ المعدّلة قد تخفي برامج خبيثة."
+        }
+      ]
+    },
+    "M3.C2": {
+      "variants": [
+        {
+          "id": "flashlight",
+          "sceneAr": "نزّلت تطبيق «كشّاف» بسيطًا. عند فتحه طلب الوصول إلى جهات الاتصال والميكروفون.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "deny_unneeded_permission",
+              "labelAr": "أرفض، فالكشّاف لا يحتاج جهات الاتصال ولا الميكروفون"
+            },
+            {
+              "actionId": "allow_everything",
+              "labelAr": "أوافق على كل شيء ليعمل التطبيق"
+            },
+            {
+              "actionId": "allow_then_forget",
+              "labelAr": "أوافق الآن، وأفكر في الأمر لاحقًا"
+            }
+          ],
+          "praiseAr": "بياناتك بقيت لك",
+          "explainAr": "الكشّاف يحتاج الضوء فقط. من يطلب أكثر مما تحتاجه وظيفته يريد بياناتك."
+        },
+        {
+          "id": "puzzle-location",
+          "sceneAr": "لعبة ألغاز بسيطة طلبت عند فتحها: موقعك، ورسائلك، والكاميرا.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "deny_unneeded_permission",
+              "labelAr": "أرفض، فلعبة الألغاز لا تحتاج شيئًا من هذا"
+            },
+            {
+              "actionId": "allow_everything",
+              "labelAr": "أوافق على الكل لأبدأ اللعب بسرعة"
+            },
+            {
+              "actionId": "allow_then_forget",
+              "labelAr": "أوافق اليوم، وقد ألغيها يومًا ما"
+            }
+          ],
+          "praiseAr": "سؤال في محله",
+          "explainAr": "اسأل دائمًا: ما علاقة هذه الصلاحية بعمل التطبيق؟ لا علاقة للألغاز بموقعك ورسائلك."
+        },
+        {
+          "id": "drawing-app",
+          "sceneAr": "تطبيق رسم وتلوين طلب عند فتحه: الميكروفون، وموقعك، وقائمة أصدقائك.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "deny_unneeded_permission",
+              "labelAr": "أرفضها كلها، فالرسم لا يحتاجها"
+            },
+            {
+              "actionId": "allow_everything",
+              "labelAr": "أسمح بكل شيء، فالتطبيق مشهور"
+            },
+            {
+              "actionId": "allow_then_forget",
+              "labelAr": "أسمح الآن وأراجع الإعدادات في العطلة"
+            }
+          ],
+          "praiseAr": "أعطيت التطبيق ما يحتاجه فقط",
+          "explainAr": "الصلاحية التي لا يحتاجها التطبيق لعمله قد تُستخدم لجمع معلوماتك."
+        }
+      ]
+    },
+    "M3.C3": {
+      "variants": [
+        {
+          "id": "disable-protection",
+          "sceneAr": "موقع يعرض لعبة جديدة ويقول: «أوقف حماية الجهاز أولًا ثم ثبّت الملف».",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "keep_store_protection",
+              "labelAr": "لا أوقف الحماية، وأبحث عن اللعبة في المتجر الرسمي"
+            },
+            {
+              "actionId": "allow_unknown_sources",
+              "labelAr": "أوقف الحماية دقيقة واحدة فقط ثم أعيدها"
+            },
+            {
+              "actionId": "install_from_popup",
+              "labelAr": "أثبّت الملف كما يطلب الموقع"
+            }
+          ],
+          "praiseAr": "الحماية في مكانها",
+          "explainAr": "الحماية وُضعت لتمنع هذا النوع من الملفات. من يطلب إيقافها يعرف أن ملفه لن يمر منها."
+        },
+        {
+          "id": "player-popup",
+          "sceneAr": "تشاهد مقطعًا في المتصفح. ظهرت نافذة: «ثبّت المشغّل الجديد واسمح بالمصادر غير المعروفة».",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "keep_store_protection",
+              "labelAr": "أغلق النافذة ولا أغيّر إعدادات الحماية"
+            },
+            {
+              "actionId": "allow_unknown_sources",
+              "labelAr": "أسمح بالمصادر غير المعروفة ليعمل المقطع"
+            },
+            {
+              "actionId": "install_from_popup",
+              "labelAr": "أضغط «تثبيت» في النافذة"
+            }
+          ],
+          "praiseAr": "أغلقت الباب في وجهه",
+          "explainAr": "المتصفح لا يحتاج «مشغّلًا» من نافذة. هذه حيلة لتثبيت برنامج ضار خارج المتجر."
+        },
+        {
+          "id": "friend-file",
+          "sceneAr": "صديقك أرسل لك ملف لعبة ويقول: «غيّر إعداد الحماية في هاتفك ليتثبّت».",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "keep_store_protection",
+              "labelAr": "لا أغيّر الحماية، وأبحث عن اللعبة في المتجر"
+            },
+            {
+              "actionId": "allow_unknown_sources",
+              "labelAr": "أغيّر الإعداد هذه المرة فقط"
+            },
+            {
+              "actionId": "install_from_popup",
+              "labelAr": "أضغط على الملف وأوافق على كل ما يظهر"
+            }
+          ],
+          "praiseAr": "أبقيت حماية جهازك تعمل",
+          "explainAr": "حماية الجهاز تمنع تثبيت ملفات لم تُفحص. إيقافها ولو مرة يفتح الباب للبرامج الخبيثة."
+        }
+      ]
+    },
+    "M4.C1": {
+      "variants": [
+        {
+          "id": "system-update",
+          "sceneAr": "في إعدادات جهازك إشعار: «يتوفر تحديث أمني». وأنت مشغول باللعب.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "update_from_official_source",
+              "labelAr": "أثبّته اليوم من إعدادات الجهاز نفسها"
+            },
+            {
+              "actionId": "postpone_forever",
+              "labelAr": "أضغط «ذكّرني لاحقًا» كل مرة"
+            },
+            {
+              "actionId": "update_from_advert",
+              "labelAr": "أنتظر إعلانًا فيه رابط التحديث وأضغطه"
+            }
+          ],
+          "praiseAr": "ثغرة أُغلقت",
+          "explainAr": "التحديث الأمني يسدّ ثغرة معروفة. كل يوم تأجيل هو يوم يبقى فيه الباب مفتوحًا."
+        },
+        {
+          "id": "game-update",
+          "sceneAr": "المتجر الرسمي يعرض تحديثًا للعبتك. وفي اليوم نفسه ظهر إعلان: «حدّث لعبتك من هنا».",
+          "promptAr": "من أين تحدّث؟",
+          "options": [
+            {
+              "actionId": "update_from_official_source",
+              "labelAr": "من المتجر الرسمي الذي نزّلتها منه"
+            },
+            {
+              "actionId": "postpone_forever",
+              "labelAr": "لا أحدّث أبدًا، فاللعبة تعمل"
+            },
+            {
+              "actionId": "update_from_advert",
+              "labelAr": "من رابط الإعلان لأنه أسرع"
+            }
+          ],
+          "praiseAr": "تحديث من مصدره",
+          "explainAr": "التحديث يأتي من المكان الذي نزّلت منه التطبيق. رابط الإعلان قد يثبّت شيئًا آخر تمامًا."
+        },
+        {
+          "id": "browser-popup",
+          "sceneAr": "ظهرت في المتصفح نافذة: «متصفحك قديم! حدّثه الآن من هنا».",
+          "promptAr": "كيف تحدّث المتصفح؟",
+          "options": [
+            {
+              "actionId": "update_from_official_source",
+              "labelAr": "أغلق النافذة وأحدّثه من المتجر الرسمي أو الإعدادات"
+            },
+            {
+              "actionId": "postpone_forever",
+              "labelAr": "أغلقها ولا أحدّث المتصفح أبدًا"
+            },
+            {
+              "actionId": "update_from_advert",
+              "labelAr": "أضغط زر التحديث في النافذة"
+            }
+          ],
+          "praiseAr": "حدّثت من المصدر الصحيح",
+          "explainAr": "التحديث الحقيقي يأتي من المتجر أو الإعدادات. نوافذ التحديث في الصفحات كثيرًا ما تكون فخًّا."
+        }
+      ]
+    },
+    "M4.C2": {
+      "variants": [
+        {
+          "id": "school-project",
+          "sceneAr": "مشروعك المدرسي وصورك كلها محفوظة على الجهاز اللوحي فقط.",
+          "promptAr": "كيف تحميها من الضياع؟",
+          "options": [
+            {
+              "actionId": "keep_separate_backup",
+              "labelAr": "أحفظ نسخة ثانية في مكان آخر، وأجرّب استعادة ملف منها"
+            },
+            {
+              "actionId": "keep_single_copy",
+              "labelAr": "تكفي نسخة الجهاز، فهو جديد"
+            },
+            {
+              "actionId": "backup_on_same_device",
+              "labelAr": "أنسخها إلى مجلد آخر على الجهاز نفسه"
+            }
+          ],
+          "praiseAr": "ملفاتك في أمان",
+          "explainAr": "لو تعطل الجهاز أو ضاع، تضيع معه كل نسخة عليه. النسخة التي تنفعك هي التي في مكان آخر وتأكدت أنها تعمل."
+        },
+        {
+          "id": "phone-photos",
+          "sceneAr": "هاتف العائلة فيه صور خمس سنوات، ولا توجد منها نسخة في أي مكان آخر.",
+          "promptAr": "بماذا تنصح والديك؟",
+          "options": [
+            {
+              "actionId": "keep_separate_backup",
+              "labelAr": "نسخة احتياطية خارج الهاتف، ونجرّب استعادة صورة منها"
+            },
+            {
+              "actionId": "keep_single_copy",
+              "labelAr": "لا حاجة، فالهاتف يعمل جيدًا"
+            },
+            {
+              "actionId": "backup_on_same_device",
+              "labelAr": "ننسخ الصور إلى ألبوم ثانٍ في الهاتف نفسه"
+            }
+          ],
+          "praiseAr": "نصيحة تنقذ الذكريات",
+          "explainAr": "النسخة الاحتياطية الحقيقية تكون خارج الجهاز. وتجربة الاستعادة تكشف مبكرًا إن كانت النسخة ناقصة."
+        },
+        {
+          "id": "story-file",
+          "sceneAr": "كتبتَ قصة طويلة على حاسوب البيت طوال شهر، وهي محفوظة عليه فقط.",
+          "promptAr": "كيف تحميها من الضياع؟",
+          "options": [
+            {
+              "actionId": "keep_separate_backup",
+              "labelAr": "أحفظ نسخة منها خارج الحاسوب وأتأكد أنها تفتح"
+            },
+            {
+              "actionId": "keep_single_copy",
+              "labelAr": "الحاسوب لا يتعطل، فلا حاجة لنسخة"
+            },
+            {
+              "actionId": "backup_on_same_device",
+              "labelAr": "أحفظ نسخة ثانية على سطح المكتب"
+            }
+          ],
+          "praiseAr": "قصتك الآن في أمان",
+          "explainAr": "إن تعطل الحاسوب أو أصابه برنامج فدية ضاعت كل النسخ التي عليه. النسخة الخارجية تبقى."
+        }
+      ]
+    },
+    "M4.C3": {
+      "variants": [
+        {
+          "id": "locked-files",
+          "sceneAr": "ظهرت على الحاسوب رسالة: «ملفاتك مقفلة! ادفع لنفتحها». وعندك نسخة احتياطية حديثة.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "tell_adult_and_restore",
+              "labelAr": "أخبر والديّ، ونستعيد الملفات من النسخة الاحتياطية"
+            },
+            {
+              "actionId": "pay_the_ransom",
+              "labelAr": "ندفع المبلغ لتعود الملفات بسرعة"
+            },
+            {
+              "actionId": "download_unlock_tool",
+              "labelAr": "أنزّل «أداة الفتح» التي في الرسالة"
+            }
+          ],
+          "praiseAr": "هزمت المبتز",
+          "explainAr": "الدفع لا يضمن عودة الملفات ويشجع المبتز. النسخة الاحتياطية تعيدها بلا مقابل."
+        },
+        {
+          "id": "unlock-link",
+          "sceneAr": "رسالة على الجهاز: «شفّرنا صورك. نزّل أداة الفتح من هذا الرابط». وعندك نسخة احتياطية.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "tell_adult_and_restore",
+              "labelAr": "لا أضغط شيئًا، وأخبر شخصًا بالغًا لنستعيد من النسخة"
+            },
+            {
+              "actionId": "pay_the_ransom",
+              "labelAr": "أبحث كيف أدفع لهم ما يطلبون"
+            },
+            {
+              "actionId": "download_unlock_tool",
+              "labelAr": "أنزّل الأداة من الرابط لأفتح الصور"
+            }
+          ],
+          "praiseAr": "لم تعطه فرصة ثانية",
+          "explainAr": "«أداة الفتح» من المبتز برنامج ضار آخر. الحل عند شخص بالغ تثق به وفي نسختك الاحتياطية."
+        },
+        {
+          "id": "countdown",
+          "sceneAr": "شاشة حمراء على حاسوب البيت: «ملفاتكم مشفّرة، والعدّاد ينتهي بعد ساعة!». وعندكم نسخة احتياطية.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "tell_adult_and_restore",
+              "labelAr": "لا ألمس شيئًا وأنادي والديّ لنستعيد من النسخة"
+            },
+            {
+              "actionId": "pay_the_ransom",
+              "labelAr": "أقنع والديّ بالدفع قبل انتهاء العدّاد"
+            },
+            {
+              "actionId": "download_unlock_tool",
+              "labelAr": "أضغط زر «فتح الملفات» الذي في الشاشة"
+            }
+          ],
+          "praiseAr": "هدوؤك أنقذ الملفات",
+          "explainAr": "العدّاد حيلة ليخيفك. الدفع لا يضمن عودة الملفات، والنسخة الاحتياطية تعيدها بأمان."
+        }
+      ]
+    },
+    "M5.C1": {
+      "variants": [
+        {
+          "id": "unknown-device",
+          "sceneAr": "أنت لم تفتح حسابك اليوم. فجأة ظهر إشعار: «هل تحاول تسجيل الدخول؟ جهاز غير معروف».",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "deny_and_change_password",
+              "labelAr": "أضغط «رفض» ثم أغيّر كلمة المرور"
+            },
+            {
+              "actionId": "approve_to_dismiss",
+              "labelAr": "أضغط «موافقة» ليختفي الإشعار"
+            },
+            {
+              "actionId": "ignore_the_alert",
+              "labelAr": "أتجاهل الإشعار ولا أضغط شيئًا"
+            }
+          ],
+          "praiseAr": "أغلقت الباب وغيّرت القفل",
+          "explainAr": "الإشعار يعني أن أحدًا كتب كلمة مرورك الصحيحة. الرفض يوقفه الآن، وتغيير الكلمة يوقفه دائمًا."
+        },
+        {
+          "id": "repeated",
+          "sceneAr": "أنت لم تفتح حسابك. إشعار «هل هذا أنت؟» ظهر ثلاث مرات متتالية.",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "deny_and_change_password",
+              "labelAr": "أرفض كل مرة، وأغيّر كلمة المرور فورًا"
+            },
+            {
+              "actionId": "approve_to_dismiss",
+              "labelAr": "أوافق مرة واحدة ليتوقف الإزعاج"
+            },
+            {
+              "actionId": "ignore_the_alert",
+              "labelAr": "أكتم الإشعارات ولا أفعل شيئًا"
+            }
+          ],
+          "praiseAr": "لم يتعبك الإلحاح",
+          "explainAr": "تكرار الطلب حيلة: المحتال يعرف كلمة المرور وينتظر أن تملّ فتوافق."
+        },
+        {
+          "id": "night-alert",
+          "sceneAr": "قبل النوم وصلك إشعار: «تسجيل دخول جديد إلى حسابك من مدينة بعيدة. هل هذا أنت؟»",
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "deny_and_change_password",
+              "labelAr": "أضغط «لست أنا» وأغيّر كلمة المرور"
+            },
+            {
+              "actionId": "approve_to_dismiss",
+              "labelAr": "أضغط «نعم، هذا أنا» لأنام"
+            },
+            {
+              "actionId": "ignore_the_alert",
+              "labelAr": "أترك الإشعار إلى الصباح"
+            }
+          ],
+          "praiseAr": "أغلقت الباب في وجه الدخيل",
+          "explainAr": "الإشعار يعني أن أحدًا يعرف كلمة مرورك. الرفض ثم تغييرها فورًا يمنعه من الدخول."
+        }
+      ]
+    },
+    "M5.C2": {
+      "variants": [
+        {
+          "id": "account-closing",
+          "sceneAr": "وصلتك رسالة عاجلة:",
+          "message": {
+            "fromAr": "فريق الحماية",
+            "textAr": "حسابك سيُغلق بعد ٥ دقائق! نزّل تطبيق الحماية من الرابط وأرسل لنا الرمز."
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "stop_and_verify_officially",
+              "labelAr": "أتوقف، وأفتح التطبيق الرسمي بنفسي لأتأكد"
+            },
+            {
+              "actionId": "follow_urgent_steps",
+              "labelAr": "أنفذ ما في الرسالة بسرعة قبل أن يُغلق الحساب"
+            },
+            {
+              "actionId": "do_half_of_it",
+              "labelAr": "أنزّل التطبيق فقط ولا أرسل الرمز"
+            }
+          ],
+          "praiseAr": "هدوؤك هزمه",
+          "explainAr": "الرسالة جمعت ثلاث حيل: الاستعجال، ورابط تنزيل، وطلب رمز. تنفيذ نصفها خطر أيضًا."
+        },
+        {
+          "id": "prize-deadline",
+          "sceneAr": "وصلتك رسالة عاجلة:",
+          "message": {
+            "fromAr": "لجنة الجوائز",
+            "textAr": "فزت! بقيت دقيقتان: ادخل من الرابط بكلمة مرورك وفعّل «المصادر غير المعروفة»."
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "stop_and_verify_officially",
+              "labelAr": "أتوقف ولا أضغط، وأتحقق من الموقع الرسمي بنفسي"
+            },
+            {
+              "actionId": "follow_urgent_steps",
+              "labelAr": "أسرع قبل انتهاء الدقيقتين وأفعل ما طلبوا"
+            },
+            {
+              "actionId": "do_half_of_it",
+              "labelAr": "أكتب كلمة المرور فقط ولا أغيّر الإعدادات"
+            }
+          ],
+          "praiseAr": "فكّرت قبل أن تتصرف",
+          "explainAr": "جائزة لم تشترك فيها، ووقت ينتهي، وطلب كلمة مرور: كل علامة منها تكفي لتتوقف."
+        },
+        {
+          "id": "teacher-urgent",
+          "sceneAr": "وصلتك رسالة عاجلة باسم معلمك من رقم لا تعرفه:",
+          "message": {
+            "fromAr": "أ. خالد (رقم جديد)",
+            "textAr": "أنا في اجتماع. أرسل لي رمز دخول منصة المدرسة حالًا وافتح الرابط: class-fast.internal"
+          },
+          "promptAr": "ماذا تفعل؟",
+          "options": [
+            {
+              "actionId": "stop_and_verify_officially",
+              "labelAr": "أتوقف، وأسأل المعلم بنفسي في المدرسة أو عبر المنصة"
+            },
+            {
+              "actionId": "follow_urgent_steps",
+              "labelAr": "أرسل الرمز وأفتح الرابط، فالمعلم مستعجل"
+            },
+            {
+              "actionId": "do_half_of_it",
+              "labelAr": "أفتح الرابط فقط ولا أرسل الرمز"
+            }
+          ],
+          "praiseAr": "لم تستعجل مع المستعجل",
+          "explainAr": "انتحال اسم شخص تعرفه مع الاستعجال حيلة شائعة. التأكد بطريقة رسمية يكشفها."
+        }
+      ]
+    },
+    "M5.C3": {
+      "variants": [
+        {
+          "id": "typed-password",
+          "sceneAr": "ضغطت رابطًا وكتبت كلمة مرور لعبتك، ثم لاحظت أن عنوان الصفحة غريب.",
+          "promptAr": "ماذا تفعل الآن؟",
+          "options": [
+            {
+              "actionId": "secure_account_and_tell",
+              "labelAr": "أغيّر كلمة المرور فورًا وأخبر والديّ"
+            },
+            {
+              "actionId": "hide_and_hope",
+              "labelAr": "لا أخبر أحدًا، وأنتظر لعل شيئًا لا يحدث"
+            },
+            {
+              "actionId": "only_delete_message",
+              "labelAr": "أحذف الرسالة وأغلق الصفحة فقط"
+            }
+          ],
+          "praiseAr": "تصرّفت كالمحترفين",
+          "explainAr": "كلمة المرور صارت عند المحتال. تغييرها فورًا يسبقه إلى حسابك، وإخبار الكبار يحمي بقية حساباتك."
+        },
+        {
+          "id": "shared-code",
+          "sceneAr": "أرسلت رمز التحقق لشخص ادّعى أنه الدعم الفني، ثم أدركت أنها حيلة.",
+          "promptAr": "ماذا تفعل الآن؟",
+          "options": [
+            {
+              "actionId": "secure_account_and_tell",
+              "labelAr": "أغيّر كلمة المرور الآن وأخبر شخصًا بالغًا أثق به"
+            },
+            {
+              "actionId": "hide_and_hope",
+              "labelAr": "أخفي الأمر حتى لا يغضب أحد"
+            },
+            {
+              "actionId": "only_delete_message",
+              "labelAr": "أحذف المحادثة وأنسى ما حدث"
+            }
+          ],
+          "praiseAr": "الشجاعة أن تخبر",
+          "explainAr": "الخطأ يحدث لأي أحد. السرعة في تغيير كلمة المرور وطلب المساعدة هي ما يوقف الضرر."
+        },
+        {
+          "id": "installed-app",
+          "sceneAr": "نزّلت تطبيقًا من رابط في رسالة، ثم بدأ الهاتف يعرض نوافذ غريبة.",
+          "promptAr": "ماذا تفعل الآن؟",
+          "options": [
+            {
+              "actionId": "secure_account_and_tell",
+              "labelAr": "أخبر والديّ فورًا لنحذفه ونغيّر كلمات المرور"
+            },
+            {
+              "actionId": "hide_and_hope",
+              "labelAr": "أخفي الأمر وأتمنى أن تتوقف النوافذ"
+            },
+            {
+              "actionId": "only_delete_message",
+              "labelAr": "أحذف الرسالة التي فيها الرابط فقط"
+            }
+          ],
+          "praiseAr": "الاعتراف السريع يقلّل الضرر",
+          "explainAr": "كلما أخبرت مبكرًا كان الإصلاح أسهل. حذف الرسالة لا يزيل التطبيق ولا يحمي حساباتك."
+        }
+      ]
+    }
+  }
+}

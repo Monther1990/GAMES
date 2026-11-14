@@ -1,0 +1,161 @@
+{
+  "assessmentVersion": "1.0.0",
+  "missions": [
+    {
+      "id": "M1",
+      "order": 1,
+      "titleAr": "شارع الرسائل",
+      "locationAr": "المدينة الرقمية",
+      "categoryId": "phishing",
+      "variantIds": [
+        "base"
+      ],
+      "maximumPoints": 30,
+      "checkpoints": [
+        {
+          "id": "M1.C1",
+          "order": 1,
+          "labelAr": "رسالة تطلب الدفع",
+          "weight": 10,
+          "safeActionId": "check_official_app",
+          "unsafeActionIds": [
+            "pay_from_message_link",
+            "reply_with_details"
+          ],
+          "feedbackAr": "لا تدفع ولا تكتب بياناتك من رابط وصلك في رسالة. افتح التطبيق الرسمي بنفسك وتأكد من هناك.",
+          "hintAr": "من أين جاء الرابط؟ هل طلبت أنت شيئًا؟ الطريق الآمن يبدأ من التطبيق الذي تفتحه بنفسك."
+        },
+        {
+          "id": "M1.C2",
+          "order": 2,
+          "labelAr": "أي سطر يكشف الاحتيال؟",
+          "weight": 10,
+          "safeActionId": "spot_risky_request",
+          "unsafeActionIds": [
+            "blame_the_greeting",
+            "blame_the_design"
+          ],
+          "feedbackAr": "انظر إلى ما تطلبه الرسالة: لا جهة حقيقية تطلب كلمة المرور أو رمز التحقق في رسالة. الشكل الجميل والتحية اللطيفة لا يثبتان شيئًا.",
+          "hintAr": "لا تنظر إلى الشكل. اسأل نفسك: ماذا تريد مني هذه الرسالة أن أفعل؟"
+        },
+        {
+          "id": "M1.C3",
+          "order": 3,
+          "labelAr": "نافذة تحديث مفاجئة",
+          "weight": 10,
+          "safeActionId": "update_from_settings",
+          "unsafeActionIds": [
+            "tap_popup_download",
+            "allow_unknown_installer"
+          ],
+          "feedbackAr": "التحديث الحقيقي تجده في إعدادات الجهاز أو المتجر الرسمي. النافذة المفاجئة قد تنزّل برنامجًا ضارًا.",
+          "hintAr": "أنت لم تطلب تحديثًا. أين تجد التحديثات الحقيقية في جهازك؟"
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "order": 2,
+      "titleAr": "منطقة الحسابات",
+      "locationAr": "المدينة الرقمية",
+      "categoryId": "accounts",
+      "variantIds": [
+        "base"
+      ],
+      "maximumPoints": 34,
+      "checkpoints": [
+        {
+          "id": "M2.C1",
+          "order": 1,
+          "labelAr": "كلمة مرور جديدة",
+          "weight": 11,
+          "safeActionId": "use_unique_passphrase",
+          "unsafeActionIds": [
+            "reuse_one_password",
+            "short_personal_password"
+          ],
+          "feedbackAr": "اجعل لكل حساب كلمة مرور طويلة لا تستخدمها في غيره. لو كانت كلمة واحدة لكل حساباتك وسُرقت، سُرقت الحسابات كلها. وتطبيق حفظ كلمات المرور يتذكرها عنك.",
+          "hintAr": "ماذا يحدث لباقي حساباتك لو عرف أحدهم كلمة واحدة؟ وهل اسمك وسنة ميلادك صعبان على التخمين؟"
+        },
+        {
+          "id": "M2.C2",
+          "order": 2,
+          "labelAr": "من يطلب رمز التحقق؟",
+          "weight": 11,
+          "safeActionId": "keep_code_private",
+          "unsafeActionIds": [
+            "share_code",
+            "share_half_code"
+          ],
+          "feedbackAr": "رمز التحقق لك وحدك. لا الدعم الفني ولا صديق ولا معلم يحتاجه، ومن يطلبه يريد دخول حسابك.",
+          "hintAr": "الرمز مثل مفتاح بيتك. هل يطلب منك أحد مفتاحك في رسالة؟"
+        },
+        {
+          "id": "M2.C3",
+          "order": 3,
+          "labelAr": "محاولة دخول إلى حسابك",
+          "weight": 12,
+          "safeActionId": "deny_and_secure",
+          "unsafeActionIds": [
+            "approve_to_dismiss",
+            "ignore_the_alert"
+          ],
+          "feedbackAr": "إذا لم تكن أنت من يحاول الدخول فاضغط «رفض»، ثم غيّر كلمة المرور وأخبر شخصًا بالغًا تثق به.",
+          "hintAr": "هل تحاول أنت الدخول الآن؟ إن لم تكن أنت، فمن يكون؟"
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "order": 3,
+      "titleAr": "الطريق إلى الخزنة",
+      "locationAr": "المدينة الرقمية",
+      "categoryId": "mixed",
+      "variantIds": [
+        "base"
+      ],
+      "maximumPoints": 36,
+      "checkpoints": [
+        {
+          "id": "M3.C1",
+          "order": 1,
+          "labelAr": "أي الرسالتين تصدّق؟",
+          "weight": 12,
+          "safeActionId": "trust_only_verified",
+          "unsafeActionIds": [
+            "trust_unverified_message",
+            "trust_both_messages"
+          ],
+          "feedbackAr": "ليست كل رسالة احتيالًا. صدّق ما تجده داخل التطبيق الرسمي ولا يطلب منك سرًّا، واحذر الرسالة التي تأتي من خارجه وتطلب مالًا أو كلمة مرور.",
+          "hintAr": "قارن بين الرسالتين: أين وصلت كل واحدة؟ وماذا تطلب منك؟"
+        },
+        {
+          "id": "M3.C2",
+          "order": 2,
+          "labelAr": "رتّب ما تفعله",
+          "weight": 12,
+          "safeActionId": "stop_verify_report",
+          "unsafeActionIds": [
+            "act_before_stopping",
+            "skip_verification"
+          ],
+          "feedbackAr": "القاعدة الذهبية بثلاث خطوات: توقّف، ثم تحقّق بنفسك، ثم بلّغ. من يتصرف قبل أن يتحقق يقع في الفخ.",
+          "hintAr": "الرسالة تستعجلك. ما أول شيء تفعله أمام الاستعجال؟ وهل تبلّغ قبل أن تتأكد؟"
+        },
+        {
+          "id": "M3.C3",
+          "order": 3,
+          "labelAr": "رسالة تستعجلك عند الخزنة",
+          "weight": 12,
+          "safeActionId": "verify_despite_pressure",
+          "unsafeActionIds": [
+            "give_code_under_pressure",
+            "use_shortcut_link"
+          ],
+          "feedbackAr": "من يستعجلك لتتصرف «الآن» لا يريدك أن تفكر، وهذه حيلة معروفة. خذ وقتك واستخدم الطريق الرسمي بنفسك.",
+          "hintAr": "لماذا يستعجلك؟ وأين المكان الرسمي لكتابة الرمز؟"
+        }
+      ]
+    }
+  ]
+}

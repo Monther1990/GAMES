@@ -1,0 +1,556 @@
+{
+  "note": "Quick questions of the Cyber box. They are practice only: they never enter the decision ledger or the knowledge score. The first option is the right one; the game shuffles the order.",
+  "seconds": 20,
+  "questions": [
+    {
+      "id": "k1-1",
+      "stage": 0,
+      "qAr": "A message says: \"You won a prize! Tap the link now.\" What do you do?",
+      "options": [
+        "I don't tap and I tell a parent",
+        "I tap fast before it ends",
+        "I send it to all my friends"
+      ],
+      "whyAr": "Surprise prize messages are a common trap to steal data."
+    },
+    {
+      "id": "k1-2",
+      "stage": 0,
+      "qAr": "What do you check first in a message from a stranger?",
+      "options": [
+        "The sender's real address",
+        "The message colours",
+        "How many words it has"
+      ],
+      "whyAr": "The sender's address exposes many fake messages."
+    },
+    {
+      "id": "k1-3",
+      "stage": 0,
+      "qAr": "A message says: \"Your account will close in a minute!\" This rush is…",
+      "options": [
+        "A trick sign, so I pause and check",
+        "Proof the message is true",
+        "A reason to send my password now"
+      ],
+      "whyAr": "Scammers rush you so you don't think."
+    },
+    {
+      "id": "k1-4",
+      "stage": 0,
+      "qAr": "A friend sends a strange link with no words. What do you do?",
+      "options": [
+        "I ask another way if they really sent it",
+        "I open it; my friend sent it",
+        "I forward it to the group"
+      ],
+      "whyAr": "Your friend's account may be hacked."
+    },
+    {
+      "id": "k1-5",
+      "stage": 0,
+      "qAr": "Where do you type your login?",
+      "options": [
+        "On the official site I open myself",
+        "On any link I get in a message",
+        "In a window that pops up"
+      ],
+      "whyAr": "Open the official site yourself. Don't follow message links."
+    },
+    {
+      "id": "k1-6",
+      "stage": 0,
+      "qAr": "What is a fake message that tries to steal your data called?",
+      "options": [
+        "Phishing",
+        "An update",
+        "A backup"
+      ],
+      "whyAr": "A phishing message uses a name you trust to take your data."
+    },
+    {
+      "id": "k1-7",
+      "stage": 0,
+      "qAr": "A \"bank\" message has mistakes and asks for your PIN. What is it?",
+      "options": [
+        "A scam attempt",
+        "An official message",
+        "A gift from the bank"
+      ],
+      "whyAr": "A bank never asks for your PIN in a message."
+    },
+    {
+      "id": "k1-8",
+      "stage": 0,
+      "qAr": "A short link hides where it goes. What do you do?",
+      "options": [
+        "I check its source before I open it",
+        "I open it to find out",
+        "I send it to a friend to try"
+      ],
+      "whyAr": "An unknown link may take you to a fake page."
+    },
+    {
+      "id": "k1-9",
+      "stage": 0,
+      "qAr": "What is a computer \"virus\"?",
+      "options": [
+        "Bad program that sticks to files and spreads",
+        "Screen fault",
+        "New game"
+      ],
+      "whyAr": "A virus spreads when you open an infected file."
+    },
+    {
+      "id": "k1-10",
+      "stage": 0,
+      "qAr": "A message says send it to 10 friends to win. What do you do?",
+      "options": [
+        "I ignore it and don't send it",
+        "I send it to 10 friends",
+        "I send it to 20 to win more"
+      ],
+      "whyAr": "Chain messages spread bad links between friends."
+    },
+    {
+      "id": "k2-1",
+      "stage": 1,
+      "qAr": "Which password is strongest?",
+      "options": [
+        "A long phrase with letters, numbers, symbols",
+        "My name and birth year",
+        "123456"
+      ],
+      "whyAr": "Length and variety make guessing hard."
+    },
+    {
+      "id": "k2-2",
+      "stage": 1,
+      "qAr": "A caller asks for the verification code you got. What do you do?",
+      "options": [
+        "I never give it to anyone",
+        "I give it if told he's staff",
+        "I send it in a message"
+      ],
+      "whyAr": "The code is yours alone. No official service asks for it."
+    },
+    {
+      "id": "k2-3",
+      "stage": 1,
+      "qAr": "Do you use the same password for all accounts?",
+      "options": [
+        "No, each account has its own",
+        "Yes, so it's easy to remember",
+        "Yes, with one letter changed"
+      ],
+      "whyAr": "If one leaks, the other accounts stay safe."
+    },
+    {
+      "id": "k2-4",
+      "stage": 1,
+      "qAr": "Why use two-step verification?",
+      "options": [
+        "Guards the account even if the password is known",
+        "Makes the internet faster",
+        "Deletes old messages"
+      ],
+      "whyAr": "The second step is an extra wall against hackers."
+    },
+    {
+      "id": "k2-5",
+      "stage": 1,
+      "qAr": "A friend wants your account password to play. What do you do?",
+      "options": [
+        "I say sorry and don't share",
+        "I give it; he's my friend",
+        "I send it to him in the group"
+      ],
+      "whyAr": "A password is a secret, not shared even with friends."
+    },
+    {
+      "id": "k2-6",
+      "stage": 1,
+      "qAr": "Where do you keep your many passwords safe?",
+      "options": [
+        "In a password manager app",
+        "On a paper on the desk",
+        "In a message to my friend"
+      ],
+      "whyAr": "A password manager keeps them encrypted behind one lock."
+    },
+    {
+      "id": "k2-7",
+      "stage": 1,
+      "qAr": "Which one makes a bad password?",
+      "options": [
+        "My birth date",
+        "A long strange phrase",
+        "Random words with symbols"
+      ],
+      "whyAr": "Many know your birth date, and it's easy to guess."
+    },
+    {
+      "id": "k2-8",
+      "stage": 1,
+      "qAr": "You hear your password leaked. What do you do?",
+      "options": [
+        "I change it now wherever I used it",
+        "I wait a month",
+        "Nothing, it is old"
+      ],
+      "whyAr": "Hackers try a leaked password on your other accounts."
+    },
+    {
+      "id": "k2-9",
+      "stage": 1,
+      "qAr": "What is \"ransomware\"?",
+      "options": [
+        "It locks your files and asks for money",
+        "It speeds up the device",
+        "A game with a subscription"
+      ],
+      "whyAr": "A backup is the best protection from it."
+    },
+    {
+      "id": "k2-10",
+      "stage": 1,
+      "qAr": "When to change your password?",
+      "options": [
+        "When I think someone knows it",
+        "I never change it",
+        "When a friend asks me to"
+      ],
+      "whyAr": "Any doubt it leaked is enough to change it."
+    },
+    {
+      "id": "k3-1",
+      "stage": 2,
+      "qAr": "Where do you download games and apps?",
+      "options": [
+        "Only from the official store",
+        "From any link in an ad",
+        "From a file a stranger sent"
+      ],
+      "whyAr": "Official stores check apps before publishing them."
+    },
+    {
+      "id": "k3-2",
+      "stage": 2,
+      "qAr": "A simple colour game asks to see your messages. What do you do?",
+      "options": [
+        "I refuse; it doesn't need it",
+        "I agree to everything",
+        "I agree, then forget about it"
+      ],
+      "whyAr": "Give an app only what it needs to work."
+    },
+    {
+      "id": "k3-3",
+      "stage": 2,
+      "qAr": "A pop-up: \"Your device is infected! Get this program.\" What do you do?",
+      "options": [
+        "I close it, download nothing",
+        "I download the program now",
+        "I type my details in it"
+      ],
+      "whyAr": "These scare pop-ups spread bad programs."
+    },
+    {
+      "id": "k3-4",
+      "stage": 2,
+      "qAr": "What do you check before getting a new app?",
+      "options": [
+        "Developer name, ratings and permissions",
+        "Only the icon colour",
+        "Only the app size"
+      ],
+      "whyAr": "These details reveal copycat apps."
+    },
+    {
+      "id": "k3-5",
+      "stage": 2,
+      "qAr": "A \"free hacked\" copy of a paid game…",
+      "options": [
+        "May carry bad programs, so I avoid it",
+        "A good deal, so I download it",
+        "Safe because it is famous"
+      ],
+      "whyAr": "Pirated programs are a common door for viruses."
+    },
+    {
+      "id": "k3-6",
+      "stage": 2,
+      "qAr": "What is a \"Trojan horse\" program?",
+      "options": [
+        "A useful-looking program that hides harm",
+        "A game about horses",
+        "A system update"
+      ],
+      "whyAr": "So we only download from official stores."
+    },
+    {
+      "id": "k3-7",
+      "stage": 2,
+      "qAr": "A torch app asks to read your messages. It is…",
+      "options": [
+        "Suspicious, so I refuse it",
+        "A normal request",
+        "Proof the app is strong"
+      ],
+      "whyAr": "A torch shines without your messages."
+    },
+    {
+      "id": "k3-8",
+      "stage": 2,
+      "qAr": "What is a computer \"worm\"?",
+      "options": [
+        "Bad program that moves alone between devices",
+        "Keyboard error",
+        "Picture file"
+      ],
+      "whyAr": "A worm spreads without you tapping anything. Updates stop it."
+    },
+    {
+      "id": "k3-9",
+      "stage": 2,
+      "qAr": "A game has one star and comments warn against it. What do you do?",
+      "options": [
+        "I don't download it",
+        "I download it to try",
+        "I download it and ignore comments"
+      ],
+      "whyAr": "People's ratings reveal bad apps."
+    },
+    {
+      "id": "k3-10",
+      "stage": 2,
+      "qAr": "What is \"spyware\"?",
+      "options": [
+        "It secretly watches you and steals your info",
+        "The phone camera",
+        "A maps app"
+      ],
+      "whyAr": "It often comes with apps from outside the store."
+    },
+    {
+      "id": "k4-1",
+      "stage": 3,
+      "qAr": "An official system update pops up. What do you do?",
+      "options": [
+        "I update as soon as I can",
+        "I always ignore it",
+        "I delete the notice"
+      ],
+      "whyAr": "Updates close security holes that hackers use."
+    },
+    {
+      "id": "k4-2",
+      "stage": 3,
+      "qAr": "What is a backup good for?",
+      "options": [
+        "I restore my files if lost or the device breaks",
+        "It makes the device prettier",
+        "It adds more games"
+      ],
+      "whyAr": "A backup rescues your photos and files."
+    },
+    {
+      "id": "k4-3",
+      "stage": 3,
+      "qAr": "Where do safe updates come from?",
+      "options": [
+        "From device settings or the official store",
+        "From a link in a message",
+        "From an ad pop-up"
+      ],
+      "whyAr": "A fake update may be a bad program."
+    },
+    {
+      "id": "k4-4",
+      "stage": 3,
+      "qAr": "Where do you keep a backup of your important files?",
+      "options": [
+        "Somewhere else, not on the device",
+        "In the same folder",
+        "I don't need a backup"
+      ],
+      "whyAr": "If the device breaks, the copy stays somewhere safe."
+    },
+    {
+      "id": "k4-5",
+      "stage": 3,
+      "qAr": "How often do you make a backup?",
+      "options": [
+        "Regularly, like every week",
+        "Once in a lifetime",
+        "After the files are lost"
+      ],
+      "whyAr": "Regular backups save your newest files."
+    },
+    {
+      "id": "k4-6",
+      "stage": 3,
+      "qAr": "Why do companies release security updates?",
+      "options": [
+        "To close holes that are found",
+        "To slow the device down",
+        "Only to change the colours"
+      ],
+      "whyAr": "A security hole is an open door for a hacker."
+    },
+    {
+      "id": "k4-7",
+      "stage": 3,
+      "qAr": "What is a \"security hole\"?",
+      "options": [
+        "A program mistake that lets a hacker in",
+        "A broken screen",
+        "A weak battery"
+      ],
+      "whyAr": "Updates are what close the holes."
+    },
+    {
+      "id": "k4-8",
+      "stage": 3,
+      "qAr": "Where is it best to turn on auto-update?",
+      "options": [
+        "In both the system and the apps",
+        "I never turn it on",
+        "Only in games"
+      ],
+      "whyAr": "Auto-update protects you even if you forget."
+    },
+    {
+      "id": "k4-9",
+      "stage": 3,
+      "qAr": "Ransomware hits your device. You have a backup. What is the fix?",
+      "options": [
+        "I restore my files from backup",
+        "I pay the money",
+        "I download a tool the hacker sent"
+      ],
+      "whyAr": "Paying promises nothing. The backup restores the files."
+    },
+    {
+      "id": "k4-10",
+      "stage": 3,
+      "qAr": "How do you make sure your backup works?",
+      "options": [
+        "I test it by restoring a file",
+        "I trust it without testing",
+        "I delete the original and see"
+      ],
+      "whyAr": "An untested backup may fail when you need it."
+    },
+    {
+      "id": "k5-1",
+      "stage": 4,
+      "qAr": "A public Wi-Fi with no password. What do you avoid on it?",
+      "options": [
+        "Typing my details and passwords",
+        "Reading the news",
+        "Checking the weather"
+      ],
+      "whyAr": "Other people may watch open networks."
+    },
+    {
+      "id": "k5-2",
+      "stage": 4,
+      "qAr": "A stranger in a game asks for your home address. What do you do?",
+      "options": [
+        "I don't tell him; I tell a parent",
+        "I tell him because he is nice",
+        "I send him a photo of my home"
+      ],
+      "whyAr": "Personal information is not for strangers."
+    },
+    {
+      "id": "k5-3",
+      "stage": 4,
+      "qAr": "You see something scary or upsetting online. What do you do?",
+      "options": [
+        "I tell an adult I trust",
+        "I hide it from everyone",
+        "I share it with my friends"
+      ],
+      "whyAr": "Trusted adults help you do the right thing."
+    },
+    {
+      "id": "k5-4",
+      "stage": 4,
+      "qAr": "Before you leave a shared device, what do you do?",
+      "options": [
+        "I sign out of my accounts",
+        "I leave it open",
+        "I write the password on paper beside it"
+      ],
+      "whyAr": "Signing out keeps others out of your account."
+    },
+    {
+      "id": "k5-5",
+      "stage": 4,
+      "qAr": "Which phone screen lock is best?",
+      "options": [
+        "A code or fingerprint only I know",
+        "No lock, so it is faster",
+        "1111"
+      ],
+      "whyAr": "A screen lock protects what's on a lost phone."
+    },
+    {
+      "id": "k5-6",
+      "stage": 4,
+      "qAr": "What is a \"firewall\"?",
+      "options": [
+        "A guard that blocks connections not allowed",
+        "A real wall around a computer",
+        "A fighting game"
+      ],
+      "whyAr": "It watches what goes in and out of your device on the network."
+    },
+    {
+      "id": "k5-7",
+      "stage": 4,
+      "qAr": "What does \"antivirus\" do?",
+      "options": [
+        "Scans the device and removes bad programs",
+        "Speeds up the internet",
+        "Saves passwords"
+      ],
+      "whyAr": "It needs constant updates to know new threats."
+    },
+    {
+      "id": "k5-8",
+      "stage": 4,
+      "qAr": "What is a \"botnet\"?",
+      "options": [
+        "Infected devices a hacker controls remotely",
+        "A group of toy robots",
+        "A fast Wi-Fi network"
+      ],
+      "whyAr": "Your unprotected device may join them without you knowing."
+    },
+    {
+      "id": "k5-9",
+      "stage": 4,
+      "qAr": "A game friend asks for your photo and school name. What do you do?",
+      "options": [
+        "I refuse and tell my parents",
+        "I send them; we play together",
+        "I send only the school name"
+      ],
+      "whyAr": "A game-only friend is still a stranger."
+    },
+    {
+      "id": "k5-10",
+      "stage": 4,
+      "qAr": "What is a \"logic bomb\"?",
+      "options": [
+        "Bad code that waits for a set time to run",
+        "A bomb in a game",
+        "An error message"
+      ],
+      "whyAr": "It sleeps inside a program until its time comes."
+    }
+  ]
+}

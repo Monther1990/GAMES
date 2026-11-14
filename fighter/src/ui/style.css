@@ -1,0 +1,394 @@
+/* Cyber Shield interface, in the look of the Cyber Aware platform (cyberaware.om): cream and white surfaces, deep navy
+   ink and buttons, gold for what matters, flat (no neon glow). The fight under it keeps its own colours.
+   A few things stay dark on purpose and bring the old light-on-dark values back for themselves (see "dark islands").
+   Arabic, right to left, big type (14 px or more), touch targets of 48 px or more, and every state shown with words
+   and symbols as well as colour. Font: Readex Pro (SIL OFL, public/fonts/OFL.txt). */
+@font-face { font-family: 'Readex Pro'; src: url('/fonts/ReadexPro-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Readex Pro'; src: url('/fonts/ReadexPro-bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+.cs-host { --ink: #1f2a44; --soft: #56617b; --panel: rgba(255, 253, 249, 0.98); --line: rgba(31, 42, 68, 0.16); --radius: 18px;
+	/* faint fills on a surface, from the lightest to the strongest */
+	--tint: rgba(31, 42, 68, 0.05); --tint2: rgba(31, 42, 68, 0.1); --tint3: rgba(31, 42, 68, 0.18);
+	/* the accent (the platform's navy), what is written on it, and the soft gold that marks what is chosen */
+	--accent: #1f2a44; --on-accent: #fff; --accent-soft: rgba(224, 161, 0, 0.16); --cyan: var(--accent); --violet: var(--gold);
+	/* gold as a fill or a line, and a darker gold that can be read as text on a light surface; the same for green and red */
+	--gold: #e0a100; --gold-d: #b98300; --gold-ink: #8f6200; --green: #0e7350; --red: #c8323f; --red-ink: #b02a36;
+	position: relative; width: 100%; height: 100%; overflow: hidden; background: #040818; color: var(--ink);
+	font-family: 'Readex Pro', system-ui, 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; touch-action: none; user-select: none; -webkit-user-select: none; }
+.cs-host *, .cs-host *::before, .cs-host *::after { box-sizing: border-box; }
+.cs-canvas, .cs-coins { position: absolute; inset: 0; width: 100%; height: 100%; display: block; outline: none; }
+.cs-canvas { touch-action: none; }
+.cs-coins { z-index: 5; pointer-events: none; }
+.cs-ui { position: absolute; inset: 0; z-index: 2; pointer-events: none; font-size: 17px; line-height: 1.5; }
+.cs-ui button, .cs-ui input, .cs-modal { pointer-events: auto; }
+.cs-ui button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+.cs-ui svg { width: 1.2em; height: 1.2em; flex: none; display: block; }
+.cs-ui .hidden { display: none !important; }
+.cs-ico { display: inline-flex; }
+
+/* money: the symbol and the number stay together, left to right */
+.cs-money { display: inline-flex; align-items: center; gap: 0.28em; direction: ltr; unicode-bidi: isolate; white-space: nowrap; color: var(--gold-ink); font-weight: 700; }
+.cs-money .cs-omr { width: 1.25em; height: 0.86em; }
+.cs-money.plus b::before { content: '+'; }
+.cs-addr { font-size: 0.92em; background: var(--accent-soft); border-radius: 7px; padding: 0 6px; white-space: nowrap; }
+
+/* ---------------------------------------------------------------- wallet (always on top, coins fly to it) */
+.cs-wallet { position: absolute; z-index: 4; top: max(8px, env(safe-area-inset-top)); inset-inline-end: 10px; display: flex; align-items: center; gap: 8px; direction: ltr;
+	height: 46px; padding: 0 14px 0 6px; border-radius: 23px; background: var(--panel); border: 2px solid var(--gold); color: var(--ink); box-shadow: 0 4px 14px rgba(10, 16, 40, 0.25); font-weight: 700; font-size: 20px; }
+.cs-wallet-coin { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #fff1a8, #f5c33a 55%, #b87a10); box-shadow: 0 0 0 2px #8a5a08 inset; color: #6b3d05; }
+.cs-wallet-coin .cs-omr { width: 22px; height: 15px; }
+.cs-wallet.pulse { animation: cs-pulse 0.22s ease-out; } .cs-wallet.pulse-big { animation: cs-pulse-big 0.3s ease-out; }
+.cs-gain { position: absolute; top: 100%; inset-inline-start: 40px; margin-top: 3px; padding: 0 7px; border-radius: 9px; background: var(--panel); border: 1px solid var(--gold); font-style: normal; font-size: 15px; color: var(--gold-ink); }
+@keyframes cs-pulse { 40% { transform: scale(1.09); box-shadow: 0 0 16px rgba(246, 197, 68, 0.7); } }
+@keyframes cs-pulse-big { 40% { transform: scale(1.18); box-shadow: 0 0 26px rgba(255, 220, 110, 0.95); } }
+
+/* ---------------------------------------------------------------- HUD */
+.cs-hud { position: absolute; top: max(8px, env(safe-area-inset-top)); inset-inline: 158px 10px; display: grid; grid-template-columns: 46px 1fr; gap: 6px 8px; align-items: center; }
+.cs-icon-btn { width: 46px; height: 46px; border-radius: 15px; background: var(--panel) !important; border: 1.5px solid var(--line) !important; display: grid; place-items: center; }
+.cs-icon-btn svg { width: 24px; height: 24px; }
+.cs-hp { display: flex; gap: 3px; direction: ltr; justify-self: start; background: var(--panel); border: 1.5px solid var(--line); border-radius: 14px; padding: 0 8px; height: 32px; align-items: center; }
+.cs-hp span { color: var(--tint3); } .cs-hp span.on { color: var(--red); } .cs-hp svg { width: 18px; height: 18px; }
+.cs-stage { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--ink); width: min(100%, 300px); padding: 2px 10px; border-radius: 12px; background: var(--panel); border: 1.5px solid var(--line); }
+.cs-stage i, .cs-boss i { flex: 1; height: 7px; border-radius: 5px; background: var(--tint2); overflow: hidden; display: block; }
+.cs-stage u { display: block; height: 100%; background: var(--gold); }
+.cs-boss { position: fixed; top: max(104px, calc(env(safe-area-inset-top) + 98px)); inset-inline: 12px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; font-weight: 700; text-align: center; color: var(--red-ink); padding: 3px 10px 7px; border-radius: 14px; background: var(--panel); border: 1.5px solid var(--line); }
+.cs-boss i { flex: none; height: 12px; border: 1.5px solid rgba(255, 120, 130, 0.6); direction: ltr; }
+.cs-boss u { display: block; height: 100%; background: linear-gradient(90deg, #ff9a5a, var(--red)); transition: width 0.15s; }
+.cs-boss.guarded u { background: linear-gradient(90deg, #8fd6ff, #5aa0ff); } .cs-boss em { font-style: normal; font-size: 13px; color: var(--soft); }
+
+/* ---------------------------------------------------------------- toasts, prompts, countdown, hit edge */
+.cs-toast { position: absolute; inset-inline: 0; top: 142px; margin-inline: auto; width: fit-content; max-width: min(92%, 520px); padding: 8px 18px; border-radius: 16px; background: var(--panel); border: 2px solid var(--accent); font-size: 17px; font-weight: 700; text-align: center; box-shadow: 0 6px 18px rgba(10, 16, 40, 0.25); animation: cs-slide 0.2s ease-out; }
+.cs-toast.good { border-color: var(--green); color: var(--green); } .cs-toast.bad { border-color: var(--red); color: var(--red-ink); }
+.cs-toast.alarm { border-color: var(--red); background: rgba(70, 8, 16, 0.94); color: #fff; font-size: 20px; }
+.cs-prompt { position: absolute; inset-inline: 0; top: 30%; margin-inline: auto; width: fit-content; max-width: 90%; padding: 12px 22px; border-radius: 20px; background: var(--panel); border: 2px solid var(--gold); font-size: 21px; font-weight: 700; text-align: center; box-shadow: 0 6px 18px rgba(10, 16, 40, 0.25); }
+.cs-count { position: absolute; inset: 0; display: grid; place-items: center; font-size: 96px; font-weight: 700; color: #fff; text-shadow: 0 4px 0 var(--gold-d), 0 0 26px rgba(10, 16, 40, 0.9); }
+.cs-count.pop { animation: cs-pop 0.5s ease-out; }
+.cs-fx { position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+.cs-fx.hit { box-shadow: 0 0 0 0 transparent, inset 0 0 90px 30px rgba(255, 50, 70, 0.75); animation: cs-flash 0.45s ease-out 1; }
+.cs-fx.tint { background: rgba(255, 70, 90, 0.22); animation: cs-flash 0.45s ease-out 1; }
+@keyframes cs-flash { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes cs-pop { 0% { transform: scale(1.7); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1); } }
+@keyframes cs-slide { from { transform: translateY(10px); } }
+.cs-reduce .cs-count.pop, .cs-reduce .cs-toast, .cs-reduce .cs-modal, .cs-reduce .cs-wallet { animation: none !important; }
+
+/* ---------------------------------------------------------------- modals */
+.cs-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: max(62px, calc(env(safe-area-inset-top) + 58px)) 10px max(10px, env(safe-area-inset-bottom)); }
+.cs-layer:empty { display: none; }
+.cs-modal { width: min(100%, 500px); max-height: 100%; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; background: var(--panel); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 18px 16px; box-shadow: 0 14px 40px rgba(10, 16, 40, 0.38); animation: cs-slide 0.2s ease-out; }
+.cs-modal.cs-wide { width: min(100%, 620px); }
+.cs-modal h2 { margin: 0 0 8px; font-size: 23px; line-height: 1.3; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cs-modal h2 small { font-size: 14px; font-weight: 400; color: var(--soft); flex-basis: 100%; }
+.cs-modal h3 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: center; gap: 6px; }
+.cs-modal p { margin: 0 0 8px; }
+.cs-card.good { border-color: var(--green); } .cs-card.good h2 { color: var(--green); }
+.cs-card.bad { border-color: var(--red); } .cs-card.bad h2 { color: var(--red-ink); }
+.cs-modal h2 { color: var(--ink); }
+.cs-cyber { float: inline-end; width: 80px; height: auto; margin-inline-start: 10px; filter: drop-shadow(0 4px 10px rgba(31, 42, 68, 0.2)); }
+.cs-actions { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; clear: both; }
+.cs-actions.two { flex-direction: row; margin-top: 0; } .cs-actions.two > * { flex: 1; }
+.cs-btn { min-height: 52px; padding: 9px 16px; border-radius: 17px !important; font-weight: 700 !important; font-size: 18px !important; text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.cs-btn small { font-size: 13px; font-weight: 400; flex-basis: 100%; opacity: 0.85; }
+.cs-btn.primary { background: var(--accent) !important; color: var(--on-accent) !important; box-shadow: 0 6px 16px rgba(31, 42, 68, 0.22); }
+.cs-btn.primary .cs-money { color: #ffd76a; }
+.cs-btn.ghost { background: transparent !important; border: 1.5px solid var(--soft) !important; color: var(--ink); }
+.cs-btn.big { min-height: 60px; font-size: 20px !important; width: 100%; }
+.cs-btn:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+.cs-ui button:focus-visible, .cs-input:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.cs-note { font-size: 14px; color: var(--soft); text-align: center; margin-top: 10px !important; }
+.cs-loading { text-align: center; }
+.cs-bar { height: 10px; border-radius: 8px; background: var(--tint2); overflow: hidden; margin: 16px 0 10px; }
+.cs-bar i { display: block; height: 100%; width: 0; background: var(--gold); transition: width 0.3s; }
+.cs-logo { font-size: 44px; font-weight: 700; line-height: 1.15; text-align: center; color: var(--ink); }
+.cs-logo small { display: block; font-size: 14px; color: var(--gold-ink); -webkit-text-fill-color: var(--gold-ink); }
+
+/* ---------------------------------------------------------------- menu, profile, stages, settings */
+.cs-menu { display: flex; flex-direction: column; gap: 10px; }
+.cs-tagline { text-align: center; color: var(--soft); margin: 0 !important; }
+.cs-field { display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 15px; }
+.cs-input { height: 52px; border-radius: 15px; border: 1.5px solid var(--line); background: var(--tint); color: var(--ink); font: inherit; font-size: 19px; padding: 0 14px; user-select: text; -webkit-user-select: text; touch-action: manipulation; }
+.cs-avatars { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cs-avatar { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 6px 6px; border-radius: 18px !important; background: var(--tint) !important; border: 2px solid transparent !important; font-weight: 700; }
+.cs-avatar img { width: 84px; height: 84px; object-fit: cover; object-position: top; border-radius: 50%; background: #efe9dc; }
+.cs-avatar.on { border-color: var(--gold) !important; background: var(--accent-soft) !important; } .cs-avatar.on span::before { content: '✓ '; color: var(--gold-ink); }
+.cs-error { color: var(--red-ink); font-weight: 700; margin: 0 !important; }
+.cs-stages { display: flex; flex-direction: column; gap: 8px; }
+.cs-stage-card { display: flex; align-items: center; gap: 10px; min-height: 62px; padding: 8px 12px; text-align: start; border-radius: 16px !important; background: var(--tint) !important; border: 1.5px solid var(--line) !important; }
+.cs-stage-card > i { width: 40px; height: 40px; flex: none; border-radius: 12px; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); font-style: normal; font-weight: 700; font-size: 20px; }
+.cs-stage-card > span { flex: 1; display: flex; flex-direction: column; line-height: 1.3; } .cs-stage-card small { color: var(--soft); font-size: 14px; }
+.cs-stage-card em { font-style: normal; font-size: 14px; display: inline-flex; align-items: center; gap: 4px; color: var(--accent); }
+.cs-stage-card.cleared em { color: var(--green); } .cs-stage-card.locked { opacity: 0.68; } .cs-stage-card.locked > i { background: var(--tint3); color: var(--soft); } .cs-stage-card.locked em { color: var(--soft); }
+.cs-switches { display: flex; flex-direction: column; gap: 8px; }
+.cs-switch { display: flex; align-items: center; gap: 10px; text-align: start; padding: 8px 12px; min-height: 58px; border-radius: 16px !important; background: var(--tint) !important; border: 1.5px solid var(--line) !important; }
+.cs-switch > span:first-child { flex: 1; display: flex; flex-direction: column; line-height: 1.35; } .cs-switch small { color: var(--soft); font-size: 14px; }
+.cs-switch > i { width: 50px; height: 28px; border-radius: 16px; background: rgba(31, 42, 68, 0.3); position: relative; flex: none; }
+.cs-switch > i em { position: absolute; top: 3px; inset-inline-start: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: inset-inline-start 0.15s; }
+.cs-switch u { text-decoration: none; font-size: 14px; font-weight: 700; width: 3.2em; color: var(--soft); }
+.cs-switch[aria-checked=true] > i { background: var(--green); } .cs-switch[aria-checked=true] > i em { inset-inline-start: 25px; } .cs-switch[aria-checked=true] u { color: var(--green); }
+.cs-switch.choice { flex-wrap: wrap; } .cs-seg { display: flex; gap: 4px; }
+.cs-seg button { min-height: 44px; padding: 0 12px; border-radius: 12px !important; border: 1.5px solid var(--line) !important; font-size: 15px; } .cs-seg button.on { background: var(--accent) !important; color: var(--on-accent) !important; font-weight: 700; }
+
+/* ---------------------------------------------------------------- the three questions (must fit a phone: no scrolling) */
+.cs-layer:has(.cs-quiz) { align-items: stretch; padding-inline: 8px; padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+.cs-quiz { display: flex; flex-direction: column; padding: 0; overflow: hidden; max-height: calc(100% - 3px); border-color: var(--accent); align-self: center; }
+.cs-quiz-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; border-bottom: 1.5px solid var(--line); }
+.cs-step { display: flex; flex-direction: column; font-size: 14px; color: var(--soft); line-height: 1.3; min-width: 0; } .cs-step b { font-size: 17px; color: var(--ink); }
+.cs-packs { display: flex; gap: 6px; flex: none; }                 /* right to left: question one is on the right */
+.cs-pack { display: flex; flex-direction: column; align-items: center; gap: 1px; width: 58px; font-size: 14px; position: relative; opacity: 0.75; }
+.cs-pack.current, .cs-pack.won { opacity: 1; }
+.cs-pack-box { width: 36px; height: 28px; border-radius: 7px; position: relative; display: block; background: linear-gradient(180deg, #d99a1c, #8a5a08); border: 2px solid #fff1a8; }
+.cs-pack-box u { position: absolute; inset: -7px -3px auto -3px; height: 11px; border-radius: 5px; background: linear-gradient(180deg, #fff1a8, #d99a1c); border: 2px solid #fff1a8; transform-origin: 0 100%; transition: transform 0.3s; }
+.cs-pack.p1 .cs-pack-box { background: linear-gradient(180deg, #e0a52a, #7a4d06); } .cs-pack.p2 .cs-pack-box { width: 42px; height: 32px; background: linear-gradient(180deg, #ffd35a, #a56c0c); box-shadow: 0 0 10px rgba(255, 211, 90, 0.6); }
+.cs-pack > span { position: absolute; top: 5px; font-weight: 700; color: #3d2400; display: grid; place-items: center; } .cs-pack > span svg { width: 18px; height: 18px; }
+.cs-pack em { font-style: normal; font-size: 13px; white-space: nowrap; } .cs-pack em .cs-money { font-size: 14px; }
+.cs-pack.current .cs-pack-box { outline: 3px solid var(--accent); outline-offset: 2px; }
+.cs-pack.won .cs-pack-box u { transform: rotate(-70deg) translateY(-4px); } .cs-pack.won > span { color: #0b5a2c; }
+.cs-pack.opening .cs-pack-box { animation: cs-open 0.9s ease-out; }
+.cs-pack.lost { opacity: 0.6; } .cs-pack.lost .cs-pack-box { filter: grayscale(1); } .cs-pack.lost em { color: var(--soft); }
+@keyframes cs-open { 0% { transform: scale(1); } 25% { transform: scale(1.5) rotate(-6deg); box-shadow: 0 0 26px #fff3b0; } 55% { transform: scale(1.35) rotate(5deg); box-shadow: 0 0 40px #ffe27a; } 100% { transform: scale(1); } }
+.cs-quiz-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; display: flex; flex-direction: column; gap: 9px; padding: 10px 12px; }
+.cs-scene-line, .cs-scene { margin: 0 !important; font-size: 17px; line-height: 1.5; }
+
+.cs-quiz .cs-scene b { display: inline-block; margin-inline-end: 8px; padding: 0 8px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); font-size: 14px; vertical-align: 2px; }
+.cs-msg { background: #f1ece2; border: 1px solid var(--line); color: var(--ink); border-radius: 14px; padding: 8px 12px; font-size: 17px; } .cs-msg b { display: block; font-size: 14px; color: #33508f; } .cs-msg p { margin: 0; }
+.cs-msg .cs-addr { background: #e2dccd; color: #33508f; }
+.cs-ask { font-weight: 700; font-size: 19px; margin: 0 !important; }
+.cs-options { display: flex; flex-direction: column; gap: 8px; }
+.cs-option { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 8px 12px; text-align: start; border-radius: 16px !important; background: var(--tint) !important; border: 2px solid var(--line) !important; font-size: 17px; line-height: 1.4; }
+.cs-option > i { width: 30px; height: 30px; flex: none; border-radius: 50%; display: grid; place-items: center; background: var(--tint2); font-style: normal; font-weight: 700; }
+.cs-option > span { flex: 1; }
+.cs-option em { font-style: normal; font-size: 13px; display: inline-flex; align-items: center; gap: 3px; white-space: nowrap; } .cs-option em svg { width: 16px; height: 16px; }
+.cs-option.on { border-color: var(--accent) !important; background: var(--accent-soft) !important; } .cs-option.on > i { background: var(--accent); color: var(--on-accent); }
+.cs-option.right { border-color: var(--green) !important; background: rgba(18, 128, 90, 0.14) !important; opacity: 1; } .cs-option.right em { color: var(--green); }
+.cs-option.wrong { border-color: var(--red) !important; background: rgba(200, 50, 63, 0.12) !important; opacity: 1; } .cs-option.wrong em { color: var(--red-ink); }
+.cs-option.dim { opacity: 0.45; } .cs-option:disabled { cursor: default; }
+.cs-option.tap { animation: cs-tap 0.9s ease-in-out infinite; }
+@keyframes cs-tap { 50% { box-shadow: 0 0 0 4px rgba(18, 128, 90, 0.5); } }
+.cs-result { border-radius: 14px; padding: 8px 12px; border: 1.5px solid var(--line); } .cs-result p { margin: 2px 0 0; }
+.cs-result > b { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 18px; }
+.cs-result.good { border-color: var(--green); background: rgba(18, 128, 90, 0.08); } .cs-result.good > b { color: var(--green); }
+.cs-result.bad { border-color: var(--gold); background: rgba(246, 197, 68, 0.07); } .cs-result.bad > b { color: var(--gold-ink); }
+.cs-fixnote { color: var(--green); font-weight: 700; }
+.cs-quiz-foot { padding: 8px 12px 10px; border-top: 1.5px solid var(--line); }
+/* tighter type in steps when a card would not fit */
+.cs-quiz.fit1 .cs-quiz-body { gap: 6px; padding: 8px 10px; } .cs-quiz.fit1 .cs-option, .cs-quiz.fit1 .cs-msg, .cs-quiz.fit1 .cs-scene { font-size: 15px; line-height: 1.38; }
+.cs-quiz.fit1 .cs-option { min-height: 48px; padding: 6px 10px; } .cs-quiz.fit1 .cs-ask { font-size: 17px; } .cs-quiz.fit1 .cs-result > b { font-size: 16px; } .cs-quiz.fit1 .cs-result { font-size: 15px; padding: 6px 10px; }
+.cs-quiz.fit2 .cs-quiz-body { gap: 5px; padding: 6px 9px; } .cs-quiz.fit2 .cs-option, .cs-quiz.fit2 .cs-msg, .cs-quiz.fit2 .cs-scene, .cs-quiz.fit2 .cs-result { font-size: 14px; line-height: 1.32; }
+.cs-quiz.fit2 .cs-option { min-height: 44px; padding: 4px 9px; } .cs-quiz.fit2 .cs-option > i { width: 26px; height: 26px; } .cs-quiz.fit2 .cs-btn.big { min-height: 50px; font-size: 18px !important; } .cs-quiz.fit2 .cs-quiz-head { padding: 5px 10px; }
+.cs-quiz.fit3 .cs-option.dim { display: none; } .cs-quiz.fit3 .cs-option em { display: none; }
+.cs-quiz.fit3 .cs-quiz-body { gap: 4px; padding: 5px 8px; } .cs-quiz.fit3 .cs-ask { font-size: 16px; } .cs-quiz.fit3 .cs-step b { font-size: 15px; }
+.cs-quiz.fit3.answered .cs-msg, .cs-quiz.fit3.answered .cs-scene { display: none; }   /* already read: the answer and the reason matter now */
+
+/* ---------------------------------------------------------------- bonus */
+.cs-bonus { text-align: center; border-color: var(--gold); overflow: hidden; position: relative; }
+.cs-bonus h2 { justify-content: center; font-size: 40px; color: var(--gold-ink); letter-spacing: 2px; direction: ltr; } .cs-bonus h2 small { color: var(--soft); font-size: 18px; direction: rtl; letter-spacing: 0; }
+.cs-bonus-amount .cs-money { font-size: 34px; }
+.cs-bonus-pack { width: 96px; height: 76px; margin: 26px auto 14px; border-radius: 14px; position: relative; background: linear-gradient(180deg, #ffd35a, #a56c0c); border: 3px solid #fff1a8; box-shadow: 0 0 40px rgba(255, 211, 90, 0.8); animation: cs-bonus 1.2s ease-out; }
+.cs-bonus-pack u { position: absolute; inset: -16px -6px auto -6px; height: 22px; border-radius: 9px; background: linear-gradient(180deg, #fff1a8, #d99a1c); border: 3px solid #fff1a8; transform-origin: 0 100%; animation: cs-lid 1.2s ease-out forwards; }
+.cs-bonus-lines { position: absolute; inset: 0 0 auto 0; height: 90px; display: flex; justify-content: space-evenly; pointer-events: none; }
+.cs-bonus-lines i { width: 3px; height: 0; background: linear-gradient(180deg, var(--gold), transparent); animation: cs-line 0.7s ease-out forwards; } .cs-bonus-lines i:nth-child(2) { animation-delay: 0.15s; } .cs-bonus-lines i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cs-line { to { height: 90px; } }
+@keyframes cs-bonus { 0% { transform: scale(0.2); } 55% { transform: scale(1.25) rotate(-4deg); } 75% { transform: scale(1.1) rotate(4deg); } 100% { transform: scale(1); } }
+@keyframes cs-lid { 0%, 55% { transform: none; } 100% { transform: rotate(-75deg) translateY(-8px); } }
+
+/* ---------------------------------------------------------------- summary, review */
+.cs-sum-score { font-size: 19px; font-weight: 700; color: var(--accent); }
+.cs-sum { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.cs-sum li { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 6px 2px; border-bottom: 1px solid var(--tint); }
+.cs-sum li em { font-style: normal; color: var(--soft); font-size: 15px; } .cs-sum li.none span { color: var(--soft); }
+.cs-sum li.total { font-weight: 700; font-size: 19px; border-top: 2px solid var(--gold-d); margin-top: 4px; } .cs-sum li.wallet { border: 0; color: var(--soft); }
+.cs-review { display: flex; flex-direction: column; gap: 10px; }
+.cs-review section { border: 1.5px solid var(--line); border-radius: 14px; padding: 8px 12px; } .cs-review section.good { border-color: rgba(18, 128, 90, 0.6); } .cs-review section.bad { border-color: rgba(246, 197, 68, 0.7); }
+.cs-review section.good h3 { color: var(--green); } .cs-review section.bad h3 { color: var(--gold-ink); } .cs-review p { margin: 0 0 4px; font-size: 16px; }
+.cs-quote { background: var(--tint); border-radius: 10px; padding: 4px 10px; } .cs-why { color: var(--soft); }
+
+/* ---------------------------------------------------------------- weapon shop: the top of the screen stays free for the firing range */
+.cs-layer:has(.cs-shop) { align-items: flex-end; padding-top: 34vh; padding-inline: 8px; }
+.cs-shop { width: min(100%, 560px); max-height: 100%; padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 6px; }
+.cs-shop-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.cs-weapon { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 3px 3px; min-height: 54px; border-radius: 14px !important; background: var(--tint) !important; border: 2px solid transparent !important; font-size: 14px; line-height: 1.25; text-align: center; opacity: 0.88; }
+.cs-weapon.owned { opacity: 1; } .cs-weapon.on { border-color: var(--gold) !important; background: var(--accent-soft) !important; opacity: 1; }
+.cs-weapon small { font-size: 13px; color: var(--soft); display: inline-flex; align-items: center; gap: 3px; } .cs-weapon small svg { width: 14px; height: 14px; } .cs-weapon.owned small { color: var(--green); }
+.cs-wicon { width: 20px; height: 20px; border-radius: 8px; display: inline-block; flex: none; filter: drop-shadow(0 0 0.6px rgba(31, 42, 68, 0.95)) drop-shadow(0 0 0.6px rgba(31, 42, 68, 0.95)); }   /* the icons were drawn for a dark panel: a fine dark edge keeps the pale ones visible on a light one */
+.cs-weapon b { font-size: 14px; line-height: 1.15; } .cs-weapon .cs-wicon { width: 16px; height: 16px; }
+.cs-shop-detail { position: relative; } .cs-shop-close { position: absolute; top: -2px; inset-inline-end: 0; min-height: 44px !important; padding: 4px 12px !important; font-size: 15px !important; } .cs-shop-close svg { width: 16px; height: 16px; }
+.cs-shop-detail h2 { padding-inline-end: 96px; }
+.cs-wicon.pulse { background: #4fe3ff; border-radius: 3px; width: 10px; } .cs-wicon.scatter { background: #ffd040; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.cs-wicon.arc { background: #c79bff; clip-path: polygon(55% 0, 20% 55%, 48% 55%, 35% 100%, 82% 40%, 54% 40%); } .cs-wicon.beam { background: linear-gradient(90deg, #9af2ff, #fff, #9af2ff); width: 12px; }
+.cs-wicon.disc { border: 4px solid #5afff2; border-radius: 50%; background: #e6ffff; } .cs-wicon.wave { background: #a9d4ff; clip-path: polygon(0 100%, 50% 0, 100% 100%, 80% 100%, 50% 34%, 20% 100%); }
+.cs-wicon.shield { background: linear-gradient(180deg, #ffe58a, #e9a91f); clip-path: polygon(50% 0, 100% 16%, 92% 66%, 50% 100%, 8% 66%, 0 16%); }
+.cs-wicon.missile { background: #d9f2ff; clip-path: polygon(50% 0, 80% 35%, 80% 80%, 100% 100%, 0 100%, 20% 80%, 20% 35%); } .cs-wicon.plasma { background: radial-gradient(circle, #fff, #4dffc0 55%, transparent 70%); border-radius: 50%; }
+.cs-shop-detail h2 { font-size: 20px; margin: 0; } .cs-role { font-size: 15px; color: var(--soft); margin: 0 !important; }
+.cs-stats { list-style: none; margin: 2px 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.cs-stats li { display: grid; grid-template-columns: 74px 1fr 88px; align-items: center; gap: 8px; font-size: 14px; }
+.cs-stats i { height: 10px; border-radius: 6px; background: var(--tint2); position: relative; overflow: hidden; display: block; direction: ltr; }
+.cs-stats u { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 6px; z-index: 1; } .cs-stats s { position: absolute; inset: 0 auto 0 0; background: rgba(18, 128, 90, 0.55); border-radius: 6px; }
+.cs-stats b { display: inline-flex; align-items: center; gap: 4px; direction: ltr; justify-content: flex-end; } .cs-stats em { font-style: normal; color: var(--green); display: inline-flex; align-items: center; } .cs-stats em svg { width: 14px; height: 14px; }
+.cs-nextnote { font-size: 15px; color: var(--green); display: flex; align-items: center; gap: 6px; margin: 0 !important; } .cs-nextnote svg { width: 16px; height: 16px; }
+.cs-missing { font-size: 15px; color: var(--red-ink); margin: 0 !important; } .cs-max { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--gold-ink); font-weight: 700; }
+.cs-shop .cs-actions { margin-top: 4px; gap: 6px; } .cs-shop .cs-btn.big { min-height: 52px; font-size: 18px !important; }
+.cs-shop-detail.bought, .cs-shop-detail.upgraded { animation: cs-charge 0.7s ease-out; }
+@keyframes cs-charge { 0% { box-shadow: 0 0 0 0 rgba(18, 128, 90, 0.9); } 100% { box-shadow: 0 0 0 26px rgba(18, 128, 90, 0); } }
+
+/* ---------------------------------------------------------------- wide and short screens */
+@media (min-aspect-ratio: 1/1) and (min-width: 760px) {
+	.cs-layer:has(.cs-shop) { align-items: center; justify-content: flex-start; padding-top: 62px; } .cs-shop { width: min(46%, 520px); }
+	.cs-layer:has(.cs-quiz) { justify-content: flex-start; } .cs-quiz { width: min(48%, 540px); }
+	.cs-boss { inset-inline: 25%; }
+}
+@media (max-height: 560px) { .cs-modal { padding: 12px 14px; } .cs-logo { font-size: 30px; } .cs-avatar img { width: 56px; height: 56px; } .cs-count { font-size: 64px; } .cs-prompt { font-size: 18px; } .cs-layer:has(.cs-shop) { padding-top: 26vh; } }
+@media (max-width: 360px) { .cs-ui { font-size: 16px; } .cs-pack { width: 50px; } .cs-hud { inset-inline-start: 146px; } }
+
+/* ---- fight buttons: the emergency power (left) and the quick upgrade (right), both within reach of a thumb */
+.cs-powers { position: absolute; left: max(10px, env(safe-area-inset-left)); bottom: max(14px, env(safe-area-inset-bottom)); display: flex; flex-direction: column-reverse; align-items: center; gap: 9px; pointer-events: none; }
+.cs-upgrade { position: absolute; bottom: max(14px, env(safe-area-inset-bottom)); }
+.cs-power, .cs-upgrade { display: grid; place-items: center; align-content: center; gap: 1px; padding: 0; border-radius: 50%; color: #fff;
+	border: 3px solid rgba(255, 255, 255, 0.92) !important; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5); pointer-events: auto; touch-action: manipulation; }
+.cs-power { position: relative; flex: none; width: 76px; height: 76px; background: radial-gradient(circle at 35% 28%, #ffd76a, #de6f08) !important; }
+.cs-power svg { width: 28px; height: 28px; } .cs-power b { font-size: 11px; line-height: 1.1; max-width: 64px; text-align: center; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
+.cs-power > i { position: absolute; top: -7px; right: -5px; min-width: 25px; height: 25px; padding: 0 5px; border-radius: 13px; background: var(--red); border: 2px solid #fff; font-style: normal; font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+.cs-power.freeze { background: radial-gradient(circle at 35% 28%, #a6ecff, #1a73cf) !important; } .cs-power.laser { background: radial-gradient(circle at 35% 28%, #ffa6e2, #a8198a) !important; }
+.cs-power.guard { background: radial-gradient(circle at 35% 28%, #a7f5c0, #0e8a52) !important; } .cs-power.mega { background: radial-gradient(circle at 35% 28%, #fff2a0, #df3323) !important; }
+.cs-power:not(:first-child) { width: 64px; height: 64px; } .cs-power:not(:first-child) svg { width: 23px; height: 23px; } .cs-power:not(:first-child) b { font-size: 10px; max-width: 56px; }
+.cs-power.new { animation: cs-power-in 0.55s cubic-bezier(0.2, 1.4, 0.4, 1) both; } .cs-power.new::after { content: ''; position: absolute; inset: -9px; border-radius: 50%; border: 3px solid #fff; animation: cs-power-ring 0.7s ease-out both; pointer-events: none; }
+@keyframes cs-power-in { 0% { transform: translateY(46px) scale(0.2) rotate(-40deg); } 60% { transform: translateY(-8px) scale(1.18) rotate(6deg); } 100% { transform: none; } }
+@keyframes cs-power-ring { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(1.7); opacity: 0; } }
+.cs-reduce .cs-power.new, .cs-reduce .cs-power.new::after { animation: none; } .cs-reduce .cs-power.new::after { display: none; }
+.cs-power.urgent:not(.new) { animation: cs-urgent 0.7s ease-in-out infinite; } @keyframes cs-urgent { 50% { transform: scale(1.16); } }
+.cs-reduce .cs-power.urgent { animation: none; outline: 4px solid #fff; outline-offset: 3px; }
+.cs-upgrade { right: max(10px, env(safe-area-inset-right)); width: 66px; height: 66px; background: radial-gradient(circle at 35% 28%, #7fe3ff, #2158d0) !important; }
+.cs-upgrade svg { width: 22px; height: 22px; } .cs-upgrade .cs-money { font-size: 13px; gap: 2px; } .cs-upgrade .cs-money .cs-omr { width: 14px; height: 10px; }
+.cs-upgrade.off { filter: grayscale(0.75); opacity: 0.6; } .cs-upgrade.can { box-shadow: 0 0 0 4px rgba(127, 227, 255, 0.35), 0 6px 18px rgba(0, 0, 0, 0.5); }
+/* ---- the quick question of a Cyber box */
+.cs-box { display: flex; flex-direction: column; gap: 8px; text-align: start; }
+.cs-box-head { display: flex; align-items: center; gap: 8px; } .cs-box-head b { flex: 1; font-size: 19px; color: var(--gold-ink); }
+.cs-box-head em { font-style: normal; font-weight: 700; font-size: 22px; min-width: 46px; text-align: center; border-radius: 12px; padding: 1px 8px; background: var(--tint2); }
+.cs-box-ico svg { width: 26px; height: 26px; color: var(--gold-ink); display: block; }
+.cs-box-timer { height: 9px; border-radius: 5px; background: var(--tint2); overflow: hidden; }
+.cs-box-timer i { display: block; height: 100%; background: var(--gold); transform-origin: right center; }
+.cs-box.hurry .cs-box-timer i { background: var(--red); } .cs-box.hurry .cs-box-head em { color: var(--red-ink); }
+.cs-box.answered .cs-box-timer, .cs-box.answered .cs-box-head em { visibility: hidden; }
+.cs-box .cs-ask { margin: 2px 0; } .cs-box .cs-note { margin: 0; font-size: 13px; text-align: center; }
+.cs-box.answered .cs-option.dim { display: none; }
+.cs-won { display: flex; align-items: center; gap: 10px; margin-top: 6px; padding: 7px 10px; border-radius: 14px; background: rgba(255, 200, 60, 0.16); border: 2px solid var(--gold); color: var(--ink); }
+.cs-won svg { width: 34px; height: 34px; color: var(--gold-ink); flex: none; } .cs-won b { display: block; font-size: 17px; color: var(--gold-ink); } .cs-won small { display: block; font-size: 13px; line-height: 1.35; }
+@media (max-height: 600px) { .cs-powers { gap: 6px; } .cs-power { width: 64px; height: 64px; } .cs-power:not(:first-child) { width: 54px; height: 54px; } .cs-power svg { width: 24px; height: 24px; } .cs-upgrade { width: 58px; height: 58px; } .cs-box-head b { font-size: 17px; } }
+.cs-box { max-height: calc(100% - 6px); }
+@media (max-height: 600px) { .cs-box { gap: 5px; padding: 10px 12px; } .cs-box .cs-result { padding: 6px 9px; } .cs-box .cs-result p, .cs-won small { font-size: 14px; line-height: 1.35; } .cs-box .cs-option { min-height: 44px; padding-block: 5px; } .cs-won { padding: 5px 8px; margin-top: 4px; } }
+
+/* ---- low health: the edge of the screen beats like a heart, gently at two hearts and strongly at the last one */
+.cs-low { position: absolute; inset: 0; pointer-events: none; opacity: 0; box-shadow: inset 0 0 46px 8px rgba(255, 45, 80, 0.55); }
+.cs-low.l1 { animation: cs-low 1.6s ease-in-out infinite; }
+.cs-low.l2 { box-shadow: inset 0 0 74px 14px rgba(255, 30, 66, 0.78); animation: cs-low2 0.9s ease-in-out infinite; }
+@keyframes cs-low { 0%, 100% { opacity: 0.12; } 50% { opacity: 0.7; } }
+@keyframes cs-low2 { 0%, 100% { opacity: 0.28; } 12% { opacity: 1; } 24% { opacity: 0.45; } 36% { opacity: 0.95; } 62% { opacity: 0.28; } }
+.cs-reduce .cs-low.l1, .cs-reduce .cs-low.l2 { animation: none; opacity: 0.55; }
+.cs-hp.low span.on { animation: cs-beat 0.9s ease-in-out infinite; }
+@keyframes cs-beat { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.32); } 28% { transform: scale(1); } 42% { transform: scale(1.2); } 56% { transform: scale(1); } }
+.cs-reduce .cs-hp.low span.on { animation: none; }
+
+/* ---- the weapons button of a fight, above the quick upgrade */
+.cs-arms { position: absolute; right: max(14px, env(safe-area-inset-right)); bottom: calc(max(14px, env(safe-area-inset-bottom)) + 76px); width: 58px; height: 58px; display: grid; place-items: center; align-content: center; gap: 0; padding: 0;
+	border-radius: 50%; color: #fff; background: radial-gradient(circle at 35% 28%, #d2b6ff, #6230cf) !important; border: 3px solid rgba(255, 255, 255, 0.92) !important; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5); pointer-events: auto; touch-action: manipulation; }
+.cs-arms svg { width: 22px; height: 22px; } .cs-arms b { font-size: 11px; line-height: 1.1; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
+@media (max-height: 600px) { .cs-arms { width: 52px; height: 52px; bottom: calc(max(14px, env(safe-area-inset-bottom)) + 66px); } }
+
+/* ---- the last challenge */
+.cs-btn.bonus { background: linear-gradient(135deg, #ed1c24, #7c1238) !important; color: #fff !important; border: 2px solid rgba(255, 255, 255, 0.55) !important; }
+.cs-btn.bonus small { display: block; font-size: 13px; font-weight: 400; opacity: 0.92; }
+.cs-codewin { display: grid; justify-items: center; gap: 8px; margin: 8px 0 2px; }
+.cs-codewin b { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; background: linear-gradient(135deg, #ed1c24, #7c1238); color: #fff; font-size: 18px; border: 2px solid rgba(255, 255, 255, 0.6); }
+.cs-codewin b svg { width: 22px; height: 22px; } .cs-codewin img { width: min(60%, 220px); height: auto; opacity: 0.95; }
+
+/* ---- the rare black box and Total Awareness */
+.cs-box-head b small { display: block; font-size: 13px; font-weight: 400; color: var(--ink); opacity: 0.85; }
+.cs-box.rare { background: linear-gradient(160deg, #06060c, #171230 70%, #2a1d4a); border: 2px solid #ffd76a; box-shadow: 0 0 0 3px rgba(255, 215, 106, 0.18), 0 18px 50px rgba(0, 0, 0, 0.6); }
+.cs-box.rare .cs-box-head b { color: #ffe9a6; } .cs-box.rare .cs-box-timer i { background: linear-gradient(90deg, #ffd76a, #c9a2ff); }
+.cs-power.aware { background: radial-gradient(circle at 35% 26%, #5a5a70, #06060c 62%) !important; border-color: #ffd76a !important; box-shadow: 0 0 0 3px rgba(255, 215, 106, 0.35), 0 0 18px rgba(201, 162, 255, 0.7), 0 6px 18px rgba(0, 0, 0, 0.5); color: #ffe9a6; }
+.cs-won.aware { background: linear-gradient(135deg, #06060c, #2a1d4a); border-color: #ffd76a; }
+.cs-fx.nova { opacity: 1; background: radial-gradient(circle at 50% 45%, #ffffff 0%, #fff6c8 38%, #ffb347 78%, #ff7a2e 100%); animation: cs-nova 1.15s ease-out forwards; }
+@keyframes cs-nova { 0% { opacity: 1; } 22% { opacity: 0.92; } 100% { opacity: 0; } }
+.cs-fx.nova-soft { opacity: 0.45; background: #fff6c8; }
+
+/* on short phones the answered box card drops the question line: the right answer and the reason stay */
+@media (max-height: 660px) { .cs-box.answered .cs-ask { display: none; } .cs-box-head b small { font-size: 12px; } }
+
+/* ---- what the enemies are: a card at the bottom that leaves the enemy in view, a name tag beside it, the encyclopedia */
+.cs-actions.three > * { padding-inline: 4px; font-size: 16px; }
+.cs-layer.clear { align-items: flex-end; background: none !important; padding-bottom: max(14px, env(safe-area-inset-bottom)); }
+.cs-malware { border: 2px solid var(--c); display: grid; gap: 6px; padding: 12px 14px; text-align: start; }
+.cs-malware p { margin: 0; font-size: 16px; line-height: 1.45; } .cs-mal-guard { color: var(--ink); } .cs-mal-guard b { color: var(--green); }
+.cs-mal-head { display: flex; align-items: center; gap: 10px; } .cs-mal-head small { display: block; font-size: 12px; opacity: 0.8; } .cs-mal-head b { font-size: 20px; color: var(--ink); color: color-mix(in srgb, var(--c) 45%, #1f2a44); }
+.cs-mal-ico { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: var(--ink); color: color-mix(in srgb, var(--c) 60%, #1f2a44); background: var(--tint); border: 1.5px solid var(--c); }
+.cs-mal-ico svg { width: 30px; height: 30px; }
+.cs-tag { position: absolute; transform: translate(-50%, -100%); padding: 2px 10px; border-radius: 10px; background: var(--panel); border: 1.5px solid var(--c); color: var(--ink); font-weight: 700; font-size: 13px; white-space: nowrap; pointer-events: none; }
+.cs-tag::after { content: ''; position: absolute; left: 50%; top: 100%; width: 2px; height: 12px; margin-left: -1px; background: var(--c); }
+.cs-codex { display: grid; gap: 7px; max-height: 56vh; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; padding-inline-end: 2px; }
+.cs-codex-item { display: flex; align-items: center; gap: 10px; padding: 7px 9px; border-radius: 14px; background: var(--tint); border: 1.5px solid var(--line); text-align: start; }
+.cs-codex-item b { display: block; font-size: 16px; color: var(--ink); color: color-mix(in srgb, var(--c) 45%, #1f2a44); } .cs-codex-item small { display: block; font-size: 13px; line-height: 1.4; } .cs-codex-item.unknown { opacity: 0.6; }
+.cs-codex-item .cs-mal-ico { width: 40px; height: 40px; } .cs-codex-item .cs-mal-ico svg { width: 25px; height: 25px; }
+
+/* ---- the heart box and the four protections */
+.cs-box.heart { border: 2px solid #ff7a96; } .cs-box.heart .cs-box-head b { color: var(--red-ink); } .cs-box.heart .cs-box-ico svg { color: #ff5a7a; }
+.cs-won.heart { border-color: #ff7a96; background: rgba(255, 90, 122, 0.16); } .cs-won.heart svg, .cs-won.heart b { color: #ff7a96; }
+.cs-power.wall { background: radial-gradient(circle at 35% 28%, #ffc27a, #c9300c) !important; } .cs-power.scan { background: radial-gradient(circle at 35% 28%, #b9ffcf, #0d8f4a) !important; }
+.cs-power.backup { background: radial-gradient(circle at 35% 28%, #e3f6ff, #2f86b8) !important; } .cs-power.update { background: radial-gradient(circle at 35% 28%, #c9d6ff, #4a3fd0) !important; }
+.cs-power.backup::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px dashed rgba(255, 255, 255, 0.75); }   /* it waits: it is not pressed */
+
+/* ---- playing with a supporter */
+.cs-btn.coop { background: var(--gold) !important; color: #1f2a44 !important; box-shadow: 0 6px 16px rgba(224, 161, 0, 0.3); }
+.cs-friend { font: inherit; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0; padding: 8px 12px; border-radius: 14px; background: rgba(18, 128, 90, 0.1); border: 1.5px solid var(--green); color: var(--green); font-weight: 700; }
+.cs-friend svg { width: 20px; height: 20px; color: #ff6a86; }
+.cs-coop { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; text-align: center; } .cs-coop p { margin: 0; }
+.cs-code-row { display: flex; gap: 8px; direction: ltr; } .cs-code-row .cs-input { flex: 1; min-width: 0; width: 0; text-align: center; letter-spacing: 6px; font-weight: 700; font-size: 22px; text-transform: uppercase; }
+.cs-room-code { display: flex; justify-content: center; gap: 7px; } .cs-room-code b { width: 48px; height: 58px; border-radius: 12px; display: grid; place-items: center; font-size: 30px; background: var(--tint2); border: 2px solid var(--gold); color: var(--gold-ink); font-family: Consolas, 'Courier New', monospace; }
+.cs-room-status { font-size: 17px; color: var(--soft); } .cs-room-status.ready { color: var(--green); font-weight: 700; }
+.cs-watch { margin: 0; padding: 10px; text-align: center; color: var(--soft); font-size: 16px; }
+.cs-layer:has(.cs-waitcard) { align-items: flex-end; background: none !important; } .cs-waitcard { width: min(100%, 360px); }
+.cs-ally { grid-column: 1 / -1; display: flex; align-items: center; gap: 3px; width: fit-content; padding: 2px 9px; border-radius: 12px; background: var(--panel); border: 1.5px solid var(--green); font-size: 12px; }
+.cs-ally b { margin-inline-end: 5px; color: var(--green); max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .cs-ally span { width: 14px; height: 14px; color: var(--tint3); } .cs-ally span.on { color: var(--red); } .cs-ally svg { width: 100%; height: 100%; display: block; }
+.cs-ally.down { border-color: var(--red); animation: cs-urgent 0.8s ease-in-out infinite; } .cs-ally.busy { border-color: var(--gold); }
+@media (max-height: 600px) { .cs-room-code b { width: 42px; height: 50px; font-size: 26px; } }
+
+/* the report after a boss: damage and kills of each fighter */
+.cs-reportcard { text-align: center; } .cs-report { display: grid; gap: 10px; margin: 10px 0 2px; }
+.cs-rep { padding: 10px; border-radius: 18px; background: var(--tint); border: 1.5px solid var(--line); animation: cs-rep-in 0.45s cubic-bezier(0.2, 1.3, 0.4, 1) both; animation-delay: calc(var(--i) * 0.18s); }
+.cs-rep.best { border-color: var(--gold); box-shadow: 0 0 22px rgba(246, 197, 68, 0.28); } .cs-rep.me h3 span { color: var(--accent); }
+.cs-rep h3 { margin: 0 0 8px; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 6px; } .cs-rep h3 svg { width: 20px; height: 20px; color: var(--gold-ink); }
+.cs-rep-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cs-rep-tile { padding: 8px 6px; border-radius: 14px; background: #fff; border: 1.5px solid var(--line); display: grid; gap: 2px; }
+.cs-rep-tile b { font-size: clamp(26px, 8vw, 38px); line-height: 1.1; font-variant-numeric: tabular-nums; } .cs-rep-tile span { font-size: 14px; color: var(--soft); }
+.cs-rep-tile.dmg b { color: var(--gold-ink); } .cs-rep-tile.kills b { color: var(--red); }
+.cs-report:not(.two) .cs-rep-tile { padding: 14px 6px; } .cs-report:not(.two) .cs-rep-tile b { font-size: clamp(34px, 11vw, 52px); }
+@keyframes cs-rep-in { from { transform: translateY(14px) scale(0.94); } to { transform: none; } }
+.cs-reduce .cs-rep { animation: none; }
+@media (max-height: 600px) { .cs-rep { padding: 7px; } .cs-rep h3 { margin-bottom: 5px; font-size: 16px; } .cs-rep-tile b { font-size: 26px; } }
+
+/* the language button of the first screens */
+.cs-lang { align-self: center; margin-top: 2px; padding: 6px 18px; min-height: 36px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--tint); color: var(--ink); font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+.cs-lang:hover, .cs-lang:focus-visible { border-color: var(--gold); outline: none; }
+
+/* short phones: the first menu keeps to its buttons */
+@media (max-height: 640px) { .cs-menu .cs-tagline, .cs-menu .cs-note { display: none; } .cs-menu { gap: 7px; } .cs-menu .cs-btn.big { min-height: 48px; } .cs-lang { min-height: 32px; padding: 3px 16px; } }
+
+/* the weapon shop on a phone: nothing scrolls, and every button is in view */
+@media not ((min-aspect-ratio: 1/1) and (min-width: 760px)) { .cs-layer:has(.cs-shop) { padding-top: max(58px, env(safe-area-inset-top) + 50px); } }
+.cs-shop .cs-btn.cs-shop-close { background: #c8283a !important; border: 1.5px solid #ff969e !important; color: #fff !important; font-weight: 700 !important; box-shadow: 0 2px 10px rgba(200, 40, 58, 0.45); }
+.cs-shop .cs-actions { flex-direction: row; align-items: stretch; }
+.cs-shop .cs-actions > .cs-btn.big, .cs-shop .cs-actions > .cs-max { flex: 1.7; margin: 0; } .cs-shop .cs-btn.big { font-size: 17px !important; line-height: 1.25; padding: 6px 8px; gap: 4px 8px; }
+.cs-shop .cs-actions > [data-a=equip] { flex: 1; min-height: 52px; padding: 6px 8px; font-size: 17px !important; border: 2px solid var(--gold) !important; color: var(--gold-ink); background: rgba(246, 197, 68, 0.1) !important; }
+.cs-shop.s1 { gap: 4px; padding: 6px 8px 8px; } .cs-shop.s1 .cs-shop-list { gap: 4px; } .cs-shop.s1 .cs-weapon { min-height: 44px; padding: 1px 2px; } .cs-shop.s1 .cs-weapon b, .cs-shop.s1 .cs-weapon small { font-size: 13px; }
+.cs-shop.s1 .cs-stats { gap: 1px; margin: 0; } .cs-shop.s1 .cs-stats li { font-size: 13px; } .cs-shop.s1 .cs-role, .cs-shop.s1 .cs-nextnote, .cs-shop.s1 .cs-missing { font-size: 14px; line-height: 1.3; }
+.cs-shop.s1 .cs-shop-detail h2 { font-size: 18px; } .cs-shop.s1 .cs-shop-detail h2 small { font-size: 13px; } .cs-shop.s1 .cs-shop-close { min-height: 40px !important; }
+.cs-shop.s2 .cs-role { display: none; }
+.cs-shop.s3 .cs-weapon { min-height: 38px; line-height: 1.1; } .cs-shop.s3 .cs-btn.big, .cs-shop.s3 .cs-actions > [data-a=equip] { min-height: 46px; }
+.cs-shop.s4 .cs-nextnote { display: none; }
+
+/* an ordinary card that would need scrolling on a short phone tightens in steps (see modal() in ui.ts) */
+.cs-card.t1 { padding: 12px 14px; } .cs-card.t1 h2 { font-size: 20px; margin-bottom: 4px; } .cs-card.t1 p { font-size: 15px; line-height: 1.38; margin-bottom: 5px; } .cs-card.t1 .cs-actions { gap: 6px; margin-top: 8px; } .cs-card.t1 .cs-btn { min-height: 46px; }
+.cs-card.t2 .cs-actions { display: grid; grid-template-columns: 1fr 1fr; } .cs-card.t2 .cs-actions > :first-child, .cs-card.t2 .cs-actions > :only-child { grid-column: 1 / -1; } .cs-card.t2 .cs-actions > :nth-child(n+2) { font-size: 16px !important; padding-inline: 6px; }
+.cs-card.t3 .cs-cyber { display: none; } .cs-card.t3 p { font-size: 14px; line-height: 1.32; margin-bottom: 3px; }
+
+/* ---- dark islands: what is dark on purpose - the rare black box, the prize of Total Awareness - brings the
+   light-on-dark values back for itself and everything inside it */
+.cs-box.rare, .cs-won.aware { --ink: #eaf2ff; --soft: #9fb0d4; --line: rgba(120, 170, 255, 0.3); --tint: rgba(255, 255, 255, 0.07); --tint2: rgba(255, 255, 255, 0.12); --tint3: rgba(255, 255, 255, 0.2);
+	--accent: #35d6ff; --on-accent: #06122e; --accent-soft: rgba(53, 214, 255, 0.18); --gold: #f6c544; --gold-ink: #f6c544; --green: #3dfa8e; --red: #ff5a64; --red-ink: #ff9aa1; color: var(--ink); }

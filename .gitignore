@@ -1,0 +1,22 @@
+# installed packages and built output: recreated with `npm install` and `npm run build`
+node_modules/
+dist/
+tests/.build/
+
+# what a running server writes: rooms opened while playing with a supporter, visitor logs
+**/server/rooms/
+portal/data/
+portal/logs/
+*.log
+*.pid
+
+# the set-up of the machine the games were first served from (not part of the games)
+portal/deploy/
+portal/README.md
+
+# tools of the editor the games were written in
+.claude/
+
+# secrets never belong here
+.env
+.env.*

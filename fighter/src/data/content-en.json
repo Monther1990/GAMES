@@ -1,0 +1,1078 @@
+{
+  "story": {
+    "introAr": "Digital viruses are attacking the city! Ride the power board, and Cyber shoots with you. Collect rials and upgrade your weapon. After each boss, answer three questions to open reward packs.",
+    "winAr": "You saved the System Core! You kept the digital city safe.",
+    "simulatedNoteAr": "Everything in the game is pretend: the names, addresses, codes and rials are not real."
+  },
+  "sources": [
+    "CISA, Secure Our World: 4 Easy Ways to Stay Safe Online (strong passwords and a password manager, multifactor authentication, recognise and report phishing, update software)",
+    "NIST, awareness pages on phishing, passwords and backups"
+  ],
+  "decisions": {
+    "M1.C1": {
+      "variants": [
+        {
+          "id": "delivery",
+          "sceneAr": "Mum ordered a book. Today your phone gets this message:",
+          "message": {
+            "fromAr": "Oasis Delivery",
+            "textAr": "Parcel on hold. Pay 300 baisa at this link within an hour: tawseel-pay.internal"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "check_official_channel",
+              "labelAr": "I open the delivery app myself and check"
+            },
+            {
+              "actionId": "open_message_link",
+              "labelAr": "I tap the link and pay. It is not much"
+            },
+            {
+              "actionId": "send_requested_data",
+              "labelAr": "I reply with my name and home address"
+            }
+          ],
+          "praiseAr": "This protects your money",
+          "explainAr": "The real company shows your parcel status inside its app. The link in the message may take you to a fake payment page."
+        },
+        {
+          "id": "free-credit",
+          "sceneAr": "Your phone gets this message in the phone company's name:",
+          "message": {
+            "fromAr": "Credit Gifts",
+            "textAr": "Congratulations! Free credit! Tap the link and type your secret number: free-credit.internal"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "check_official_channel",
+              "labelAr": "I open the company's app myself and check the offer"
+            },
+            {
+              "actionId": "open_message_link",
+              "labelAr": "I tap the link fast before the offer ends"
+            },
+            {
+              "actionId": "send_requested_data",
+              "labelAr": "I reply to the message with my secret number"
+            }
+          ],
+          "praiseAr": "This protects your account",
+          "explainAr": "A real offer is in the company's official app. No company asks for your secret number in a message."
+        },
+        {
+          "id": "bank-alert",
+          "sceneAr": "Your dad is beside you. His phone gets this message in the bank's name:",
+          "message": {
+            "fromAr": "Bank Alert",
+            "textAr": "Your card is stopped. Activate it now at the link: bank-active.internal"
+          },
+          "promptAr": "What do you tell your dad?",
+          "options": [
+            {
+              "actionId": "check_official_channel",
+              "labelAr": "He calls the bank on the number on the card itself"
+            },
+            {
+              "actionId": "open_message_link",
+              "labelAr": "He taps the link and activates it fast"
+            },
+            {
+              "actionId": "send_requested_data",
+              "labelAr": "He replies with the card number"
+            }
+          ],
+          "praiseAr": "Advice that protects family money",
+          "explainAr": "A bank does not ask you to activate a card by a link in a message. The number on the card is the official way to check."
+        }
+      ]
+    },
+    "M1.C2": {
+      "variants": [
+        {
+          "id": "your-photo",
+          "sceneAr": "A message from your friend Salim's account. He does not usually write like this:",
+          "message": {
+            "fromAr": "Salim",
+            "textAr": "Haha look at your photo here! clip-view.internal"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "ask_sender_another_way",
+              "labelAr": "I call Salim and ask: did you send this?"
+            },
+            {
+              "actionId": "open_friend_link",
+              "labelAr": "I open the link. It is from my friend"
+            },
+            {
+              "actionId": "forward_to_others",
+              "labelAr": "I send the link to my other friends to see"
+            }
+          ],
+          "praiseAr": "This protects you and your friend",
+          "explainAr": "Salim's account may be stolen and the link a trap. Asking him another way shows the truth and warns him."
+        },
+        {
+          "id": "chain-message",
+          "sceneAr": "In the class group, a message from your classmate Reem's account:",
+          "message": {
+            "fromAr": "Reem",
+            "textAr": "Tap and win a phone! Send it to ten friends: win-phone.internal"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "ask_sender_another_way",
+              "labelAr": "I do not tap. I ask Reem myself: did you send this?"
+            },
+            {
+              "actionId": "open_friend_link",
+              "labelAr": "I tap the link to try my luck"
+            },
+            {
+              "actionId": "forward_to_others",
+              "labelAr": "I send it to ten friends as the message says"
+            }
+          ],
+          "praiseAr": "The trap stopped with you",
+          "explainAr": "“Tap and send to everyone” messages spread from stolen accounts. Do not tap or share them, and warn the account owner."
+        },
+        {
+          "id": "cousin-game",
+          "sceneAr": "Your cousin Ahmed rarely writes to you. Today his account sends you this:",
+          "message": {
+            "fromAr": "Ahmed",
+            "textAr": "Try this game now, it is amazing! play-now.internal"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "ask_sender_another_way",
+              "labelAr": "I phone him and ask if he was the one who sent it"
+            },
+            {
+              "actionId": "open_friend_link",
+              "labelAr": "I open the link to try the game"
+            },
+            {
+              "actionId": "forward_to_others",
+              "labelAr": "I send it to my brothers and sisters to try"
+            }
+          ],
+          "praiseAr": "You checked before you tapped",
+          "explainAr": "Ahmed's account may be stolen, sending links without him knowing. Asking him another way shows the truth."
+        }
+      ]
+    },
+    "M1.C3": {
+      "variants": [
+        {
+          "id": "lock-icon",
+          "sceneAr": "A page asks for your game password. It has a lock 🔒 and the game's logo. Its address:",
+          "message": {
+            "fromAr": "Address bar",
+            "textAr": "🔒 game-login-free.internal"
+          },
+          "promptAr": "How do you judge the page?",
+          "options": [
+            {
+              "actionId": "check_address_and_request",
+              "labelAr": "This is not the game's official address, so I type nothing"
+            },
+            {
+              "actionId": "trust_lock_icon",
+              "labelAr": "It has a lock, so it is safe. I type the password"
+            },
+            {
+              "actionId": "trust_perfect_look",
+              "labelAr": "It has the game logo, so it is the real page"
+            }
+          ],
+          "praiseAr": "Expert eyes!",
+          "explainAr": "The lock only means the connection is encrypted. A scammer can add it and copy the logo, but cannot copy the correct address."
+        },
+        {
+          "id": "perfect-email",
+          "sceneAr": "A neat email with no spelling mistakes and the school platform logo says:",
+          "message": {
+            "fromAr": "school-help.internal",
+            "textAr": "To confirm your account, reply to this email with your password."
+          },
+          "promptAr": "How do you judge the email?",
+          "options": [
+            {
+              "actionId": "check_address_and_request",
+              "labelAr": "A strange address wants my password. I do not reply"
+            },
+            {
+              "actionId": "trust_lock_icon",
+              "labelAr": "School email is always safe, so I send the password"
+            },
+            {
+              "actionId": "trust_perfect_look",
+              "labelAr": "No mistakes and it has the logo, so it is real"
+            }
+          ],
+          "praiseAr": "The look did not fool you",
+          "explainAr": "No mistakes proves nothing. Look at what it asks: no real sender asks for your password by email."
+        },
+        {
+          "id": "shop-page",
+          "sceneAr": "A nice toy shop page with a lock 🔒 asks for your dad's card number. Its address:",
+          "message": {
+            "fromAr": "Address bar",
+            "textAr": "🔒 toy-store-offers.internal"
+          },
+          "promptAr": "How do you judge the page?",
+          "options": [
+            {
+              "actionId": "check_address_and_request",
+              "labelAr": "I check the shop's real address first and do not type the card"
+            },
+            {
+              "actionId": "trust_lock_icon",
+              "labelAr": "The lock means it is safe, so I type the card number"
+            },
+            {
+              "actionId": "trust_perfect_look",
+              "labelAr": "It looks well made, so it is a real shop"
+            }
+          ],
+          "praiseAr": "You checked the address, not the look",
+          "explainAr": "The lock only protects the connection. It cannot prove whose page it is. The official address can."
+        }
+      ]
+    },
+    "M2.C1": {
+      "variants": [
+        {
+          "id": "new-account",
+          "sceneAr": "You make a new account at the digital library. You also have game and email accounts.",
+          "promptAr": "Which password do you choose?",
+          "options": [
+            {
+              "actionId": "use_long_unique_password",
+              "labelAr": "A long sentence for this account only, saved in a password app"
+            },
+            {
+              "actionId": "reuse_same_password",
+              "labelAr": "My game password, so I do not forget it"
+            },
+            {
+              "actionId": "use_short_personal_password",
+              "labelAr": "My name and birth year. It is easy"
+            }
+          ],
+          "praiseAr": "A strong lock for your account",
+          "explainAr": "A long sentence is hard to guess. It is for this account only, so your other accounts stay safe if it is stolen."
+        },
+        {
+          "id": "friend-tip",
+          "sceneAr": "You sign up for the coding club. Your friend says: “I use one password for everything. Easier!”",
+          "promptAr": "Which password do you choose?",
+          "options": [
+            {
+              "actionId": "use_long_unique_password",
+              "labelAr": "A long sentence, different from my other accounts"
+            },
+            {
+              "actionId": "reuse_same_password",
+              "labelAr": "Like him: one password for all my accounts"
+            },
+            {
+              "actionId": "use_short_personal_password",
+              "labelAr": "A short word from my cat's name"
+            }
+          ],
+          "praiseAr": "A smart choice",
+          "explainAr": "One password for all accounts is one key for all your doors: if it is stolen once, they all open."
+        },
+        {
+          "id": "school-platform",
+          "sceneAr": "The teacher asks all students to set a new school platform password.",
+          "promptAr": "Which password do you choose?",
+          "options": [
+            {
+              "actionId": "use_long_unique_password",
+              "labelAr": "A long sentence I use in no other account"
+            },
+            {
+              "actionId": "reuse_same_password",
+              "labelAr": "My email password again. I remember it"
+            },
+            {
+              "actionId": "use_short_personal_password",
+              "labelAr": "My class number and school name"
+            }
+          ],
+          "praiseAr": "Strong and just for this account",
+          "explainAr": "A long sentence is hard to guess. A different password for each account protects the rest if one is found out."
+        }
+      ]
+    },
+    "M2.C2": {
+      "variants": [
+        {
+          "id": "fake-support",
+          "sceneAr": "You get a code you did not ask for. Then a stranger writes:",
+          "message": {
+            "fromAr": "Tech Support 🛠",
+            "textAr": "We are game support. Send us the code you got to protect your account."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "never_send_code",
+              "labelAr": "I send the code to no one and report the chat"
+            },
+            {
+              "actionId": "send_code_to_requester",
+              "labelAr": "I send the code. They are tech support"
+            },
+            {
+              "actionId": "send_part_of_code",
+              "labelAr": "I send only the first two digits. No harm"
+            }
+          ],
+          "praiseAr": "Your key stayed with you",
+          "explainAr": "You got the code because someone is trying to enter your account now. Real support never asks for it."
+        },
+        {
+          "id": "friend-mistake",
+          "sceneAr": "You get a code you did not ask for. Then your friend's account writes:",
+          "message": {
+            "fromAr": "Salim",
+            "textAr": "I sent my code to your number by mistake 😅 Send it fast!"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "never_send_code",
+              "labelAr": "I keep it and call Salim to check it is him"
+            },
+            {
+              "actionId": "send_code_to_requester",
+              "labelAr": "I send the code. He is my friend"
+            },
+            {
+              "actionId": "send_part_of_code",
+              "labelAr": "I send only half the code"
+            }
+          ],
+          "praiseAr": "The trick did not work on you",
+          "explainAr": "A code sent to your phone is for your own account, whatever the sender says. Your friend's account may be stolen."
+        },
+        {
+          "id": "prize-code",
+          "sceneAr": "You get a code you did not ask for. Then this message comes:",
+          "message": {
+            "fromAr": "Games Contest 🎁",
+            "textAr": "You won! To get the prize, send the code you got now."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "never_send_code",
+              "labelAr": "I do not send the code, and I tell my parents"
+            },
+            {
+              "actionId": "send_code_to_requester",
+              "labelAr": "I send the code to get the prize"
+            },
+            {
+              "actionId": "send_part_of_code",
+              "labelAr": "I send only the last three digits"
+            }
+          ],
+          "praiseAr": "You kept your code safe",
+          "explainAr": "A login code is the key to your account. Whoever asks for it wants to get in, whatever the story."
+        }
+      ]
+    },
+    "M2.C3": {
+      "variants": [
+        {
+          "id": "game-offer",
+          "sceneAr": "In your game account settings you find an option: “Turn on two-step verification”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "turn_on_two_step",
+              "labelAr": "I turn it on: password, then a code only I get"
+            },
+            {
+              "actionId": "skip_two_step",
+              "labelAr": "I leave it. My password is enough"
+            },
+            {
+              "actionId": "turn_off_two_step",
+              "labelAr": "I do not want it. It slows my login"
+            }
+          ],
+          "praiseAr": "Two locks are better than one",
+          "explainAr": "With two-step verification, a thief with your password still cannot get in without the code."
+        },
+        {
+          "id": "email-prompt",
+          "sceneAr": "Your email offers: “Add a second login step to protect your account”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "turn_on_two_step",
+              "labelAr": "I agree and add the second step now"
+            },
+            {
+              "actionId": "skip_two_step",
+              "labelAr": "I tap “Later” and never come back to it"
+            },
+            {
+              "actionId": "turn_off_two_step",
+              "labelAr": "I say no. Too many steps are annoying"
+            }
+          ],
+          "praiseAr": "A well-protected account",
+          "explainAr": "Email is the key to your other accounts. The second step protects it even if someone knows your password."
+        },
+        {
+          "id": "first-login",
+          "sceneAr": "On first login, your new game asks: “Protect your account with a second step?”",
+          "promptAr": "What do you choose?",
+          "options": [
+            {
+              "actionId": "turn_on_two_step",
+              "labelAr": "Yes, I turn it on with my parents' help"
+            },
+            {
+              "actionId": "skip_two_step",
+              "labelAr": "I skip the question and start playing"
+            },
+            {
+              "actionId": "turn_off_two_step",
+              "labelAr": "I choose “Do not ask me again”"
+            }
+          ],
+          "praiseAr": "You added a second lock to your account",
+          "explainAr": "With a second step, knowing your password is not enough to enter your account."
+        }
+      ]
+    },
+    "M3.C1": {
+      "variants": [
+        {
+          "id": "free-game",
+          "sceneAr": "You want a paid game. Your friend sends a link and says: “Download it free here!”",
+          "promptAr": "Where do you download it from?",
+          "options": [
+            {
+              "actionId": "download_from_official_store",
+              "labelAr": "Official store only, and I ask my parents before buying"
+            },
+            {
+              "actionId": "download_from_shared_link",
+              "labelAr": "From my friend's link. It is free there"
+            },
+            {
+              "actionId": "install_modified_copy",
+              "labelAr": "I look for a modified copy, all unlocked"
+            }
+          ],
+          "praiseAr": "A trusted source",
+          "explainAr": "The official store checks apps. A “free” copy from a link may be the game plus a program that steals your data."
+        },
+        {
+          "id": "unlimited-coins",
+          "sceneAr": "You watch a video that says: “Download this version from the link and get unlimited coins!”",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "download_from_official_store",
+              "labelAr": "I keep the official store version"
+            },
+            {
+              "actionId": "download_from_shared_link",
+              "labelAr": "I get it from the video link and try it"
+            },
+            {
+              "actionId": "install_modified_copy",
+              "labelAr": "I install the modified copy over mine"
+            }
+          ],
+          "praiseAr": "The offer did not tempt you",
+          "explainAr": "No one checks modified copies. They often steal the same account they promised coins for."
+        },
+        {
+          "id": "video-ad",
+          "sceneAr": "While you play, an ad appears: “The new racing game! Download it directly from here”.",
+          "promptAr": "Where do you download it from?",
+          "options": [
+            {
+              "actionId": "download_from_official_store",
+              "labelAr": "I find it in the official store and download it there"
+            },
+            {
+              "actionId": "download_from_shared_link",
+              "labelAr": "I tap the ad and get the file directly"
+            },
+            {
+              "actionId": "install_modified_copy",
+              "labelAr": "I look for a copy with all cars unlocked"
+            }
+          ],
+          "praiseAr": "You chose the trusted source",
+          "explainAr": "The official store checks apps. Files from ads and modified copies may hide harmful programs."
+        }
+      ]
+    },
+    "M3.C2": {
+      "variants": [
+        {
+          "id": "flashlight",
+          "sceneAr": "You download a simple “flashlight” app. When it opens, it asks for your contacts and microphone.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "deny_unneeded_permission",
+              "labelAr": "I refuse. A flashlight does not need contacts or a microphone"
+            },
+            {
+              "actionId": "allow_everything",
+              "labelAr": "I allow everything so the app works"
+            },
+            {
+              "actionId": "allow_then_forget",
+              "labelAr": "I allow it now and think about it later"
+            }
+          ],
+          "praiseAr": "Your data stayed yours",
+          "explainAr": "A flashlight needs only light. An app asking for more than its job needs wants your data."
+        },
+        {
+          "id": "puzzle-location",
+          "sceneAr": "A simple puzzle game opens and asks for your location, messages and camera.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "deny_unneeded_permission",
+              "labelAr": "I refuse. A puzzle game needs none of this"
+            },
+            {
+              "actionId": "allow_everything",
+              "labelAr": "I allow all to start playing fast"
+            },
+            {
+              "actionId": "allow_then_forget",
+              "labelAr": "I allow them today and may cancel some day"
+            }
+          ],
+          "praiseAr": "The right question",
+          "explainAr": "Always ask: why does the app need this permission? Puzzles do not need your location or messages."
+        },
+        {
+          "id": "drawing-app",
+          "sceneAr": "A draw-and-colour app opens and asks for your microphone, location and friends list.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "deny_unneeded_permission",
+              "labelAr": "I refuse them all. Drawing needs none"
+            },
+            {
+              "actionId": "allow_everything",
+              "labelAr": "I allow everything. The app is famous"
+            },
+            {
+              "actionId": "allow_then_forget",
+              "labelAr": "I allow now and check settings in the holiday"
+            }
+          ],
+          "praiseAr": "You gave the app only what it needs",
+          "explainAr": "A permission the app does not need for its job may be used to collect your data."
+        }
+      ]
+    },
+    "M3.C3": {
+      "variants": [
+        {
+          "id": "disable-protection",
+          "sceneAr": "A site offers a new game and says: “Turn off device protection, then install the file”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "keep_store_protection",
+              "labelAr": "I keep protection on and look for the game in the official store"
+            },
+            {
+              "actionId": "allow_unknown_sources",
+              "labelAr": "I turn protection off for a minute, then on again"
+            },
+            {
+              "actionId": "install_from_popup",
+              "labelAr": "I install the file as the site asks"
+            }
+          ],
+          "praiseAr": "Protection stays in place",
+          "explainAr": "Protection is there to stop this kind of file. Whoever asks you to turn it off knows their file would not pass."
+        },
+        {
+          "id": "player-popup",
+          "sceneAr": "You watch a video in the browser. A pop-up appears: “Install the new player and allow unknown sources”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "keep_store_protection",
+              "labelAr": "I close it and do not change protection settings"
+            },
+            {
+              "actionId": "allow_unknown_sources",
+              "labelAr": "I allow unknown sources so the video plays"
+            },
+            {
+              "actionId": "install_from_popup",
+              "labelAr": "I tap “Install” in the pop-up"
+            }
+          ],
+          "praiseAr": "You closed the door on it",
+          "explainAr": "A browser needs no “player” from a pop-up. This trick installs a harmful program outside the store."
+        },
+        {
+          "id": "friend-file",
+          "sceneAr": "Your friend sends a game file: “Change your phone's protection setting to install it”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "keep_store_protection",
+              "labelAr": "I keep protection on and look for it in the store"
+            },
+            {
+              "actionId": "allow_unknown_sources",
+              "labelAr": "I change the setting just this once"
+            },
+            {
+              "actionId": "install_from_popup",
+              "labelAr": "I tap the file and agree to all that appears"
+            }
+          ],
+          "praiseAr": "You kept your device protected",
+          "explainAr": "Device protection blocks files no one has checked. Turning it off even once lets harmful programs in."
+        }
+      ]
+    },
+    "M4.C1": {
+      "variants": [
+        {
+          "id": "system-update",
+          "sceneAr": "Your device settings show: “Security update available”. You are busy playing.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "update_from_official_source",
+              "labelAr": "I install it today in the device's own settings"
+            },
+            {
+              "actionId": "postpone_forever",
+              "labelAr": "I tap “Remind me later” every time"
+            },
+            {
+              "actionId": "update_from_advert",
+              "labelAr": "I wait for an ad with an update link and tap it"
+            }
+          ],
+          "praiseAr": "One hole closed",
+          "explainAr": "A security update closes a known hole. Each day you wait is a day the door stays open."
+        },
+        {
+          "id": "game-update",
+          "sceneAr": "The official store shows an update for your game. The same day an ad appears: “Update your game here”.",
+          "promptAr": "Where do you update from?",
+          "options": [
+            {
+              "actionId": "update_from_official_source",
+              "labelAr": "From the official store I got it from"
+            },
+            {
+              "actionId": "postpone_forever",
+              "labelAr": "I never update. The game works"
+            },
+            {
+              "actionId": "update_from_advert",
+              "labelAr": "From the ad link. It is faster"
+            }
+          ],
+          "praiseAr": "An update from its source",
+          "explainAr": "An update comes from the place you got the app. An ad link may install something else entirely."
+        },
+        {
+          "id": "browser-popup",
+          "sceneAr": "A browser pop-up says: “Your browser is old! Update it here now”.",
+          "promptAr": "How do you update the browser?",
+          "options": [
+            {
+              "actionId": "update_from_official_source",
+              "labelAr": "I close it and update from the official store or settings"
+            },
+            {
+              "actionId": "postpone_forever",
+              "labelAr": "I close it and never update the browser"
+            },
+            {
+              "actionId": "update_from_advert",
+              "labelAr": "I tap the update button in the pop-up"
+            }
+          ],
+          "praiseAr": "You updated from the right source",
+          "explainAr": "A real update comes from the store or settings. Update pop-ups on web pages are often a trap."
+        }
+      ]
+    },
+    "M4.C2": {
+      "variants": [
+        {
+          "id": "school-project",
+          "sceneAr": "Your school project and all your photos are saved only on the tablet.",
+          "promptAr": "How do you keep them from being lost?",
+          "options": [
+            {
+              "actionId": "keep_separate_backup",
+              "labelAr": "I save a second copy in another place and try restoring a file"
+            },
+            {
+              "actionId": "keep_single_copy",
+              "labelAr": "The device copy is enough. It is new"
+            },
+            {
+              "actionId": "backup_on_same_device",
+              "labelAr": "I copy them to a new folder on the same device"
+            }
+          ],
+          "praiseAr": "Your files are safe",
+          "explainAr": "If the device breaks or gets lost, every copy on it goes too. The useful copy is the one in another place that you checked works."
+        },
+        {
+          "id": "phone-photos",
+          "sceneAr": "The family phone holds five years of photos, and there is no copy anywhere else.",
+          "promptAr": "What do you tell your parents?",
+          "options": [
+            {
+              "actionId": "keep_separate_backup",
+              "labelAr": "A backup outside the phone, and we try restoring a photo"
+            },
+            {
+              "actionId": "keep_single_copy",
+              "labelAr": "No need. The phone works well"
+            },
+            {
+              "actionId": "backup_on_same_device",
+              "labelAr": "We copy them to a second album on the same phone"
+            }
+          ],
+          "praiseAr": "Advice that saves memories",
+          "explainAr": "A real backup is outside the device. Trying a restore shows early if the backup is missing something."
+        },
+        {
+          "id": "story-file",
+          "sceneAr": "For a month you wrote a long story on the home computer. It is saved only there.",
+          "promptAr": "How do you keep it from being lost?",
+          "options": [
+            {
+              "actionId": "keep_separate_backup",
+              "labelAr": "I save a copy outside the computer and check it opens"
+            },
+            {
+              "actionId": "keep_single_copy",
+              "labelAr": "The computer never breaks. No copy needed"
+            },
+            {
+              "actionId": "backup_on_same_device",
+              "labelAr": "I save a second copy on the desktop"
+            }
+          ],
+          "praiseAr": "Your story is safe now",
+          "explainAr": "If the computer breaks or ransomware hits it, all copies on it are lost. The outside copy stays."
+        }
+      ]
+    },
+    "M4.C3": {
+      "variants": [
+        {
+          "id": "locked-files",
+          "sceneAr": "A message on the computer: “Your files are locked! Pay and we unlock them”. You have a recent backup.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "tell_adult_and_restore",
+              "labelAr": "I tell my parents, and we restore the files from the backup"
+            },
+            {
+              "actionId": "pay_the_ransom",
+              "labelAr": "We pay to get the files back fast"
+            },
+            {
+              "actionId": "download_unlock_tool",
+              "labelAr": "I download the “unlock tool” in the message"
+            }
+          ],
+          "praiseAr": "You beat the criminal",
+          "explainAr": "Paying may not bring the files back, and it encourages the criminal. The backup returns them free."
+        },
+        {
+          "id": "unlock-link",
+          "sceneAr": "A message on the device: “We encrypted your photos. Get the unlock tool at this link”. You have a backup.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "tell_adult_and_restore",
+              "labelAr": "I tap nothing and tell an adult so we restore from the backup"
+            },
+            {
+              "actionId": "pay_the_ransom",
+              "labelAr": "I look for how to pay what they ask"
+            },
+            {
+              "actionId": "download_unlock_tool",
+              "labelAr": "I get the tool from the link to open photos"
+            }
+          ],
+          "praiseAr": "You gave them no second chance",
+          "explainAr": "The criminal's “unlock tool” is one more harmful program. The fix: an adult you trust and your backup."
+        },
+        {
+          "id": "countdown",
+          "sceneAr": "A red screen on the home computer: “Your files are encrypted, and the timer ends in one hour!”. You have a backup.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "tell_adult_and_restore",
+              "labelAr": "I touch nothing and call my parents to restore the backup"
+            },
+            {
+              "actionId": "pay_the_ransom",
+              "labelAr": "I get my parents to pay before the timer ends"
+            },
+            {
+              "actionId": "download_unlock_tool",
+              "labelAr": "I click the “Open files” button on the screen"
+            }
+          ],
+          "praiseAr": "Your calm saved the files",
+          "explainAr": "The timer is a trick to scare you. Paying may not bring the files back, and the backup returns them safely."
+        }
+      ]
+    },
+    "M5.C1": {
+      "variants": [
+        {
+          "id": "unknown-device",
+          "sceneAr": "You did not open your account today. Suddenly an alert: “Are you trying to log in? Unknown device”.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "deny_and_change_password",
+              "labelAr": "I tap “Deny”, then change my password"
+            },
+            {
+              "actionId": "approve_to_dismiss",
+              "labelAr": "I tap “Approve” so the alert goes away"
+            },
+            {
+              "actionId": "ignore_the_alert",
+              "labelAr": "I ignore the alert and tap nothing"
+            }
+          ],
+          "praiseAr": "You shut the door and changed the lock",
+          "explainAr": "The alert means someone typed your correct password. Denying stops them now. Changing the password stops them forever."
+        },
+        {
+          "id": "repeated",
+          "sceneAr": "You did not open your account. An “Is this you?” alert comes three times in a row.",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "deny_and_change_password",
+              "labelAr": "I deny every time and change my password at once"
+            },
+            {
+              "actionId": "approve_to_dismiss",
+              "labelAr": "I approve once to stop the annoyance"
+            },
+            {
+              "actionId": "ignore_the_alert",
+              "labelAr": "I mute the alerts and do nothing"
+            }
+          ],
+          "praiseAr": "The repeating did not tire you",
+          "explainAr": "Repeating is a trick: a scammer with your password waits for you to tire and approve."
+        },
+        {
+          "id": "night-alert",
+          "sceneAr": "Before bed you get an alert: “New login to your account from a far-away city. Is this you?”",
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "deny_and_change_password",
+              "labelAr": "I tap “Not me” and change my password"
+            },
+            {
+              "actionId": "approve_to_dismiss",
+              "labelAr": "I tap “Yes, it's me” to go to sleep"
+            },
+            {
+              "actionId": "ignore_the_alert",
+              "labelAr": "I leave the alert until morning"
+            }
+          ],
+          "praiseAr": "You shut the door on the intruder",
+          "explainAr": "The alert means someone knows your password. Denying, then changing it at once, keeps them out."
+        }
+      ]
+    },
+    "M5.C2": {
+      "variants": [
+        {
+          "id": "account-closing",
+          "sceneAr": "You get an urgent message:",
+          "message": {
+            "fromAr": "Security Team",
+            "textAr": "Your account closes in 5 minutes! Download the security app from the link and send us the code."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "stop_and_verify_officially",
+              "labelAr": "I stop and open the official app myself to check"
+            },
+            {
+              "actionId": "follow_urgent_steps",
+              "labelAr": "I quickly do what it says before the account closes"
+            },
+            {
+              "actionId": "do_half_of_it",
+              "labelAr": "I download the app but send no code"
+            }
+          ],
+          "praiseAr": "Your calm beat the trick",
+          "explainAr": "The message has three tricks: hurry, a download link and a code request. Doing half is risky too."
+        },
+        {
+          "id": "prize-deadline",
+          "sceneAr": "You get an urgent message:",
+          "message": {
+            "fromAr": "Prize Committee",
+            "textAr": "You won! Two minutes left: log in at the link with your password and turn on “Unknown sources”."
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "stop_and_verify_officially",
+              "labelAr": "I stop, tap nothing, and check the official site myself"
+            },
+            {
+              "actionId": "follow_urgent_steps",
+              "labelAr": "I rush and do what they ask in the two minutes"
+            },
+            {
+              "actionId": "do_half_of_it",
+              "labelAr": "I type the password only and change no settings"
+            }
+          ],
+          "praiseAr": "You thought before you acted",
+          "explainAr": "A prize you never entered, time running out, a password request: any one sign is enough to stop."
+        },
+        {
+          "id": "teacher-urgent",
+          "sceneAr": "An unknown number sends an urgent message as your teacher:",
+          "message": {
+            "fromAr": "Mr Khalid (new number)",
+            "textAr": "I am in a meeting. Send me the school platform login code now and open the link: class-fast.internal"
+          },
+          "promptAr": "What do you do?",
+          "options": [
+            {
+              "actionId": "stop_and_verify_officially",
+              "labelAr": "I stop and ask the teacher myself at school or on the platform"
+            },
+            {
+              "actionId": "follow_urgent_steps",
+              "labelAr": "I send the code and open the link. He is in a hurry"
+            },
+            {
+              "actionId": "do_half_of_it",
+              "labelAr": "I only open the link and send no code"
+            }
+          ],
+          "praiseAr": "You did not rush when rushed",
+          "explainAr": "Using a name you know and rushing you is a common trick. Checking the official way reveals it."
+        }
+      ]
+    },
+    "M5.C3": {
+      "variants": [
+        {
+          "id": "typed-password",
+          "sceneAr": "You tapped a link and typed your game password. Then you saw a strange page address.",
+          "promptAr": "What do you do now?",
+          "options": [
+            {
+              "actionId": "secure_account_and_tell",
+              "labelAr": "I change my password now and tell my parents"
+            },
+            {
+              "actionId": "hide_and_hope",
+              "labelAr": "I tell no one and wait. Maybe nothing will happen"
+            },
+            {
+              "actionId": "only_delete_message",
+              "labelAr": "I delete the message and close the page"
+            }
+          ],
+          "praiseAr": "You acted like an expert",
+          "explainAr": "The scammer now has the password. Changing it at once gets you in before him. Telling adults protects your other accounts."
+        },
+        {
+          "id": "shared-code",
+          "sceneAr": "You sent the login code to a fake “tech support”. Then you saw it was a trick.",
+          "promptAr": "What do you do now?",
+          "options": [
+            {
+              "actionId": "secure_account_and_tell",
+              "labelAr": "I change my password now and tell an adult I trust"
+            },
+            {
+              "actionId": "hide_and_hope",
+              "labelAr": "I hide it so no one gets angry"
+            },
+            {
+              "actionId": "only_delete_message",
+              "labelAr": "I delete the chat and forget about it"
+            }
+          ],
+          "praiseAr": "Telling is brave",
+          "explainAr": "Mistakes happen to anyone. Changing the password fast and asking for help is what stops the harm."
+        },
+        {
+          "id": "installed-app",
+          "sceneAr": "You downloaded an app from a message link. Then strange pop-ups began on the phone.",
+          "promptAr": "What do you do now?",
+          "options": [
+            {
+              "actionId": "secure_account_and_tell",
+              "labelAr": "I tell my parents now so we delete it and change passwords"
+            },
+            {
+              "actionId": "hide_and_hope",
+              "labelAr": "I hide it and hope the pop-ups stop"
+            },
+            {
+              "actionId": "only_delete_message",
+              "labelAr": "I only delete the message with the link"
+            }
+          ],
+          "praiseAr": "Telling quickly reduces the harm",
+          "explainAr": "Tell early and the fix is easier. Deleting the message does not remove the app or protect your accounts."
+        }
+      ]
+    }
+  }
+}

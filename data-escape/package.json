@@ -1,0 +1,24 @@
+{
+  "name": "data-escape",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Data Escape: a three-lane runner about cyber safety for the Cyber Aware platform (browser, runs on the player's device)",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "npm run validate && tsc --noEmit && vite build",
+    "preview": "vite preview --host",
+    "validate": "node scripts/validate.mjs",
+    "fixtures": "node scripts/make-fixtures.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "questions": "node scripts/export-questions.mjs"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^8.56.2",
+    "@babylonjs/loaders": "^8.56.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5"
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "config": {
+    "titleAr": "Cyber Shield 2"
+  },
+  "stages": {
+    "M1": {
+      "nameAr": "Flood of Rumours",
+      "topicAr": "Rumours and fake news",
+      "placeAr": "Musandam and Al Batinah",
+      "bossNameAr": "The King of Rumours"
+    },
+    "M2": {
+      "nameAr": "Our Identity on Screen",
+      "topicAr": "Content and our values",
+      "placeAr": "Muscat and the Hajar Mountains",
+      "bossNameAr": "The Trend Whirlpool"
+    },
+    "M3": {
+      "nameAr": "Your Digital Footprint",
+      "topicAr": "Privacy and your digital footprint",
+      "placeAr": "The Sharqiyah Sands",
+      "bossNameAr": "The Data Octopus"
+    },
+    "M4": {
+      "nameAr": "Strangers Behind Masks",
+      "topicAr": "Strangers, bullying and fake identities",
+      "placeAr": "The Al Wusta Coast",
+      "bossNameAr": "The Master of Masks"
+    },
+    "M5": {
+      "nameAr": "The Awareness Front",
+      "topicAr": "Influence campaigns and clear thinking",
+      "placeAr": "Dhofar",
+      "bossNameAr": "The Queen of the Swarm"
+    },
+    "code": {
+      "nameAr": "The Battle for Your Cyber Security",
+      "topicAr": "Defend your homeland, your identity and your cyber security",
+      "placeAr": "The sky of Oman",
+      "bossNameAr": "The Storm of the Cyber War"
+    }
+  },
+  "weapons": {
+    "pulse": {
+      "nameAr": "Falaj Spring",
+      "roleAr": "A balanced start"
+    },
+    "scatter": {
+      "nameAr": "Frankincense",
+      "roleAr": "A cloud of incense"
+    },
+    "arc": {
+      "nameAr": "Watchtower",
+      "roleAr": "A guard tower"
+    },
+    "disc": {
+      "nameAr": "Palm Blades",
+      "roleAr": "Bouncing blades"
+    },
+    "beam": {
+      "nameAr": "Muscat Lighthouse",
+      "roleAr": "The lighthouse beam"
+    },
+    "wave": {
+      "nameAr": "Arabian Sea Whirlpool",
+      "roleAr": "A whirlpool"
+    },
+    "missile": {
+      "nameAr": "Desert Falcons",
+      "roleAr": "Hunting falcons"
+    },
+    "plasma": {
+      "nameAr": "Fort Cannon",
+      "roleAr": "A shell from above"
+    },
+    "shield": {
+      "nameAr": "Star of Suhail",
+      "roleAr": "The strongest"
+    }
+  },
+  "missions": {
+    "M1": {
+      "titleAr": "Flood of Rumours",
+      "locationAr": "Cyber Shield 2"
+    },
+    "M2": {
+      "titleAr": "Our Identity on Screen",
+      "locationAr": "Cyber Shield 2"
+    },
+    "M3": {
+      "titleAr": "Your Digital Footprint",
+      "locationAr": "Cyber Shield 2"
+    },
+    "M4": {
+      "titleAr": "Strangers Behind Masks",
+      "locationAr": "Cyber Shield 2"
+    },
+    "M5": {
+      "titleAr": "The Awareness Front",
+      "locationAr": "Cyber Shield 2"
+    }
+  },
+  "checkpoints": {
+    "M1.C1": {
+      "labelAr": "Shocking news, no source",
+      "feedbackAr": "News with no source isn't news yet. Before you believe it, look for it on the official account of the body concerned.",
+      "hintAr": "Who said this? Did the official body itself say it?"
+    },
+    "M1.C2": {
+      "labelAr": "“Send it to everyone”",
+      "feedbackAr": "A message that begs to be shared needs a pause. Don't send what you haven't checked: a rumour stops when it stops with you.",
+      "hintAr": "Why does it insist you share it? Have you checked it yourself?"
+    },
+    "M1.C3": {
+      "labelAr": "A faked clip",
+      "feedbackAr": "Pictures and voices can be faked with AI today. If a well-known person seems to say something odd, check their official account and don't share the clip.",
+      "hintAr": "Is seeing a clip enough to believe it? Where is the original?"
+    },
+    "M2.C1": {
+      "labelAr": "A clip against our upbringing",
+      "feedbackAr": "When a clip doesn't fit our values and upbringing: skip it, tap “Not interested” or “Report”, and tell your parents. The app shows more of what you watch more.",
+      "hintAr": "The app learns from what you watch. What should it show you tomorrow?"
+    },
+    "M2.C2": {
+      "labelAr": "A hurtful or rude trend",
+      "feedbackAr": "Not everything that spreads is worth copying. Don't join or film a challenge that hurts or insults. Warn your friends and tell an adult.",
+      "hintAr": "If nobody were filming, would you still do it?"
+    },
+    "M2.C3": {
+      "labelAr": "An account mocking our ways",
+      "feedbackAr": "Whoever mocks our customs and symbols wants your anger and replies to spread. Don't argue or insult: report, block, and be calmly proud of who you are.",
+      "hintAr": "What does the account want from you? What happens to its post when you reply?"
+    },
+    "M3.C1": {
+      "labelAr": "A photo that shows where you are",
+      "feedbackAr": "A photo can tell strangers where you live, study and are right now. Post after you leave, only to people you know, and hide the location and its clues.",
+      "hintAr": "What can a stranger learn from this photo alone?"
+    },
+    "M3.C2": {
+      "labelAr": "A “Know yourself” quiz",
+      "feedbackAr": "A fun quiz that asks for your full name, birthday, school and family's numbers is collecting your data. Don't trade your personal details for a game.",
+      "hintAr": "Why would a fun quiz need your full name and your dad's number?"
+    },
+    "M3.C3": {
+      "labelAr": "Who can see your account?",
+      "feedbackAr": "Make your account private and accept only people you know in real life. A follower count is worth nothing next to your privacy and your family's.",
+      "hintAr": "Do you open your door to everyone who knocks?"
+    },
+    "M4.C1": {
+      "labelAr": "A stranger's request in a game",
+      "feedbackAr": "Someone in a game who asks for a private chat, a photo or a secret is not acting like a friend. Say no, stop the chat, and tell your parents.",
+      "hintAr": "A real friend never asks you to hide things from your family. So who does?"
+    },
+    "M4.C2": {
+      "labelAr": "Bullying in a group chat",
+      "feedbackAr": "Mocking a classmate in a group is bullying. Don't join in or answer with insults: save the proof, support your classmate, and tell an adult you trust.",
+      "hintAr": "If you were them, what would you want your friends to do?"
+    },
+    "M4.C3": {
+      "labelAr": "An account posing as someone known",
+      "feedbackAr": "Before you believe an account named after a known person or body, find the verified official account, and send no money or details.",
+      "hintAr": "Anyone can copy a name and photo. What proves an account is real?"
+    },
+    "M5.C1": {
+      "labelAr": "Accounts repeating the same words",
+      "feedbackAr": "Many accounts are not proof: fakes are made by the hundred to look like public opinion. Check who they are and when they were made, and don't be carried along.",
+      "hintAr": "Do numbers prove the truth? Who are these accounts repeating one sentence?"
+    },
+    "M5.C2": {
+      "labelAr": "An invite to an unknown group",
+      "feedbackAr": "A closed group that stirs anger or promises secrets is no place for you. Don't join, leave if you were added, and tell your parents.",
+      "hintAr": "Why would a group you don't know want to stay closed and secret?"
+    },
+    "M5.C3": {
+      "labelAr": "Your news source in a crisis",
+      "feedbackAr": "Rumours multiply in a crisis. Take news from official sources: the news agency, the weather office, civil defence and your school, not a forwarded voice note.",
+      "hintAr": "Who is in charge of announcing this? Did you hear it from them?"
+    }
+  }
+}

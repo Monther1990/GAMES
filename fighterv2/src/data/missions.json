@@ -1,0 +1,90 @@
+{
+  "assessmentVersion": "2.0.0",
+  "missions": [
+    {
+      "id": "M1", "order": 1, "titleAr": "سيل الشائعات", "locationAr": "درع السيبر ٢", "categoryId": "rumours", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M1.C1", "order": 1, "labelAr": "خبر مثير بلا مصدر", "weight": 6, "difficulty": 1,
+          "safeActionId": "check_official_source", "unsafeActionIds": ["believe_and_tell_everyone", "trust_many_likes"],
+          "feedbackAr": "الخبر الذي لا مصدر له ليس خبرًا بعد. قبل أن تصدّقه ابحث عنه في الحساب الرسمي للجهة المعنية.",
+          "hintAr": "من قال هذا الخبر؟ وهل ذكرته الجهة الرسمية نفسها؟" },
+        { "id": "M1.C2", "order": 2, "labelAr": "«انشرها للجميع»", "weight": 7, "difficulty": 2,
+          "safeActionId": "verify_before_forwarding", "unsafeActionIds": ["forward_to_everyone", "forward_just_in_case"],
+          "feedbackAr": "الرسالة التي ترجوك أن تنشرها تحتاج وقفة. لا ترسل ما لم تتأكد منه: الشائعة تتوقف حين تتوقف عندك.",
+          "hintAr": "لماذا تصرّ الرسالة على أن تنشرها؟ وهل تأكدت منها أنت؟" },
+        { "id": "M1.C3", "order": 3, "labelAr": "مقطع مفبرك", "weight": 7, "difficulty": 3,
+          "safeActionId": "doubt_and_check_original", "unsafeActionIds": ["trust_video_as_proof", "share_clip_for_fun"],
+          "feedbackAr": "الصورة والصوت يمكن تزييفهما اليوم بالذكاء الاصطناعي. إن رأيت شخصًا معروفًا يقول كلامًا غريبًا فابحث في حسابه الرسمي ولا تنشر المقطع.",
+          "hintAr": "هل يكفي أن ترى المقطع بعينك لتصدّقه؟ وأين تجد الأصل؟" }
+      ]
+    },
+    {
+      "id": "M2", "order": 2, "titleAr": "هويتنا على الشاشة", "locationAr": "درع السيبر ٢", "categoryId": "values", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M2.C1", "order": 1, "labelAr": "مقطع لا يوافق تربيتنا", "weight": 6, "difficulty": 1,
+          "safeActionId": "skip_and_tell_parent", "unsafeActionIds": ["keep_watching_curious", "send_clip_to_friends"],
+          "feedbackAr": "حين يظهر مقطع لا يوافق قيمنا وتربيتنا: تخطَّه، واضغط «غير مهتم» أو «إبلاغ»، وأخبر والديك. ما تشاهده أكثر يعرضه التطبيق لك أكثر.",
+          "hintAr": "التطبيق يتعلم مما تشاهده. ماذا تريد أن يعرض لك غدًا؟" },
+        { "id": "M2.C2", "order": 2, "labelAr": "ترند يؤذي أو يسيء", "weight": 7, "difficulty": 2,
+          "safeActionId": "refuse_trend_and_tell_adult", "unsafeActionIds": ["join_trend_for_likes", "film_friends_doing_it"],
+          "feedbackAr": "ليس كل ما ينتشر يستحق التقليد. التحدي الذي يؤذي أو يسيء لا تشارك فيه ولا تصوّره، ونبّه أصدقاءك وأخبر شخصًا بالغًا.",
+          "hintAr": "لو لم يكن أحد يصوّر، هل كنت ستفعل هذا؟" },
+        { "id": "M2.C3", "order": 3, "labelAr": "حساب يسخر من عاداتنا", "weight": 7, "difficulty": 3,
+          "safeActionId": "report_block_stay_calm", "unsafeActionIds": ["insult_back", "repost_to_expose"],
+          "feedbackAr": "من يسخر من عاداتنا ورموزنا يريد غضبك وردودك لينتشر. لا تجادله ولا تشتمه: أبلغ عنه واحظره، واعتزّ بهويتك بهدوء.",
+          "hintAr": "ماذا يريد صاحب الحساب منك؟ وماذا يحدث لمنشوره كلما رددت عليه؟" }
+      ]
+    },
+    {
+      "id": "M3", "order": 3, "titleAr": "أثرك الرقمي", "locationAr": "درع السيبر ٢", "categoryId": "privacy", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M3.C1", "order": 1, "labelAr": "صورة تكشف مكانك", "weight": 6, "difficulty": 1,
+          "safeActionId": "post_later_hide_location", "unsafeActionIds": ["post_now_with_location", "post_with_details_showing"],
+          "feedbackAr": "الصورة قد تخبر الغرباء أين بيتك ومدرستك وأين أنت الآن. انشر بعد أن تغادر المكان، ولمن تعرفهم فقط، وأخفِ الموقع وما يدل عليه.",
+          "hintAr": "ماذا يعرف الغريب عنك من هذه الصورة وحدها؟" },
+        { "id": "M3.C2", "order": 2, "labelAr": "اختبار «اعرف شخصيتك»", "weight": 7, "difficulty": 2,
+          "safeActionId": "skip_quiz_keep_data", "unsafeActionIds": ["fill_quiz_with_real_data", "give_only_some_data"],
+          "feedbackAr": "اختبار التسلية الذي يسأل عن اسمك الكامل وميلادك ومدرستك وأرقام أهلك يجمع بياناتك. لا تعطِ بياناتك الشخصية مقابل لعبة.",
+          "hintAr": "لماذا يحتاج اختبار للتسلية إلى اسمك الكامل ورقم والدك؟" },
+        { "id": "M3.C3", "order": 3, "labelAr": "من يرى حسابك؟", "weight": 7, "difficulty": 3,
+          "safeActionId": "private_account_known_friends", "unsafeActionIds": ["public_account_for_followers", "accept_all_requests"],
+          "feedbackAr": "اجعل حسابك خاصًّا، ولا تقبل إلا من تعرفهم في الحقيقة. عدد المتابعين لا يساوي شيئًا أمام خصوصيتك وخصوصية أسرتك.",
+          "hintAr": "هل تفتح باب بيتك لكل من يطرقه؟" }
+      ]
+    },
+    {
+      "id": "M4", "order": 4, "titleAr": "غرباء خلف الأقنعة", "locationAr": "درع السيبر ٢", "categoryId": "strangers", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M4.C1", "order": 1, "labelAr": "طلب من غريب في اللعبة", "weight": 6, "difficulty": 1,
+          "safeActionId": "refuse_stop_tell_parent", "unsafeActionIds": ["accept_stranger_request", "keep_chat_secret"],
+          "feedbackAr": "من يطلب منك في لعبة محادثة خاصة أو صورة أو أن تكتم السر لا يتصرف كصديق. ارفض، وأوقف المحادثة، وأخبر والديك.",
+          "hintAr": "الصديق الحقيقي لا يطلب أن تخفي شيئًا عن أهلك. فمن يطلب ذلك؟" },
+        { "id": "M4.C2", "order": 2, "labelAr": "تنمّر في مجموعة", "weight": 7, "difficulty": 2,
+          "safeActionId": "support_save_tell_adult", "unsafeActionIds": ["join_the_mockery", "insult_bullies_back"],
+          "feedbackAr": "السخرية من زميل في مجموعة تنمّر. لا تشارك فيها ولا ترد بالشتائم: احفظ الدليل، وساند زميلك، وأخبر شخصًا بالغًا تثق به.",
+          "hintAr": "لو كنت مكان زميلك، ماذا تتمنى أن يفعل أصدقاؤك؟" },
+        { "id": "M4.C3", "order": 3, "labelAr": "حساب ينتحل شخصية معروفة", "weight": 7, "difficulty": 3,
+          "safeActionId": "check_verified_account", "unsafeActionIds": ["send_money_or_data", "trust_name_and_photo"],
+          "feedbackAr": "قبل أن تصدّق حسابًا باسم شخص معروف أو جهة، ابحث عن الحساب الرسمي الموثّق، ولا ترسل مالًا ولا بيانات.",
+          "hintAr": "أي أحد يستطيع نسخ اسم وصورة. ما الذي يثبت أن الحساب حقيقي؟" }
+      ]
+    },
+    {
+      "id": "M5", "order": 5, "titleAr": "جبهة الوعي", "locationAr": "درع السيبر ٢", "categoryId": "influence", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M5.C1", "order": 1, "labelAr": "حسابات تكرر الكلام نفسه", "weight": 6, "difficulty": 1,
+          "safeActionId": "look_who_is_behind", "unsafeActionIds": ["follow_the_crowd", "repeat_the_slogan"],
+          "feedbackAr": "كثرة الحسابات ليست دليلًا: الحسابات الوهمية تُصنع بالمئات لتبدو رأيًا عامًّا. انظر من هم، ومتى أُنشئت حساباتهم، ولا تنجرف معهم.",
+          "hintAr": "هل العدد يثبت الحقيقة؟ ومن هؤلاء الذين يكررون الجملة نفسها؟" },
+        { "id": "M5.C2", "order": 2, "labelAr": "دعوة إلى مجموعة مجهولة", "weight": 7, "difficulty": 2,
+          "safeActionId": "decline_group_tell_parent", "unsafeActionIds": ["join_unknown_group", "join_to_watch_quietly"],
+          "feedbackAr": "المجموعة المغلقة التي تثير الغضب أو تعدك بأسرار لا مكان لك فيها. لا تنضم، وإن أُضفت فغادر، وأخبر والديك.",
+          "hintAr": "لماذا تريد مجموعة لا تعرف أصحابها أن تبقى مغلقة وسرّية؟" },
+        { "id": "M5.C3", "order": 3, "labelAr": "مصدر الخبر وقت الأزمة", "weight": 7, "difficulty": 3,
+          "safeActionId": "follow_official_channels", "unsafeActionIds": ["trust_forwarded_voice_note", "follow_breaking_news_accounts"],
+          "feedbackAr": "وقت الأزمات تكثر الشائعات. خذ الخبر من مصادره الرسمية: وكالة الأنباء الرسمية، والأرصاد، والدفاع المدني، ومدرستك، لا من مقطع صوتي متداول.",
+          "hintAr": "من المسؤول عن إعلان هذا الخبر؟ وهل سمعته منه مباشرة؟" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "config": { "titleAr": "Cyber Shield" },
+  "stages": {
+    "M1": {
+      "nameAr": "Message Network",
+      "topicAr": "Phishing and checking messages and links",
+      "placeAr": "Palm and Falaj Oasis",
+      "bossNameAr": "The Predator Message"
+    },
+    "M2": {
+      "nameAr": "Account Vault",
+      "topicAr": "Passwords, sign-in checks and verification codes",
+      "placeAr": "Castles and Forts",
+      "bossNameAr": "The Ransom Lock"
+    },
+    "M3": {
+      "nameAr": "App Factory",
+      "topicAr": "Download sources and permissions",
+      "placeAr": "The Wadi",
+      "bossNameAr": "The Giant Worm"
+    },
+    "M4": {
+      "nameAr": "Update Core",
+      "topicAr": "Updates and backups",
+      "placeAr": "Sunset Sands",
+      "bossNameAr": "The Mother Virus"
+    },
+    "M5": {
+      "nameAr": "System Core",
+      "topicAr": "Situations mixing earlier skills",
+      "placeAr": "Night Mountains",
+      "bossNameAr": "The Trojan Horse"
+    },
+    "code": {
+      "nameAr": "Final Challenge",
+      "topicAr": "A fight challenge with no scored questions",
+      "placeAr": "Code Space",
+      "bossNameAr": "The Code Monster"
+    }
+  },
+  "weapons": {
+    "pulse": { "nameAr": "Digital Pulse", "roleAr": "Balanced starter: precise and fast" },
+    "scatter": { "nameAr": "Shard Cannon", "roleAr": "Wide coverage for nearby crowds" },
+    "arc": { "nameAr": "Electric Arc", "roleAr": "Hits close-packed enemies with electric chains" },
+    "disc": { "nameAr": "Bounce Disc", "roleAr": "Bounces from enemy to enemy" },
+    "beam": { "nameAr": "Focus Beam", "roleAr": "Focused damage, great against bosses" },
+    "wave": { "nameAr": "Piercing Wave", "roleAr": "Pierces every enemy in its path" },
+    "missile": { "nameAr": "Homing Missiles", "roleAr": "Chase moving and scattered enemies" },
+    "plasma": { "nameAr": "Plasma Cannon", "roleAr": "Strong area damage at a slower pace" },
+    "shield": { "nameAr": "Cyber's Shield", "roleAr": "Strongest weapon: Cyber's shields spin, pierce, then return to you" }
+  },
+  "missions": {
+    "M1": { "titleAr": "Message Network", "locationAr": "Cyber Shield" },
+    "M2": { "titleAr": "Account Vault", "locationAr": "Cyber Shield" },
+    "M3": { "titleAr": "App Factory", "locationAr": "Cyber Shield" },
+    "M4": { "titleAr": "Update Core", "locationAr": "Cyber Shield" },
+    "M5": { "titleAr": "System Core", "locationAr": "Cyber Shield" }
+  },
+  "checkpoints": {
+    "M1.C1": {
+      "labelAr": "A message with a link",
+      "feedbackAr": "Don't tap a link you got in a message or send your details in reply. Open the official app yourself and check there.",
+      "hintAr": "Where did the link come from? The safe path starts from the app you open yourself."
+    },
+    "M1.C2": {
+      "labelAr": "Strange link from a friend",
+      "feedbackAr": "Your friend's account may be stolen. Before opening any strange link, ask them another way: did you send this?",
+      "hintAr": "Does your friend usually write this way? How do you know it's them?"
+    },
+    "M1.C3": {
+      "labelAr": "Is an official look enough?",
+      "feedbackAr": "The lock in the address bar and a polished look don't prove a site is real. Look at the address itself and what it asks of you.",
+      "hintAr": "A scammer can make a lock and a logo. What can't they copy?"
+    },
+    "M2.C1": {
+      "labelAr": "Choosing a password",
+      "feedbackAr": "Give each account a long password you use nowhere else, and let a password manager remember it for you.",
+      "hintAr": "If one password is stolen, how many accounts open?"
+    },
+    "M2.C2": {
+      "labelAr": "Who is asking for the code?",
+      "feedbackAr": "Only you type the verification code, in the app you opened yourself to sign in. Never send it to anyone who asks, whatever they say.",
+      "hintAr": "The code is your account's key. Who needs your key but you?"
+    },
+    "M2.C3": {
+      "labelAr": "Two-step verification",
+      "feedbackAr": "Two-step verification is your account's second lock: even with your password, no one gets in without the code. Turn it on for every important account.",
+      "hintAr": "A password is one lock. What if the door had two?"
+    },
+    "M3.C1": {
+      "labelAr": "Where do I download the game?",
+      "feedbackAr": "Download apps and games only from the official store. “Free” and “modded” copies from links often carry harmful programs.",
+      "hintAr": "Who checks apps before they reach you?"
+    },
+    "M3.C2": {
+      "labelAr": "Permissions the app doesn't need",
+      "feedbackAr": "Ask: does the app need this permission to do its job? If not, deny it. An extra permission is a door to your data.",
+      "hintAr": "What is the app's job? Is what it asks for related to it?"
+    },
+    "M3.C3": {
+      "labelAr": "Installing outside the store",
+      "feedbackAr": "Don't turn off your device's protection or allow installs from unknown sources. A trusted app never asks you to.",
+      "hintAr": "Why does it want you to turn off protection first?"
+    },
+    "M4.C1": {
+      "labelAr": "An update is waiting",
+      "feedbackAr": "Updates close holes attackers use. Install them without long delay, and only from device settings or the official store.",
+      "hintAr": "An update fixes a hole. What happens if it stays open?"
+    },
+    "M4.C2": {
+      "labelAr": "A backup of your files",
+      "feedbackAr": "Keep a second copy of your important files somewhere other than the device itself, and try restoring a file once to be sure it works.",
+      "hintAr": "If the device broke today, where would your files be?"
+    },
+    "M4.C3": {
+      "labelAr": "Locked files and a ransom demand",
+      "feedbackAr": "Don't pay the blackmailer or download what they send. Tell an adult you trust, and restore your files from the backup.",
+      "hintAr": "You have a backup. Do you even need what the blackmailer offers?"
+    },
+    "M5.C1": {
+      "labelAr": "A sign-in attempt on your account",
+      "feedbackAr": "If it isn't you trying to sign in, tap “Deny”, then change your password: the alert means someone knows it.",
+      "hintAr": "You didn't try to sign in. So who is trying?"
+    },
+    "M5.C2": {
+      "labelAr": "A message rushing you",
+      "feedbackAr": "Whoever rushes you doesn't want you to think. Stop, check in the official app yourself, and don't do what the message says, not even half.",
+      "hintAr": "Why do they want you to act “now”?"
+    },
+    "M5.C3": {
+      "labelAr": "After a mistake: what do I do?",
+      "feedbackAr": "Mistakes happen to anyone. What matters is acting fast: change your password right away and tell an adult you trust. Hiding it makes the harm worse.",
+      "hintAr": "Time matters after a mistake. What stops the scammer now?"
+    }
+  }
+}

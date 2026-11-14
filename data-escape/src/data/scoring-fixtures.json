@@ -1,0 +1,128 @@
+{
+ "assessmentVersion": "1.0.0",
+ "fixtures": [
+  {
+   "id": "all-pristine",
+   "resolvedCheckpointIds": [
+    "M1.C1",
+    "M1.C2",
+    "M1.C3",
+    "M2.C1",
+    "M2.C2",
+    "M2.C3",
+    "M3.C1",
+    "M3.C2",
+    "M3.C3"
+   ],
+   "recoveredCheckpointIds": [],
+   "threshold": 70,
+   "expected": {
+    "earnedPoints": 100,
+    "maximumPoints": 100,
+    "scorePercent": 100,
+    "completionPercent": 100,
+    "completed": true,
+    "passed": true,
+    "status": "passed"
+   }
+  },
+  {
+   "id": "all-recovered",
+   "resolvedCheckpointIds": [
+    "M1.C1",
+    "M1.C2",
+    "M1.C3",
+    "M2.C1",
+    "M2.C2",
+    "M2.C3",
+    "M3.C1",
+    "M3.C2",
+    "M3.C3"
+   ],
+   "recoveredCheckpointIds": [
+    "M1.C1",
+    "M1.C2",
+    "M1.C3",
+    "M2.C1",
+    "M2.C2",
+    "M2.C3",
+    "M3.C1",
+    "M3.C2",
+    "M3.C3"
+   ],
+   "threshold": 70,
+   "expected": {
+    "earnedPoints": 60,
+    "maximumPoints": 100,
+    "scorePercent": 60,
+    "completionPercent": 100,
+    "completed": true,
+    "passed": false,
+    "status": "needs_practice"
+   }
+  },
+  {
+   "id": "one-recovery-per-mission",
+   "resolvedCheckpointIds": [
+    "M1.C1",
+    "M1.C2",
+    "M1.C3",
+    "M2.C1",
+    "M2.C2",
+    "M2.C3",
+    "M3.C1",
+    "M3.C2",
+    "M3.C3"
+   ],
+   "recoveredCheckpointIds": [
+    "M1.C1",
+    "M2.C1",
+    "M3.C1"
+   ],
+   "threshold": 70,
+   "expected": {
+    "earnedPoints": 86.8,
+    "maximumPoints": 100,
+    "scorePercent": 86.8,
+    "completionPercent": 100,
+    "completed": true,
+    "passed": true,
+    "status": "passed"
+   }
+  },
+  {
+   "id": "first-mission-only",
+   "resolvedCheckpointIds": [
+    "M1.C1",
+    "M1.C2",
+    "M1.C3"
+   ],
+   "recoveredCheckpointIds": [],
+   "threshold": 70,
+   "expected": {
+    "earnedPoints": 30,
+    "maximumPoints": 100,
+    "scorePercent": 30,
+    "completionPercent": 33.3,
+    "completed": false,
+    "passed": false,
+    "status": "in_progress"
+   }
+  },
+  {
+   "id": "nothing-resolved",
+   "resolvedCheckpointIds": [],
+   "recoveredCheckpointIds": [],
+   "threshold": 70,
+   "expected": {
+    "earnedPoints": 0,
+    "maximumPoints": 100,
+    "scorePercent": 0,
+    "completionPercent": 0,
+    "completed": false,
+    "passed": false,
+    "status": "in_progress"
+   }
+  }
+ ]
+}

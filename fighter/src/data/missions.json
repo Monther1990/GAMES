@@ -1,0 +1,90 @@
+{
+  "assessmentVersion": "1.0.0",
+  "missions": [
+    {
+      "id": "M1", "order": 1, "titleAr": "شبكة الرسائل", "locationAr": "درع السيبر", "categoryId": "phishing", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M1.C1", "order": 1, "labelAr": "رسالة فيها رابط وطلب", "weight": 6, "difficulty": 1,
+          "safeActionId": "check_official_channel", "unsafeActionIds": ["open_message_link", "send_requested_data"],
+          "feedbackAr": "لا تضغط رابطًا وصلك في رسالة ولا ترسل بياناتك ردًّا عليها. افتح التطبيق الرسمي بنفسك وتأكد من هناك.",
+          "hintAr": "من أين جاء الرابط؟ الطريق الآمن يبدأ من التطبيق الذي تفتحه أنت." },
+        { "id": "M1.C2", "order": 2, "labelAr": "رابط غريب من صديق", "weight": 7, "difficulty": 2,
+          "safeActionId": "ask_sender_another_way", "unsafeActionIds": ["open_friend_link", "forward_to_others"],
+          "feedbackAr": "حساب صديقك قد يكون مسروقًا. قبل أن تفتح أي رابط غريب، اسأله بطريقة أخرى: هل أرسلتَ هذا؟",
+          "hintAr": "هل يكتب صديقك هكذا عادةً؟ وكيف تتأكد أنه هو؟" },
+        { "id": "M1.C3", "order": 3, "labelAr": "هل الشكل الرسمي يكفي؟", "weight": 7, "difficulty": 3,
+          "safeActionId": "check_address_and_request", "unsafeActionIds": ["trust_lock_icon", "trust_perfect_look"],
+          "feedbackAr": "القفل في شريط العنوان والشكل المتقن لا يثبتان أن الموقع حقيقي. انظر إلى العنوان نفسه وإلى ما يطلبه منك.",
+          "hintAr": "المحتال يستطيع أن يصنع قفلًا وشعارًا. ما الذي لا يستطيع تقليده؟" }
+      ]
+    },
+    {
+      "id": "M2", "order": 2, "titleAr": "خزنة الحسابات", "locationAr": "درع السيبر", "categoryId": "accounts", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M2.C1", "order": 1, "labelAr": "اختيار كلمة المرور", "weight": 6, "difficulty": 1,
+          "safeActionId": "use_long_unique_password", "unsafeActionIds": ["reuse_same_password", "use_short_personal_password"],
+          "feedbackAr": "اجعل لكل حساب كلمة مرور طويلة لا تستخدمها في غيره، ودع تطبيق حفظ كلمات المرور يتذكرها عنك.",
+          "hintAr": "لو سُرقت كلمة واحدة، كم حسابًا تفتح؟" },
+        { "id": "M2.C2", "order": 2, "labelAr": "من يطلب رمز التحقق؟", "weight": 7, "difficulty": 2,
+          "safeActionId": "never_send_code", "unsafeActionIds": ["send_code_to_requester", "send_part_of_code"],
+          "feedbackAr": "رمز التحقق تكتبه أنت فقط، في التطبيق الذي فتحته بنفسك لتسجّل دخولك. لا ترسله لأي شخص يطلبه، مهما قال.",
+          "hintAr": "الرمز مفتاح حسابك. من يحتاج مفتاحك غيرك؟" },
+        { "id": "M2.C3", "order": 3, "labelAr": "التحقق بخطوتين", "weight": 7, "difficulty": 3,
+          "safeActionId": "turn_on_two_step", "unsafeActionIds": ["skip_two_step", "turn_off_two_step"],
+          "feedbackAr": "التحقق بخطوتين قفل ثانٍ لحسابك: حتى لو عرف أحد كلمة مرورك لا يدخل بدون الرمز. فعّله في كل حساب مهم.",
+          "hintAr": "كلمة المرور قفل واحد. ماذا لو كان للباب قفلان؟" }
+      ]
+    },
+    {
+      "id": "M3", "order": 3, "titleAr": "مصنع التطبيقات", "locationAr": "درع السيبر", "categoryId": "apps", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M3.C1", "order": 1, "labelAr": "من أين أنزّل اللعبة؟", "weight": 6, "difficulty": 1,
+          "safeActionId": "download_from_official_store", "unsafeActionIds": ["download_from_shared_link", "install_modified_copy"],
+          "feedbackAr": "نزّل التطبيقات والألعاب من المتجر الرسمي فقط. النسخ «المجانية» و«المعدّلة» من الروابط تحمل كثيرًا برامج ضارة.",
+          "hintAr": "من يراجع التطبيقات قبل أن تصل إليك؟" },
+        { "id": "M3.C2", "order": 2, "labelAr": "صلاحيات لا يحتاجها التطبيق", "weight": 7, "difficulty": 2,
+          "safeActionId": "deny_unneeded_permission", "unsafeActionIds": ["allow_everything", "allow_then_forget"],
+          "feedbackAr": "اسأل: هل يحتاج التطبيق هذه الصلاحية ليؤدي عمله؟ إن لم يحتجها فارفضها. الصلاحية الزائدة باب لبياناتك.",
+          "hintAr": "ما وظيفة التطبيق؟ وهل ما يطلبه له علاقة بها؟" },
+        { "id": "M3.C3", "order": 3, "labelAr": "تثبيت من خارج المتجر", "weight": 7, "difficulty": 3,
+          "safeActionId": "keep_store_protection", "unsafeActionIds": ["allow_unknown_sources", "install_from_popup"],
+          "feedbackAr": "لا توقف حماية الجهاز ولا تسمح بالتثبيت من مصادر غير معروفة. التطبيق الموثوق لا يطلب منك ذلك.",
+          "hintAr": "لماذا يريدك أن توقف الحماية أولًا؟" }
+      ]
+    },
+    {
+      "id": "M4", "order": 4, "titleAr": "نواة التحديث", "locationAr": "درع السيبر", "categoryId": "updates", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M4.C1", "order": 1, "labelAr": "تحديث ينتظرك", "weight": 6, "difficulty": 1,
+          "safeActionId": "update_from_official_source", "unsafeActionIds": ["postpone_forever", "update_from_advert"],
+          "feedbackAr": "التحديثات تسدّ ثغرات يستغلها المهاجمون. ثبّتها دون تأجيل طويل، ومن إعدادات الجهاز أو المتجر الرسمي فقط.",
+          "hintAr": "التحديث يصلح ثغرة. ماذا يحدث لو بقيت مفتوحة؟" },
+        { "id": "M4.C2", "order": 2, "labelAr": "نسخة احتياطية لملفاتك", "weight": 7, "difficulty": 2,
+          "safeActionId": "keep_separate_backup", "unsafeActionIds": ["keep_single_copy", "backup_on_same_device"],
+          "feedbackAr": "احفظ نسخة ثانية من ملفاتك المهمة في مكان آخر غير الجهاز نفسه، وجرّب مرة أن تستعيد ملفًا منها لتتأكد أنها تعمل.",
+          "hintAr": "لو تعطل الجهاز اليوم، أين تجد ملفاتك؟" },
+        { "id": "M4.C3", "order": 3, "labelAr": "ملفات مقفلة وطلب فدية", "weight": 7, "difficulty": 3,
+          "safeActionId": "tell_adult_and_restore", "unsafeActionIds": ["pay_the_ransom", "download_unlock_tool"],
+          "feedbackAr": "لا تدفع للمبتز ولا تنزّل ما يرسله. أخبر شخصًا بالغًا تثق به، واستعد ملفاتك من النسخة الاحتياطية.",
+          "hintAr": "عندك نسخة احتياطية. هل تحتاج أصلًا ما يعرضه المبتز؟" }
+      ]
+    },
+    {
+      "id": "M5", "order": 5, "titleAr": "قلب النظام", "locationAr": "درع السيبر", "categoryId": "mixed", "variantIds": ["base"], "maximumPoints": 20,
+      "checkpoints": [
+        { "id": "M5.C1", "order": 1, "labelAr": "محاولة دخول إلى حسابك", "weight": 6, "difficulty": 1,
+          "safeActionId": "deny_and_change_password", "unsafeActionIds": ["approve_to_dismiss", "ignore_the_alert"],
+          "feedbackAr": "إن لم تكن أنت من يحاول الدخول فاضغط «رفض»، ثم غيّر كلمة المرور، فمعنى الإشعار أن أحدًا يعرفها.",
+          "hintAr": "أنت لم تحاول الدخول. إذن من يحاول؟" },
+        { "id": "M5.C2", "order": 2, "labelAr": "رسالة تستعجلك", "weight": 7, "difficulty": 2,
+          "safeActionId": "stop_and_verify_officially", "unsafeActionIds": ["follow_urgent_steps", "do_half_of_it"],
+          "feedbackAr": "من يستعجلك لا يريدك أن تفكر. توقّف، ثم تحقق من التطبيق الرسمي بنفسك، ولا تنفذ ما في الرسالة ولا نصفه.",
+          "hintAr": "لماذا يريدك أن تتصرف «الآن»؟" },
+        { "id": "M5.C3", "order": 3, "labelAr": "بعد الخطأ: ماذا أفعل؟", "weight": 7, "difficulty": 3,
+          "safeActionId": "secure_account_and_tell", "unsafeActionIds": ["hide_and_hope", "only_delete_message"],
+          "feedbackAr": "الخطأ يحدث لأي أحد. المهم أن تتصرف بسرعة: غيّر كلمة المرور فورًا وأخبر شخصًا بالغًا تثق به. الإخفاء يزيد الضرر.",
+          "hintAr": "الوقت مهم بعد الخطأ. ما الذي يوقف المحتال الآن؟" }
+      ]
+    }
+  ]
+}

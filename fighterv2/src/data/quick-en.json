@@ -1,0 +1,706 @@
+{
+  "note": "Quick questions of the Cyber box. They are practice only: they never enter the decision ledger or the knowledge score. The first option is the right one; the game shuffles the order.",
+  "seconds": 20,
+  "questions": [
+    {
+      "id": "k1-1",
+      "stage": 0,
+      "qAr": "What is a rumour?",
+      "options": [
+        "News with no trusted source",
+        "Official news",
+        "A daily TV advert"
+      ],
+      "whyAr": "It spreads fast when people pass it on unchecked."
+    },
+    {
+      "id": "k1-2",
+      "stage": 0,
+      "qAr": "Big news with no writer or source. What do you ask first?",
+      "options": [
+        "Who said it? Where from?",
+        "How many liked or shared?",
+        "Is the photo nice?"
+      ],
+      "whyAr": "News with an unknown source can't be trusted."
+    },
+    {
+      "id": "k1-3",
+      "stage": 0,
+      "qAr": "A friend sends news and writes \"as received\". Do you forward it?",
+      "options": [
+        "No, not until I check it",
+        "Yes, I didn't write it",
+        "Yes, and I add \"as received\""
+      ],
+      "whyAr": "If you pass on a rumour, you share in its harm."
+    },
+    {
+      "id": "k1-4",
+      "stage": 0,
+      "qAr": "Photo: a shark swims in a wadi after rain! Your view?",
+      "options": [
+        "Maybe edited; I find the original",
+        "Real. Photos don't lie",
+        "I share it. So cool!"
+      ],
+      "whyAr": "Editing photos is easy. A photo alone is no proof."
+    },
+    {
+      "id": "k1-5",
+      "stage": 0,
+      "qAr": "A clip of a famous player saying odd things, lips not matching his voice…",
+      "options": [
+        "It may be made by AI",
+        "Real; his face is clear",
+        "I share it fast"
+      ],
+      "whyAr": "AI can copy faces and voices very well."
+    },
+    {
+      "id": "k1-6",
+      "stage": 0,
+      "qAr": "An old wadi flood photo is posted as \"now\". How do you spot it?",
+      "options": [
+        "I look for its first post date",
+        "I believe it; it's clear",
+        "I count its likes"
+      ],
+      "whyAr": "Many old photos get posted again as if new."
+    },
+    {
+      "id": "k1-7",
+      "stage": 0,
+      "qAr": "Clip title: \"You won't believe what happened at school!\" It is…",
+      "options": [
+        "Bait for views, so I slow down",
+        "Proof the news matters",
+        "A reason to share now"
+      ],
+      "whyAr": "Exciting titles want your tap, not to help you."
+    },
+    {
+      "id": "k1-8",
+      "stage": 0,
+      "qAr": "Classmates share a screenshot of an \"official decision\". Is it proof?",
+      "options": [
+        "No, screenshots are easy to fake",
+        "Yes, it's from a phone",
+        "Yes, if many people sent it"
+      ],
+      "whyAr": "Anyone can change the words inside a picture."
+    },
+    {
+      "id": "k1-9",
+      "stage": 0,
+      "qAr": "News worries you. Is it true? Who do you ask?",
+      "options": [
+        "A parent or my teacher",
+        "Any account in comments",
+        "No one; I stay worried"
+      ],
+      "whyAr": "People you trust calm you and explain the truth."
+    },
+    {
+      "id": "k1-10",
+      "stage": 0,
+      "qAr": "Two accounts use a government name. Which one is real?",
+      "options": [
+        "Listed on its official site",
+        "Has far more followers",
+        "Has nicer pictures"
+      ],
+      "whyAr": "Fakers make accounts that look like official ones."
+    },
+    {
+      "id": "k2-1",
+      "stage": 1,
+      "qAr": "A viral clip mocks respect for parents. Your view?",
+      "options": [
+        "Not our values, so I skip it",
+        "Funny; I copy it at home",
+        "True, it has many views"
+      ],
+      "whyAr": "A viral clip can't change our family values."
+    },
+    {
+      "id": "k2-2",
+      "stage": 1,
+      "qAr": "Classmates ask you to try a risky viral challenge. What do you do?",
+      "options": [
+        "I refuse and tell an adult",
+        "I try it so they don't mock me",
+        "I film it and post it"
+      ],
+      "whyAr": "Your safety beats any trend. Brave kids say no."
+    },
+    {
+      "id": "k2-3",
+      "stage": 1,
+      "qAr": "What is the \"Not interested\" button for?",
+      "options": [
+        "Shows me less like it",
+        "Deletes the clip for everyone",
+        "Sends it to my friends"
+      ],
+      "whyAr": "It teaches the app what you don't want to see."
+    },
+    {
+      "id": "k2-4",
+      "stage": 1,
+      "qAr": "You watched many prank clips today. What will the app show tomorrow?",
+      "options": [
+        "More pranks; it follows what I watch",
+        "Only useful lessons",
+        "Nothing; it forgets"
+      ],
+      "whyAr": "The algorithm repeats what you watch most."
+    },
+    {
+      "id": "k2-5",
+      "stage": 1,
+      "qAr": "You dislike a classmate's clip. Your comment?",
+      "options": [
+        "Polite, or none at all",
+        "I mock him in public",
+        "I write mean words under a fake name"
+      ],
+      "whyAr": "Our manners online match those in the majlis."
+    },
+    {
+      "id": "k2-6",
+      "stage": 1,
+      "qAr": "A classmate says: \"Arabic is old. Write in another language.\" You say?",
+      "options": [
+        "I use Arabic with pride",
+        "I drop Arabic like him",
+        "I mock Arabic for a laugh"
+      ],
+      "whyAr": "Our language is who we are. New ones don't erase it."
+    },
+    {
+      "id": "k2-7",
+      "stage": 1,
+      "qAr": "An account mocks our dress and customs to get views. What do you do?",
+      "options": [
+        "I don't react, and I report it",
+        "I reply with insults",
+        "I share its clip so all see it"
+      ],
+      "whyAr": "Any reaction, even anger, spreads it more."
+    },
+    {
+      "id": "k2-8",
+      "stage": 1,
+      "qAr": "You scrolled clips for 2 hours and lost track. What do you do?",
+      "options": [
+        "I stop and set a screen limit",
+        "I keep going",
+        "I hide it under my pillow"
+      ],
+      "whyAr": "Short clips are built to keep you watching."
+    },
+    {
+      "id": "k2-9",
+      "stage": 1,
+      "qAr": "A clip made you doubt one of our customs. What do you do?",
+      "options": [
+        "I calmly ask my parents",
+        "I believe it quietly",
+        "I ask strangers in the comments"
+      ],
+      "whyAr": "Your family lovingly explains the clip."
+    },
+    {
+      "id": "k2-10",
+      "stage": 1,
+      "qAr": "A game rated 18+ is played by all your class. What do you do?",
+      "options": [
+        "I pick a game for my age",
+        "I play it in secret",
+        "I play it at a friend's"
+      ],
+      "whyAr": "Age ratings protect you. They don't punish you."
+    },
+    {
+      "id": "k3-1",
+      "stage": 2,
+      "qAr": "What's a \"digital footprint\"?",
+      "options": [
+        "All I leave about me online",
+        "A phone screen scratch",
+        "The internet speed at home"
+      ],
+      "whyAr": "Your posts, comments and searches show who you are."
+    },
+    {
+      "id": "k3-2",
+      "stage": 2,
+      "qAr": "Which of these is \"personal data\"?",
+      "options": [
+        "My ID number and address",
+        "Today's sky colour",
+        "Yesterday's score"
+      ],
+      "whyAr": "Personal data points to you, so guard it."
+    },
+    {
+      "id": "k3-3",
+      "stage": 2,
+      "qAr": "An app shows all followers your live location. What do you do?",
+      "options": [
+        "I turn location off",
+        "I leave it on for them",
+        "I turn it on only at school"
+      ],
+      "whyAr": "Live location is for family only, not everyone."
+    },
+    {
+      "id": "k3-4",
+      "stage": 2,
+      "qAr": "You'll post a photo by the family car. What do you hide first?",
+      "options": [
+        "The car plate number",
+        "Car colour and shape",
+        "My smile"
+      ],
+      "whyAr": "The plate and house number point to your family."
+    },
+    {
+      "id": "k3-5",
+      "stage": 2,
+      "qAr": "Your family is in Salalah for khareef. When to post photos?",
+      "options": [
+        "After we get back home",
+        "Hourly from there",
+        "Before we go, with our dates"
+      ],
+      "whyAr": "Trip posts tell all that the house is empty."
+    },
+    {
+      "id": "k3-6",
+      "stage": 2,
+      "qAr": "You snapped friends at the pitch. Do you tag their accounts?",
+      "options": [
+        "I ask them first",
+        "I tag without asking",
+        "I tag them and add their school"
+      ],
+      "whyAr": "A tag ties the photo to their accounts in public."
+    },
+    {
+      "id": "k3-7",
+      "stage": 2,
+      "qAr": "Your account is \"public\". What is best?",
+      "options": [
+        "Private, for people I know",
+        "Public, to get famous",
+        "I accept all requests"
+      ],
+      "whyAr": "Privacy settings set who sees your photos and news."
+    },
+    {
+      "id": "k3-8",
+      "stage": 2,
+      "qAr": "A \"Which player are you?\" quiz asks your name, birthday, phone…",
+      "options": [
+        "I skip it; it takes my data",
+        "I fill it in to see",
+        "I type my brother's details"
+      ],
+      "whyAr": "\"Free\" fun may cost you your data."
+    },
+    {
+      "id": "k3-9",
+      "stage": 2,
+      "qAr": "You post a comment and delete it a minute later. Is it gone?",
+      "options": [
+        "Maybe not; someone saved it",
+        "Yes, gone for ever",
+        "Yes, deleting wipes it all"
+      ],
+      "whyAr": "The internet remembers. Think, then post."
+    },
+    {
+      "id": "k3-10",
+      "stage": 2,
+      "qAr": "You have a funny photo of your little brother asleep. Post it?",
+      "options": [
+        "Not without his and my parents' OK",
+        "I post it; so funny",
+        "Only to the class group"
+      ],
+      "whyAr": "His photo is a trust. It may shame him later."
+    },
+    {
+      "id": "k4-1",
+      "stage": 3,
+      "qAr": "An unknown player says he's your age, from your town. Believe him?",
+      "options": [
+        "No, there's no proof",
+        "Yes, he's nice to me",
+        "Yes, his photo is a child"
+      ],
+      "whyAr": "Behind a screen, anyone can claim anything."
+    },
+    {
+      "id": "k4-2",
+      "stage": 3,
+      "qAr": "A chat user says: \"Don't tell your family we talk.\" What do you do?",
+      "options": [
+        "I tell my parents now",
+        "I keep it; he trusts me",
+        "I ask why and keep chatting"
+      ],
+      "whyAr": "Anyone hiding chats from your family means no good."
+    },
+    {
+      "id": "k4-3",
+      "stage": 3,
+      "qAr": "A strange player says: \"Let's chat in a private app.\" What do you do?",
+      "options": [
+        "No; I don't follow strangers",
+        "I agree; the game is crowded",
+        "I give him my phone number"
+      ],
+      "whyAr": "Private apps are far from the eyes of the game and family."
+    },
+    {
+      "id": "k4-4",
+      "stage": 3,
+      "qAr": "A stranger offers a rare \"skin\" as a free gift. What do you do?",
+      "options": [
+        "I refuse; the gift may be bait",
+        "I take it and block",
+        "I take it and do as he asks"
+      ],
+      "whyAr": "Strangers use gifts to win your trust."
+    },
+    {
+      "id": "k4-5",
+      "stage": 3,
+      "qAr": "A classmate insults you in the class group. What do you do?",
+      "options": [
+        "No insults back; I tell an adult",
+        "I insult him even worse",
+        "I post his bad photo"
+      ],
+      "whyAr": "Insults back grow the problem, not fix it."
+    },
+    {
+      "id": "k4-6",
+      "stage": 3,
+      "qAr": "You keep getting bullying messages. What do you do before blocking?",
+      "options": [
+        "I save screenshots as proof",
+        "I delete them all to forget",
+        "I send them to friends"
+      ],
+      "whyAr": "Proof helps your family and school stop the bully."
+    },
+    {
+      "id": "k4-7",
+      "stage": 3,
+      "qAr": "All mock a classmate's photo in the group. What do you do?",
+      "options": [
+        "I back him and don't join in",
+        "I laugh too, so I'm not next",
+        "I send the photo to other groups"
+      ],
+      "whyAr": "One kind word can change a bullied child's day."
+    },
+    {
+      "id": "k4-8",
+      "stage": 3,
+      "qAr": "An account in your top player's name offers a signed shirt…",
+      "options": [
+        "Likely fake; I ignore and report",
+        "Real; he picked me",
+        "I send my address for the shirt"
+      ],
+      "whyAr": "Stars don't message fans to ask for their details."
+    },
+    {
+      "id": "k4-9",
+      "stage": 3,
+      "qAr": "A friend's account asks for an \"urgent\" top-up card. What do you do?",
+      "options": [
+        "I call to check it's him",
+        "I send the card at once",
+        "I take Mum's card in secret"
+      ],
+      "whyAr": "The account may be stolen and posing as him."
+    },
+    {
+      "id": "k4-10",
+      "stage": 3,
+      "qAr": "A game friend invites you to meet at the mall, just the two of you…",
+      "options": [
+        "No; I tell my parents",
+        "I go without telling anyone",
+        "I go with a friend my age"
+      ],
+      "whyAr": "Never meet a screen-only friend without your family."
+    },
+    {
+      "id": "k5-1",
+      "stage": 4,
+      "qAr": "Dozens of new accounts repeat one sentence under a post. What are they?",
+      "options": [
+        "Organised fake accounts",
+        "People agreeing by chance",
+        "Proof the words are true"
+      ],
+      "whyAr": "Planned repeating makes you think everyone agrees."
+    },
+    {
+      "id": "k5-2",
+      "stage": 4,
+      "qAr": "A post has 100,000 likes. Does that make it true?",
+      "options": [
+        "No, likes are not proof",
+        "Yes, people can't be wrong",
+        "Yes, if it has a picture"
+      ],
+      "whyAr": "Likes can be bought. Truth isn't counted in likes."
+    },
+    {
+      "id": "k5-3",
+      "stage": 4,
+      "qAr": "A group's posts all stir up anger between people. What do you do?",
+      "options": [
+        "I leave; I share none of it",
+        "I share its angry posts",
+        "I join in and get angry too"
+      ],
+      "whyAr": "Stirred anger makes you share without thinking."
+    },
+    {
+      "id": "k5-4",
+      "stage": 4,
+      "qAr": "A post makes you furious. What do you do before commenting?",
+      "options": [
+        "I calm down and think",
+        "I write my first thought",
+        "I reply first, fast"
+      ],
+      "whyAr": "An angry comment stays, and you may regret it."
+    },
+    {
+      "id": "k5-5",
+      "stage": 4,
+      "qAr": "A big storm is coming. Where do you get instructions?",
+      "options": [
+        "From the official authorities",
+        "From an unknown viral clip",
+        "From the scariest accounts"
+      ],
+      "whyAr": "Rumours grow in emergencies. Official sources are safest."
+    },
+    {
+      "id": "k5-6",
+      "stage": 4,
+      "qAr": "A café has two Wi-Fi names that look alike. Which do you join?",
+      "options": [
+        "I ask the staff which is right",
+        "The strongest",
+        "The one named \"free\""
+      ],
+      "whyAr": "A trickster may copy the name to watch you."
+    },
+    {
+      "id": "k5-7",
+      "stage": 4,
+      "qAr": "A wall sticker: \"Scan the code and win a phone.\" What do you do?",
+      "options": [
+        "I don't scan unknown codes",
+        "I scan it to see",
+        "I send a photo to the group"
+      ],
+      "whyAr": "The code hides where it will take you."
+    },
+    {
+      "id": "k5-8",
+      "stage": 4,
+      "qAr": "You find a USB stick in the school yard. What do you do?",
+      "options": [
+        "I hand it in and don't try it",
+        "I try it on our home PC",
+        "I try it on a school computer"
+      ],
+      "whyAr": "It may be left on purpose to harm your device."
+    },
+    {
+      "id": "k5-9",
+      "stage": 4,
+      "qAr": "An AI chatbot helps with homework. What do you never type in?",
+      "options": [
+        "My full name, address and photos",
+        "A maths question I didn't get",
+        "The lesson I'm studying"
+      ],
+      "whyAr": "What you tell a bot may be saved. Keep secrets out."
+    },
+    {
+      "id": "k5-10",
+      "stage": 4,
+      "qAr": "On National Day you want to post something. What is best?",
+      "options": [
+        "A true fact and a kind word",
+        "Exciting unchecked news",
+        "Mocking another team's fans"
+      ],
+      "whyAr": "Good digital citizens spread truth and kindness."
+    },
+    {
+      "id": "c1-1",
+      "stage": 0,
+      "call": {
+        "fromAr": "Unknown number",
+        "sayAr": "Hello! Breaking news: schools are closed tomorrow! Send it to all your groups now, before everyone else!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Check the official channel first",
+        "Send it to every group right away",
+        "Post it in my status for everyone"
+      ],
+      "whyAr": "True news is announced by the official source, not by an unknown caller."
+    },
+    {
+      "id": "c1-2",
+      "stage": 0,
+      "call": {
+        "fromAr": "Unknown caller",
+        "sayAr": "Hi! I have a shocking clip about a famous person. I will send it to you. Share it fast, before it gets deleted!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Refuse: I share nothing unchecked",
+        "Share it fast before it is deleted",
+        "Send it to my friends only"
+      ],
+      "whyAr": "\"Share it before it is deleted\" is a trick to make you share without thinking."
+    },
+    {
+      "id": "c2-1",
+      "stage": 1,
+      "call": {
+        "fromAr": "Unknown number",
+        "sayAr": "Hey! Join our new challenge: film yourself making fun of our clothes and customs, and win lots of followers!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Refuse: our customs are not a joke",
+        "Join in to get more followers",
+        "Film it and delete it later"
+      ],
+      "whyAr": "Whoever pushes you to mock your own customs does not wish you well."
+    },
+    {
+      "id": "c2-2",
+      "stage": 1,
+      "call": {
+        "fromAr": "An advertiser?",
+        "sayAr": "Hello! We will send you gifts if you post our clips on your account. Do not ask what is in them. Just post!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Refuse, and tell my parents",
+        "Agree: easy gifts",
+        "Post them without watching them"
+      ],
+      "whyAr": "Never post what you have not seen: your account carries your name and your values."
+    },
+    {
+      "id": "c3-1",
+      "stage": 2,
+      "call": {
+        "fromAr": "Prize contest?",
+        "sayAr": "Congratulations! You won a prize! Just tell me: what is your full name? Where do you live? Which school do you go to?"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Give nothing and end the call",
+        "Tell him so I get the prize",
+        "Give the school name only"
+      ],
+      "whyAr": "Name, home and school point to you: never give them to an unknown caller."
+    },
+    {
+      "id": "c3-2",
+      "stage": 2,
+      "call": {
+        "fromAr": "Unknown number",
+        "sayAr": "Hello! I am doing research for the school. Send me a photo of your house from outside, and your location on the map."
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Refuse: where we live is private",
+        "Send the photo and the location",
+        "Send the location, not the photo"
+      ],
+      "whyAr": "A photo of your house and its location show strangers where you are."
+    },
+    {
+      "id": "c4-1",
+      "stage": 3,
+      "call": {
+        "fromAr": "A friend from the game?",
+        "sayAr": "I am your friend from the game! Let us meet today, just the two of us. And do not tell anyone in your family. Deal?"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Refuse, and tell my parents at once",
+        "Go without telling anyone",
+        "Go and take my friend along"
+      ],
+      "whyAr": "Anyone who asks you to keep a secret from your family is a danger: tell them at once."
+    },
+    {
+      "id": "c4-2",
+      "stage": 3,
+      "call": {
+        "fromAr": "A new number",
+        "sayAr": "Hello, it is me! Do you not know my voice? I changed my number. Send me a photo of your father's card, quickly!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Call my relative on the number I know",
+        "Send it: I know that voice",
+        "Send it, then tell my father"
+      ],
+      "whyAr": "Voices can be copied today: check through the number you already know."
+    },
+    {
+      "id": "c5-1",
+      "stage": 4,
+      "call": {
+        "fromAr": "Unknown number",
+        "sayAr": "Join our secret group now! It has news you will not find anywhere else. And add all your friends with you!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Do not join, and block the number",
+        "Join and add my friends",
+        "Join alone to see what is in it"
+      ],
+      "whyAr": "Unknown groups are a door for rumours and influence campaigns."
+    },
+    {
+      "id": "c5-2",
+      "stage": 4,
+      "call": {
+        "fromAr": "Unknown caller",
+        "sayAr": "The situation is very dangerous! Do not believe the official channels. Believe only me, and spread my words to everyone!"
+      },
+      "qAr": "What do you do?",
+      "options": [
+        "Trust the official source; spread nothing",
+        "Believe him and spread his words",
+        "Wait, then share it if it is repeated"
+      ],
+      "whyAr": "In a crisis the official source is the reference, not an unknown caller."
+    }
+  ]
+}
