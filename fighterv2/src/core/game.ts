@@ -24,7 +24,7 @@ import { closeBonus, Enemy, MoveInput, POWER_FROM, PowerId, POWERS, SimEvent, st
 import { Link, Msg, SavedLink } from '../net/link';
 import { Mirror, plainEvent, snapshot, Snapshot } from './coop';
 import { ICON, ShopDetail, Ui, WeaponCard } from '../ui/ui';
-import { Arena } from '../view/arena';
+import { Arena, inked, inkIsOn, setInk } from '../view/arena';
 import { CoinFx } from '../view/coins';
 import { Hero } from '../view/hero';
 import { Input, InputAction } from './input';
@@ -204,6 +204,7 @@ export class Game {
 		const coarse = matchMedia('(pointer: coarse)').matches, dpr = window.devicePixelRatio || 1;
 		this.scaling = s.quality === 'low' ? 1 : 1 / Math.min(dpr, s.quality === 'high' ? 2 : coarse ? 1.5 : 2);
 		this.engine.setHardwareScalingLevel(this.scaling);
+		setInk(s.quality !== 'low');
 	}
 	private openSettings(back: () => void) { this.ui.settings(this.save.settings, () => { storeSave(this.save); this.applySettings(); }, back); }
 	private flushSave() { this.dirty = false; storeSave(this.save); }
@@ -287,7 +288,7 @@ export class Game {
 	private makeHero() {
 		if (this.hero) return;
 		this.hero = new Hero(this.scene, this.kit, this.save.avatar);
-		for (const m of this.hero.rig.getChildMeshes()) m.layerMask |= CHARACTER_LAYER;      // lit by their own steady light, not by the land's sun
+		for (const m of this.hero.rig.getChildMeshes()) { m.layerMask |= CHARACTER_LAYER; inked(m, 0.012); }      // lit by their own steady light, not by the land's sun; drawn with an ink line like the enemies
 	}
 	private clearFight() {
 		this.arena.spotlight = null; this.introWave = -9;
@@ -450,7 +451,7 @@ export class Game {
 			case 'bounce': this.sound.sfx('clack'); break;
 			case 'explode': this.sound.sfx('burst.' + e.weapon); if ((e.weapon === 'plasma' && e.radius > 1.3) || e.weapon === 'shield') this.shake(0.14); break;   // each weapon bursts with its own sound; only a shell and a star shake the screen
 			case 'zone': this.sound.sfx('zone'); this.shake(0.2); break;
-			case 'wave': this.sound.sfx('wave'); if (e.index > 0) this.ui.banner('info', ui('fight.wave', { n: num(e.index + 1), total: num(e.total) }), 1.2); break;
+			case 'wave': this.sound.sfx('wave'); if (e.index > 0) this.ui.waveCue(); break;   // the stage bar lights up: it already names the wave
 			case 'kill': this.damageNumber(e.enemy, true); this.onKill(e.enemy, e.by === 0); break;
 			case 'crateIn': this.sound.sfx('crate'); if (e.rare) this.sound.sfx('bonus'); this.ui.banner('good', ui(e.rare ? 'box.rareIncoming' : e.heart ? 'box.heartIncoming' : 'box.incoming'), e.rare ? 3.2 : 2.6); break;
 			case 'crate':
@@ -617,7 +618,7 @@ export class Game {
 		if (!final && this.clock - (this.numberAt.get(e.id) ?? -1) < (e.kind === 'boss' ? 0.3 : 0.22)) return;
 		this.numberAt.set(e.id, this.clock); e.took = 0;
 		const at = this.arena.toScreen(e.x + e.r * 0.5, 0.8, e.z + (Math.random() - 0.5) * e.r), n = Math.max(1, Math.round(took * 10));
-		this.coins.text(at.x, at.y, num(n), n >= 80 ? 'big' : n >= 30 ? 'mid' : 'small');
+		this.coins.text(at.x, Math.max(at.y, this.ui.hudBottom() + 48), num(n), n >= 80 ? 'big' : n >= 30 ? 'mid' : 'small');   // never over the hearts or the bars (a number rises 34 px as it fades)
 	}
 	/** A Cyber box was opened: the fight stops and a quick, timed question decides whether it holds a power. The rare
 	 *  black box asks two: both right gives Total Awareness, one right gives an ordinary power.
@@ -1338,7 +1339,7 @@ export class Game {
 		if (this.hero2) return;
 		this.hero2 = new Hero(this.scene, this.kit, avatar, 'friend', new Color3(1, 0.8, 0.25));
 		this.hero2Avatar = avatar;
-		for (const m of this.hero2.rig.getChildMeshes()) m.layerMask |= CHARACTER_LAYER;
+		for (const m of this.hero2.rig.getChildMeshes()) { m.layerMask |= CHARACTER_LAYER; inked(m, 0.012); }
 	}
 	/** The main player's device sends what just happened and, about fifteen times a second, the whole picture. Through
 	 *  the server (the slow way) the small events are left out and the picture goes less often. */
@@ -1538,7 +1539,7 @@ export class Game {
 			}
 			case 'crateIn': this.sound.sfx('crate'); this.ui.banner('good', ui(e.rare ? 'box.rareIncoming' : e.heart ? 'box.heartIncoming' : 'box.incoming'), 2.6); break;
 			case 'crate': this.sound.sfx('boom'); if (e.by === 0) this.ui.banner('info', ui('coop.boxFriend'), 2.4); break;
-			case 'wave': this.sound.sfx('wave'); if (e.index > 0) this.ui.banner('info', ui('fight.wave', { n: num(e.index + 1), total: num(e.total) }), 1.2); break;
+			case 'wave': this.sound.sfx('wave'); if (e.index > 0) this.ui.waveCue(); break;   // the stage bar lights up: it already names the wave
 			case 'zone': this.sound.sfx('zone'); this.shake(0.2); break;
 		}
 	}
@@ -1656,7 +1657,8 @@ export class Game {
 		const fps = this.fpsN / this.fpsT;
 		this.fpsT = 0; this.fpsN = 0;
 		if (fps >= 42 || this.demo || this.save.settings.quality !== 'auto') return;
-		if (!this.arena.reduceMotion) { this.arena.reduceMotion = true; return; }                                  // first fewer particles, then fewer pixels
+		if (!this.arena.reduceMotion) { this.arena.reduceMotion = true; return; }                                  // first fewer particles, then no ink lines, then fewer pixels
+		if (inkIsOn()) { setInk(false); return; }
 		if (this.scaling < 2.2) { this.scaling *= 1.25; this.engine.setHardwareScalingLevel(this.scaling); }
 	}
 

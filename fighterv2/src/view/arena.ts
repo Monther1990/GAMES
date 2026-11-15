@@ -19,6 +19,8 @@ import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial';
 import { TransformNode } from '@babylonjs/core/Meshes/transformNode';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import '@babylonjs/core/Particles/particleSystemComponent';
+import '@babylonjs/core/Rendering/outlineRenderer';
+import type { AbstractMesh } from '@babylonjs/core/Meshes/abstractMesh';
 import '@babylonjs/core/Meshes/instancedMesh';   // the import above is type-only and is erased; instancing needs the module itself
 import eco from '../data/economy.json';
 import type { WeaponId } from '../sim/economy';
@@ -27,7 +29,7 @@ import { World } from '../sim/world';
 import type { Body, Enemy, SimEvent } from '../sim/world';
 import { C, Models } from './models';
 import malware from '../data/malware-ar.json';
-import { Scenery } from './scenery';
+import { Scenery, SPACE } from './scenery';
 import { SHOT_COLORS, SHOT_GLOW, ShotView } from './shots';
 import { PowerFx } from './powerfx';
 import type { FxKit } from './powerfx';
@@ -43,6 +45,13 @@ const KIND_COLOR = (kind: string) => { const item = (malware.items as Record<str
 /** The armoured fake account wears a different colour in each stage. */
 const CARD_COLORS = [['#5f7fb8', '#3d5488'], ['#c2506e', '#7d2c44'], ['#3fa873', '#226a45'], ['#8f68d8', '#553a94'], ['#d48a3a', '#8a5418']];
 const DANGER = C(1, 0.2, 0.35), WHITE = C(1, 1, 1);
+/** The dark line drawn around every enemy, boss and fighter, as in a drawn cartoon: it keeps their shapes apart from the photograph of the land. */
+const INK = C(0.05, 0.07, 0.16);
+const INKED = new Set<AbstractMesh>(); let inkOn = true;
+export function inked(m: AbstractMesh, width = 0.022) { m.outlineColor = INK; m.outlineWidth = width; m.renderOutline = inkOn; INKED.add(m); m.onDisposeObservable.add(() => INKED.delete(m)); }
+/** The ink line costs a second drawing of each outlined shape: it is left out at low quality, and dropped first when a phone struggles. */
+export function setInk(on: boolean) { inkOn = on; for (const m of INKED) m.renderOutline = on; }
+export const inkIsOn = () => inkOn;
 /** The soft glow of each weapon beside the fighter who holds it. */
 const GLOW_OF: Record<WeaponId, string> = SHOT_GLOW;
 
@@ -50,6 +59,7 @@ const GLOW_OF: Record<WeaponId, string> = SHOT_GLOW;
 class Pool {
 	private free: InstancedMesh[] = []; private live = new Map<number, InstancedMesh>(); private seen = new Set<number>();
 	constructor(private src: Mesh) { src.isVisible = false; src.isPickable = false; }
+	get source() { return this.src; }
 	private fresh() { const m = this.free.pop() ?? this.src.createInstance(this.src.name); m.isPickable = false; m.setEnabled(true); m.scaling.setAll(1); m.rotation.setAll(0); return m; }
 	begin() { this.seen.clear(); }
 	put(id: number): InstancedMesh { let m = this.live.get(id); if (!m) { m = this.fresh(); this.live.set(id, m); } this.seen.add(id); return m; }
@@ -78,6 +88,8 @@ export class Arena {
 	private due: { at: number; run: () => void }[] = [];
 	private sparks!: ParticleSystem;
 	private floor!: Mesh;
+	/** The two ramparts and their lines of light: only over the land, never around the Earth in space. */
+	private ramparts: Mesh[] = [];
 	private boss: BossView | null = null;
 	/** The pictures of the nine weapons (shots.ts). */
 	private shotView!: ShotView;
@@ -161,14 +173,19 @@ export class Arena {
 	private soft(key: string, id: number, x: number, z: number, sx: number, sz = sx, y = 0.5) { const g = this.pool(key).put(id); g.position.set(x, y, z); g.scaling.set(sx, 1, sz); g.rotation.y = 0; return g; }
 
 	private buildFloor() {
-		// the fighting area: a dark, calm sheet over the land so shots and danger stay readable, with bright edges
+		// the fighting area: a dark, calm sheet over the land so shots and danger stay readable, held between two ramparts of
+		// Omani stone (a frame in the foreground, so the land reads as far below), each with a thin line of light on its inner foot
 		this.floor = CreateGround('floor', { width: A.length + 6, height: A.halfWidth * 2 + 0.2 }, this.scene);
 		this.floor.position.set(A.length / 2, -0.6, 0); this.floor.isPickable = false;
 		this.floor.material = this.neon('floorMat', C(0.01, 0.03, 0.09), 0.4);
+		const rampart = this.models.rampart(70);
 		for (const side of [-1, 1]) {
-			const edge = CreateBox('edge', { width: 70, height: 0.05, depth: 0.08 }, this.scene);
-			edge.position.set(10, -0.55, side * (A.halfWidth + 0.12)); edge.isPickable = false;
-			edge.material = this.mats.get('edgeMat') ?? this.neon('edgeMat', C(0.45, 0.9, 1), 0.9);
+			const wall = side > 0 ? rampart : rampart.clone('rampart2');
+			wall.position.set(10, -0.62, side * (A.halfWidth + 0.06)); wall.rotation.y = side > 0 ? 0 : Math.PI; wall.isPickable = false;
+			wall.freezeWorldMatrix(); this.ramparts.push(wall);
+			const edge = CreateBox('edge', { width: 70, height: 0.04, depth: 0.06 }, this.scene);
+			edge.position.set(10, -0.55, side * (A.halfWidth + 0.04)); edge.isPickable = false;
+			edge.material = this.mats.get('edgeMat') ?? this.neon('edgeMat', C(0.45, 0.9, 1), 0.8); this.ramparts.push(edge);
 		}
 	}
 	private buildShapes() {
@@ -183,6 +200,8 @@ export class Arena {
 		CARD_COLORS.forEach(([a, b], i) => this.solid('fakewall' + i, M.fakewall(a, b, 'fakewall' + i)));
 		this.solid('guardPlate', M.guardPlate()); this.solid('pod', M.relay());
 		this.solid('crate', M.crate()); this.solid('crateRare', M.crate('#08080e', '#c9a2ff', 'crateRare', true)); this.solid('awareBomb', M.awareBomb()); this.solid('crateHeart', M.heartBox());
+		for (const key of ['rumor', 'clickbait', 'fakepic', 'chain', 'deepfake', 'trend', 'vortex', 'mocker', 'noise', 'fakestar', 'tracker', 'quizbot', 'snapper', 'footprint', 'broker',
+			'stranger', 'bully', 'impostor', 'lure', 'puppeteer', 'troll', 'echo', 'inciter', 'swarm', 'stormseed', 'fakewall0', 'fakewall1', 'fakewall2', 'fakewall3', 'fakewall4', 'guardPlate', 'pod', 'crate', 'crateHeart']) inked(this.pool(key).source);
 		this.glow('bubble', CreateSphere('bu', { diameter: 1, segments: 12 }, s), C(0.5, 1, 0.9), 0.3);
 		// the player's shots: bright cores with a softer glow around them
 		// soft light: one painted dot, in the colour of each weapon, added to whatever is under it
@@ -199,6 +218,8 @@ export class Arena {
 		this.glow('roundWarn', CreateCylinder('rw', { diameter: 1, height: 0.02, tessellation: 28 }, s), DANGER, 0.3);       // where a lobbed shot will land
 		this.glow('roundLive', CreateCylinder('rl', { diameter: 1, height: 0.02, tessellation: 28 }, s), C(1, 0.65, 0.65), 0.8);
 		this.glow('dangerRing', CreateTorus('dg', { diameter: 1, thickness: 0.07, tessellation: 28 }, s), C(1, 0.25, 0.3));   // the edge of that circle, and the ring that closes on a shot about to dart or burst
+		// danger is drawn last, over everything: however bright the player's own weapons grow, what must be dodged stays crisp
+		for (const key of ['talk', 'bang', 'glitch', 'zap', 'dangerRing']) this.pool(key).source.renderingGroupId = 1;
 		// effects
 		this.glow('ring', CreateTorus('ri', { diameter: 1, thickness: 0.08, tessellation: 28 }, s), WHITE, 0.9);
 		this.sheet('flash', this.softTex, WHITE, 1, true);
@@ -223,6 +244,7 @@ export class Arena {
 		this.stage = Math.max(0, Math.min(KINDS.length - 1, index));
 		this.scenery.setStage(index);
 		(this.floor.material as StandardMaterial).alpha = this.scenery.dim;
+		for (const m of this.ramparts) m.setEnabled(index !== SPACE);
 		this.clear();
 	}
 
@@ -521,6 +543,7 @@ export class Arena {
 	private buildBoss(id: string) {
 		if (this.boss) { this.boss.root.dispose(false, false); for (const seg of this.boss.tail) seg.dispose(); }
 		const built = this.models.boss(id);
+		for (const m of built.root.getChildMeshes()) inked(m, 0.03); for (const m of built.tail) inked(m, 0.03);
 		const shield = CreateSphere('bossShield', { diameter: 1, segments: 12 }, this.scene);
 		shield.parent = built.root; shield.material = this.mats.get('bossShieldMat') ?? this.neon('bossShieldMat', C(0.6, 0.9, 1), 0.3); shield.isPickable = false;
 		this.boss = { id, ...built, shield, shut: 0 };

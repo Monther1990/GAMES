@@ -260,10 +260,12 @@ export class ShotView {
 				case 'blade': {                                                     // spins hard, leaves a green wake, and at the highest level wears a ring
 					const m = P('blade').put(id), size = 1.25 * G;
 					m.position.set(s.x, 0.72, s.z); m.rotation.y = t * (20 + lvl * 2.5) * (id % 2 ? 1 : -1); m.scaling.set(size, 1.6, size);
-					k.soft('softGreen', low, s.x, s.z, 2.3 * G, 2.3 * G);
+					// its light grows less than the blade does: at the top level several blades' glows and wakes used to add up into a
+					// green haze over the field (measured: 143 glows at once)
+					k.soft('softGreen', low, s.x, s.z, 1.5 + 0.55 * G, 1.5 + 0.55 * G);
 					if (lvl >= 4) k.soft('softWhite', low, s.x, s.z, 0.7, 0.7, 0.56);
 					if (lvl >= 5) { const o = P('bladeRing').put(own); o.position.set(s.x, 0.7, s.z); o.scaling.setAll(1.75 * (1 + 0.12 * Math.sin(t * 26 + id))); }
-					if (every(2)) k.fx('trail', 'softGreen', s.x, 0.5, s.z, 0.2 + lvl * 0.02, 1.5 * G);
+					if (every(3)) k.fx('trail', 'softGreen', s.x, 0.5, s.z, 0.18, 1.1);
 					break;
 				}
 				case 'ray': {                                                       // drawn from the fighter's own lamp, so it never lags behind them

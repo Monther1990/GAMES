@@ -61,7 +61,6 @@
  "tut.shoot": "Stay under an enemy so Cyber hits it. Rials fly to your wallet",
  "tut.hit": "You got hit! In training you lose nothing",
  "tut.done": "Great! You're ready to fight",
- "fight.wave": "Wave {n} of {total}",
  "fight.rare": "Rare enemy! +10",
  "fight.bossWarning": "Warning! {name} is coming",
  "fight.phase": "The boss changes attack: Phase {n}",

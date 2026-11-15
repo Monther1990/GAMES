@@ -58,6 +58,8 @@ const WIDE = [48.5, 12.5, 64.5, 30.5];
 const FLAG = ['#ff3b3b', '#ffffff', '#1fbf5f'];
 
 interface Item { mesh: InstancedMesh; kind: Kind; x: number; drift: number }
+/** One bird of a passing flock: where it sits in the V, and its own beat of the wings. */
+interface Bird { mesh: InstancedMesh; dx: number; dz: number; beat: number }
 
 export class Scenery {
 	reduceMotion = false;
@@ -71,6 +73,9 @@ export class Scenery {
 	private picture: HTMLImageElement | null = null;
 	private planet: Mesh; private halo: Mesh; private shell: Mesh;
 	private deck: Mesh; private deckTex: DynamicTexture; private shade: Mesh; private shadeTex: DynamicTexture;
+	/** A flock of birds that now and then crosses between the land and the fight: the one thing at middle height, so the
+	 *  eye feels how far below the land lies. */
+	private birds: Bird[] = []; private flock = { on: false, x: 0, z: 0, slope: 0, wait: 6 };
 	private rnd = (() => { let a = 20261113; return () => { a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; })();
 
 	constructor(private scene: Scene, _models: Models) {
@@ -142,6 +147,17 @@ export class Scenery {
 		this.shadeTex = this.cloudTexture('shadeTex', 512, 512, 46, 1); this.shadeTex.uScale = 2.4; this.shadeTex.vScale = 1.6;
 		this.deck = sheet('cloudDeck', GROUND_Y + 3.2, C(1, 1, 1), this.deckTex);
 		this.shade = sheet('cloudShade', GROUND_Y + 0.06, C(0, 0.02, 0.08), this.shadeTex);
+		// the flock: one painted bird (span across the flight, wings swept back), seven copies in a V
+		const bird = new DynamicTexture('birdTex', { width: 128, height: 128 }, scene, true); bird.hasAlpha = true;
+		const bc = bird.getContext() as unknown as CanvasRenderingContext2D;
+		bc.fillStyle = 'rgba(255,255,255,1)'; bc.beginPath();
+		bc.moveTo(76, 64); bc.quadraticCurveTo(62, 40, 34, 8); bc.quadraticCurveTo(52, 38, 50, 60); bc.quadraticCurveTo(44, 64, 50, 68);
+		bc.quadraticCurveTo(52, 90, 34, 120); bc.quadraticCurveTo(62, 88, 76, 64); bc.fill();
+		bc.beginPath(); bc.ellipse(62, 64, 18, 5, 0, 0, 6.3); bc.fill(); bird.update();
+		const one = CreateGround('bird', { width: 1, height: 1 }, scene);
+		const bm = new StandardMaterial('birdMat', scene); bm.disableLighting = true; bm.emissiveColor = C(0.07, 0.09, 0.15); bm.diffuseColor = C(0, 0, 0); bm.specularColor = C(0, 0, 0); bm.opacityTexture = bird; bm.alpha = 0.8; bm.backFaceCulling = false;
+		one.material = bm; one.isVisible = false; one.isPickable = false;
+		for (let i = 0; i < 7; i++) { const row = Math.ceil(i / 2), side = i === 0 ? 0 : i % 2 ? 1 : -1; const mesh = one.createInstance('bird' + i); mesh.isPickable = false; mesh.setEnabled(false); this.birds.push({ mesh, dx: -row * 0.95, dz: side * row * 0.85, beat: this.rnd() * 6 }); }
 		// the satellite picture arrives a moment after the first frame: until then the sea's colour is shown
 		const img = new Image();
 		img.onload = () => { this.picture = img; this.paint(); };
@@ -159,6 +175,7 @@ export class Scenery {
 		this.tex.uScale = LAND_X / L.tile[0]; this.tex.vScale = LAND_Z / L.tile[1];
 		this.planet.setEnabled(!!L.space); this.halo.setEnabled(!!L.space); this.shell.setEnabled(!!L.space);
 		this.deck.setEnabled(!L.space); this.shade.setEnabled(!L.space);
+		this.flock.on = false; this.flock.wait = 4 + this.rnd() * 6; for (const b of this.birds) b.mesh.setEnabled(false);
 		(this.deck.material as StandardMaterial).alpha = Math.min(0.62, L.cloud * 2.6); (this.shade.material as StandardMaterial).alpha = Math.min(0.34, L.cloud * 1.5);
 		this.ground.position.y = L.space ? GROUND_Y - 22 : GROUND_Y;              // in space the "ground" is only the dark behind the planet
 		this.place(0);
@@ -269,6 +286,23 @@ export class Scenery {
 		this.tex.update();
 	}
 
+	/** The flock: it waits, then crosses the whole view up the screen on a slant, beating its wings, and waits again. */
+	private fly(move: number) {
+		const f = this.flock;
+		if (this.look.space || this.reduceMotion || !move) { if (f.on && (this.look.space || this.reduceMotion)) { f.on = false; for (const b of this.birds) b.mesh.setEnabled(false); } return; }
+		if (!f.on) {
+			f.wait -= move; if (f.wait > 0) return;
+			f.on = true; f.x = NEAR - 4; f.z = (this.rnd() - 0.5) * 10; f.slope = (this.rnd() - 0.5) * 0.5;
+			for (const b of this.birds) b.mesh.setEnabled(true);
+		}
+		f.x += 3.2 * move; f.z += 3.2 * move * f.slope;
+		const y = GROUND_Y + 5;
+		for (const b of this.birds) {
+			const flap = 0.62 + 0.38 * Math.sin(this.t * 7 + b.beat), size = 1.25;
+			b.mesh.position.set(f.x + b.dx, y, f.z + b.dz + f.slope * b.dx); b.mesh.rotation.y = -Math.atan(f.slope); b.mesh.scaling.set(size, 1, size * flap);
+		}
+		if (f.x > FAR + 6) { f.on = false; f.wait = 14 + this.rnd() * 16; for (const b of this.birds) b.mesh.setEnabled(false); }
+	}
 	private put(kind: Kind, x: number, z: number, scale = 1, turn = 0, lift = 0) {
 		const mesh = this.free.get(kind)!.pop() ?? this.sources.get(kind)!.createInstance(kind);
 		mesh.setEnabled(true); mesh.isPickable = false;
@@ -290,6 +324,7 @@ export class Scenery {
 		this.deckTex.uOffset = wind * 0.0105; this.deckTex.vOffset = wind * 0.0048;
 		this.shadeTex.uOffset = wind * 0.0105 + 0.012; this.shadeTex.vOffset = wind * 0.0048 + 0.02;
 		if (L.space) this.aimPlanet((Math.sin(t * 0.07) * 0.42 + Math.sin(t * 0.029) * 0.16) * calm, wind * 0.02);   // the Earth turns slowly to and fro, Arabia never far from the middle, while its clouds go round
+		this.fly(move);
 		const v = 1.1 * energy * calm * move;
 		for (const it of this.items) {
 			it.x -= v * it.drift;

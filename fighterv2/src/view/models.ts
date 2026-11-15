@@ -4,6 +4,7 @@
 // merged into one mesh, so one material and cheap instances are enough.
 // Axes: x is up the screen (enemies face -x, toward the player), y is height, z is across.
 import { Color3 } from '@babylonjs/core/Maths/math.color';
+import { FresnelParameters } from '@babylonjs/core/Materials/fresnelParameters';
 import { CreateBox } from '@babylonjs/core/Meshes/Builders/boxBuilder';
 import { CreateCylinder } from '@babylonjs/core/Meshes/Builders/cylinderBuilder';
 import { CreateSphere } from '@babylonjs/core/Meshes/Builders/sphereBuilder';
@@ -58,6 +59,10 @@ export class Models {
 	constructor(readonly scene: Scene) {
 		const mk = (name: string, glow: number) => { const m = new StandardMaterial(name, scene); m.specularColor = C(0.08, 0.08, 0.08); m.emissiveColor = C(glow, glow, glow); return m; };
 		this.bright = mk('brightMat', 0.26);
+		// a rim of light: faces that turn away from the camera glow up to three times as much, so every enemy and boss stands
+		// clear of the photograph below it (sand, sea or night) without a halo or a glow behind it
+		const rim = new FresnelParameters(); rim.bias = 0; rim.power = 2.2; rim.leftColor = C(1, 1, 1); rim.rightColor = C(3.1, 3.1, 3.4);
+		this.bright.emissiveFresnelParameters = rim;
 		this.land = mk('landMat', 0.02);
 		this.gloss = mk('glossMat', 0.03); this.gloss.specularColor = C(0.55, 0.55, 0.65); this.gloss.specularPower = 180;
 		this.flat = mk('flatMat', 1); this.flat.disableLighting = true; this.flat.specularColor = C(0, 0, 0);
@@ -623,6 +628,21 @@ export class Models {
 		parts.push(part(this.box(0.04, 0.5, 0.24), hex('#d12a19'), { y: 5.25, z: 0.14 }));                     // red band at the hoist
 		parts.push(part(this.box(0.04, 0.17, 0.6), hex('#ffffff'), { y: 5.42, z: 0.56 }), part(this.box(0.04, 0.17, 0.6), hex('#d12a19'), { y: 5.25, z: 0.56 }), part(this.box(0.04, 0.17, 0.6), hex('#1f8a3a'), { y: 5.08, z: 0.56 }));
 		return this.done('tower', parts, this.land);
+	}
+	/** The rampart along one side of the fight: a long low wall of sand-coloured stone with battlements, and a round tower
+	 *  now and then. `length` runs up the screen (x); its inner face (toward the field) is at z = 0 and it lies on z > 0
+	 *  (turn it about y by half a turn for the other side). */
+	rampart(length: number): Mesh {
+		const stone = hex('#d9bb86'), shade = hex('#a8875a'), top = hex('#ecd6a6'), parts: Mesh[] = [];
+		parts.push(part(this.box(length, 0.46, 0.44), stone, { y: 0.23, z: 0.22 }));
+		parts.push(part(this.box(length, 0.05, 0.36), top, { y: 0.48, z: 0.24 }));
+		parts.push(part(this.box(length, 0.14, 0.03), shade, { y: 0.06, z: 0.005 }));                        // a darker plinth where the wall meets the field
+		for (let x = -length / 2 + 0.45; x < length / 2; x += 0.9) parts.push(part(this.box(0.34, 0.22, 0.3), stone, { x, y: 0.6, z: 0.27 }));
+		for (let x = -length / 2 + 4; x < length / 2; x += 9) {
+			parts.push(part(this.cyl(0.86, 0.8, 10, 0.76), stone, { x, y: 0.4, z: 0.3 }), part(this.cyl(0.92, 0.08, 10), top, { x, y: 0.82, z: 0.3 }));
+			for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3; parts.push(part(this.box(0.18, 0.18, 0.18), stone, { x: x + Math.cos(a) * 0.36, y: 0.94, z: 0.3 + Math.sin(a) * 0.36, ry: -a })); }
+		}
+		return this.done('rampart', parts, this.land);
 	}
 	wall(): Mesh {
 		const stone = hex('#cfb07a'), parts = [part(this.box(0.8, 1.9, 5), stone, { y: 0.95 }), part(this.box(0.4, 0.05, 5), hex('#9a7b4c'), { y: 1.92 })];

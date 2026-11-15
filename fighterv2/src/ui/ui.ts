@@ -117,7 +117,7 @@ export class Ui {
 		this.root = document.createElement('div');
 		this.root.className = 'cs-ui';
 		this.root.dir = lang === 'ar' ? 'rtl' : 'ltr'; this.root.lang = lang;
-		this.root.innerHTML = `<div class="cs-fx" aria-hidden="true"></div><div class="cs-low" aria-hidden="true"></div><div class="cs-hud hidden"></div>
+		this.root.innerHTML = `<div class="cs-vig" aria-hidden="true"></div><div class="cs-fx" aria-hidden="true"></div><div class="cs-low" aria-hidden="true"></div><div class="cs-hud hidden"></div>
 			<div class="cs-wallet hidden" role="status" aria-label="${esc(ui('wallet.label'))}"><span class="cs-wallet-coin">${omrSvg}</span><b></b><em class="cs-gain hidden"></em></div>
 			<div class="cs-prompt hidden" role="status"></div><div class="cs-toast hidden" role="status"></div><div class="cs-count hidden" aria-live="assertive"></div>
 			<div class="cs-powers"></div><button type="button" class="cs-upgrade hidden"></button><button type="button" class="cs-arms hidden"></button><div class="cs-layer"></div>`;
@@ -131,7 +131,7 @@ export class Ui {
 		this.armsEl.innerHTML = `${svg('M4 8h13l-3.500-3.500M20 16H7l3.500 3.500')}<b>${esc(ui('arms.label'))}</b>`; this.armsEl.setAttribute('aria-label', ui('arms.open'));
 		this.root.addEventListener('click', e => { if ((e.target as HTMLElement).closest('button')) this.onClick(); });
 		this.hud.innerHTML = `<button type="button" class="cs-icon-btn" data-a="pause" aria-label="${esc(ui('hud.pause'))}">${ICON.pause}</button>
-			<div class="cs-hp" data-k="hp"></div><div class="cs-ally hidden" data-k="ally"></div><div class="cs-stage"><b data-k="label"></b><i><u data-k="bar"></u></i></div>
+			<div class="cs-hp" data-k="hp"></div><div class="cs-ally hidden" data-k="ally"></div><div class="cs-stage"><b data-k="label" role="status"></b><i><u data-k="bar"></u></i></div>
 			<div class="cs-boss hidden" data-k="boss"><b data-k="bossName"></b><i><u data-k="bossBar"></u></i></div>`;
 		this.press(this.hud.querySelector('[data-a=pause]') as HTMLElement, () => this.onPause());
 	}
@@ -246,9 +246,19 @@ export class Ui {
 		k('hp').classList.toggle('low', h.hp <= 2);
 		set(k('label'), esc(h.label));
 		k('bar').style.width = `${Math.round(h.progress * 100)}%`;
-		k('boss').classList.toggle('hidden', !h.boss);
-		if (h.boss) { set(k('bossName'), esc(h.boss.name) + (h.boss.guarded ? ` <em>${esc(ui('hud.guarded'))}</em>` : '')); k('bossBar').style.width = `${Math.max(0, h.boss.hp * 100)}%`; k('boss').classList.toggle('guarded', h.boss.guarded); }
+		// a boss takes the place of the stage bar (which would only repeat the stage's name), so nothing hangs over the boss itself
+		k('boss').classList.toggle('hidden', !h.boss); this.hud.classList.toggle('has-boss', !!h.boss);
+		if (h.boss) { set(k('bossName'), (h.boss.guarded ? `<em role="img" aria-label="${esc(ui('hud.guarded'))}">${ICON.lock}</em>` : '') + esc(h.boss.name)); k('bossBar').style.width = `${Math.max(0, h.boss.hp * 100)}%`; k('boss').classList.toggle('guarded', h.boss.guarded); }
 	}
+	private hudEdge = 0; private hudEdgeAt = -1e9;
+	/** Where the HUD ends, in CSS pixels from the top (measured at most twice a second): what is written over the fight
+	 *  stays below it. */
+	hudBottom(now = performance.now()) {
+		if (now - this.hudEdgeAt > 500) { this.hudEdgeAt = now; this.hudEdge = this.hud.classList.contains('hidden') ? 0 : this.hud.getBoundingClientRect().bottom; }
+		return this.hudEdge;
+	}
+	/** A new wave: the stage bar itself lights up for a moment (it already says which wave), instead of a notice over the field. */
+	waveCue() { const el = this.hud.querySelector('.cs-stage') as HTMLElement; el.classList.remove('cue'); void el.offsetWidth; el.classList.add('cue'); }
 
 	// ------------------------------------------------------------------ profile, menu, stages, settings
 	profile(o: { name: string; avatar: 'male' | 'female'; valid: (s: string) => boolean; onDone: (name: string, avatar: 'male' | 'female') => void }) {
